@@ -11,4 +11,5 @@ public interface FirestationDao {
     public Firestation save (Firestation firestation);
 
 
+
 }

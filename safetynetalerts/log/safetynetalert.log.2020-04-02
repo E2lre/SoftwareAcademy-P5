@@ -1,0 +1,259 @@
+2020-04-02 10:11:18.933 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 10:11:21.911 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 10:11:41.707 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 10:11:44.476 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 10:31:17.633 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 10:31:19.291 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 11:04:06.134 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 11:04:07.657 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 11:04:07.766 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 11:20:43.298 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 11:20:44.952 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 11:28:08.964 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 11:28:12.229 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 11:28:59.198 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 11:29:01.935 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:29:23.541 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:29:26.324 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:29:54.458 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:29:57.598 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:40:54.970 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:40:57.505 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:41:37.108 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:41:48.172 WARN     [http-nio-8080-exec-3]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 5 does not exist
+2020-04-02 12:42:34.674 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:42:37.875 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:43:33.419 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:43:36.335 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:45:12.426 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:45:14.637 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 5 does not exist
+2020-04-02 12:45:14.750 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:45:45.846 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:45:48.351 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 12:45:48.535 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:47:01.350 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:47:05.011 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 12:47:05.340 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 12:47:32.522 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 12:47:36.437 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 12:47:36.777 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:03:08.844 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:03:10.708 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:04:40.505 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:04:40.904 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:05:15.019 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:05:15.474 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:08:23.977 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:08:33.303 WARN     [http-nio-8080-exec-2]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 5 does not exist
+2020-04-02 13:10:52.439 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:13:29.653 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:15:18.897 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:18:01.328 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:18:20.946 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:18:32.140 WARN     [http-nio-8080-exec-3]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 5 does not exist
+2020-04-02 13:20:02.582 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:20:05.471 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:20:32.883 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:20:35.643 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 13:20:35.843 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:22:18.737 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:22:21.999 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 13:22:22.128 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:22:47.236 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:23:26.278 WARN     [http-nio-8080-exec-1]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 5 does not exist
+2020-04-02 13:24:12.978 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:24:16.741 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:25:22.024 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:25:25.135 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:28:10.464 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:28:14.277 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 13:28:14.357 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:29:05.125 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:29:08.742 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 13:29:09.555 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 13:29:38.640 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 13:29:42.086 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 13:29:42.814 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:19:33.977 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:19:37.899 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 14:19:38.715 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:20:03.795 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:20:06.989 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 14:20:07.641 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:23:36.173 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:23:40.160 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 14:23:40.775 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:23:55.582 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:23:59.805 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 14:23:59.950 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:24:08.527 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:24:11.798 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 14:24:11.862 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:29:24.895 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:29:28.135 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 14:29:28.897 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:29:41.752 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:29:45.780 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 14:29:45.977 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:29:54.921 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:29:58.179 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 14:29:58.299 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:30:21.087 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 14:30:24.101 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 14:30:24.878 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 14:39:49.289 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:16:54.711 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:17:05.285 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:17:08.989 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 15:17:09.605 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 15:17:09.592 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 15:17:33.553 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:17:39.336 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 15:17:39.440 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 15:17:50.023 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:17:56.053 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 15:17:56.146 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 15:46:51.065 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:46:53.046 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 15:48:02.343 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:48:32.496 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 15:49:52.932 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:50:15.378 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 15:51:07.260 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 15:51:50.374 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:28:08.857 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:28:11.140 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:33:11.051 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:34:05.546 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:51:51.441 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:51:53.660 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:52:15.629 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:52:18.146 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:52:58.808 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:53:01.586 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:53:33.946 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:53:37.334 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:53:46.304 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:53:50.039 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:54:32.552 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:54:35.409 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:55:18.936 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:55:33.692 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 16:56:17.843 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 16:56:20.503 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:05:09.568 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:06:16.159 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:07:11.280 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:08:54.168 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:18:55.160 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:20:24.334 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:21:45.560 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:22:26.463 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:26:23.957 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:27:07.675 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:31:02.340 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:31:15.377 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:31:35.405 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:31:37.958 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:32:43.725 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:32:48.538 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:32:49.971 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 17:32:50.594 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:32:50.614 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:33:02.591 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:33:06.568 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 17:33:06.691 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:33:14.495 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:33:17.966 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 0 does not exist
+2020-04-02 17:33:18.066 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:33:46.580 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:33:50.593 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:33:51.979 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 17:33:52.413 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:33:52.425 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:42:34.523 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:42:36.467 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:43:44.071 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:43:45.945 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:45:36.328 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:47:07.898 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:48:21.776 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:49:09.326 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:50:52.077 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:51:36.988 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:52:29.006 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:52:31.928 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:53:16.311 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:53:18.958 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:56:51.205 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:56:54.593 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:57:36.197 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:57:39.942 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 17:58:47.189 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 17:58:48.781 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:00:01.432 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:00:05.152 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:01:11.566 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:01:14.683 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:05:22.933 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:05:25.854 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:10:21.953 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:10:24.118 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:10:58.718 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:11:01.054 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:12:30.494 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:12:34.297 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:13:01.993 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:13:04.832 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:20:48.858 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:20:53.777 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:21:56.867 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:22:00.818 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:23:28.706 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:23:35.795 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:24:12.007 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:24:21.590 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:25:05.026 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:27:29.106 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:27:48.291 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:28:33.489 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:30:18.524 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:30:22.501 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:32:55.099 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:32:57.358 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:36:22.620 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:36:25.613 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:43:40.879 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:43:44.391 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:44:30.932 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:44:32.400 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:45:49.909 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:45:55.230 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:45:56.928 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 18:45:57.782 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:45:57.778 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:46:27.787 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:46:32.936 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 18:46:34.426 WARN     [main]:com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException.<init> - station 3 does not exist
+2020-04-02 18:46:34.954 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 18:46:34.979 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:01:22.801 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:01:24.687 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:03:01.620 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:03:03.598 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:06:22.462 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:06:24.990 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:10:41.176 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:10:43.212 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:19:31.697 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:19:33.986 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:20:57.101 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:20:59.002 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:22:15.854 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:22:17.375 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:22:28.515 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:22:30.480 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:29:22.378 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:29:24.736 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
+2020-04-02 19:30:49.537 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
+2020-04-02 19:30:52.007 WARN     [SpringContextShutdownHook]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated

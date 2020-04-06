@@ -4,7 +4,10 @@
     <appender name="LoggerFile"
               class="org.apache.log4j.DailyRollingFileAppender"> <!-- file appender-->
         <param name="File"
-               value="log/monapp.log" />
+               value="log/safetynetalert.log" />
+<!--        <param name="MaxFileSize" value="1000KB" />
+        <param name="MaxBackupIndex" value="2" />-->
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <param name = "threshold"
                 value="warn" /> <!-- Select mini level error for this appender-->
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
@@ -17,7 +20,6 @@
         <param name="Target" value="System.out" />
         <param name = "threshold"
                value="all" /> <!-- Select mini level error for this appender-->
-        <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <!--         <layout class="org.apache.log4j.SimpleLayout" />-->
        <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"

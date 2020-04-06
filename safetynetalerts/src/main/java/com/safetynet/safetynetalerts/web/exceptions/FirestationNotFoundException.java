@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class FirestationNotFoundException extends Throwable {
+public class FirestationNotFoundException extends RuntimeException { //TODO extend sur Exception
+
     private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
     public FirestationNotFoundException(String s) {
 
         super(s);
-        logger.trace("Finish");
+        logger.warn(s);
+
     }
 }
