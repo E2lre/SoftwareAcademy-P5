@@ -5,15 +5,13 @@ import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class FirestationNotFoundException extends Exception {
+@ResponseStatus(HttpStatus.NOT_MODIFIED)
+public class FirestationCanNotbeAddedException extends Exception {
 
     private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
-    public FirestationNotFoundException(String s) {
 
+    public FirestationCanNotbeAddedException(String s) {
         super(s);
         logger.warn(s);
-
     }
 }

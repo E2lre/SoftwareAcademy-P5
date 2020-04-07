@@ -3,11 +3,15 @@ import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.dao.FirestationDao;
 
 import com.safetynet.safetynetalerts.service.InputDataReader;
+import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotbeAddedException;
 import com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import org.apache.log4j.Logger;
+
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -25,9 +29,13 @@ public class SafetyalertsController {
 	
 //TODO DAO avec le cours https://openclassrooms.com/fr/courses/4668056-construisez-des-microservices/5122884-creez-un-microservice-grace-a-spring-boot
 
+    //TODO a supprimer
+    @GetMapping(value="/firestations")
+    public List<Firestation> listOfFirestations() {
+        return firestationDao.findAll();
+    }
 
-
-    @GetMapping(value="/Firestation")
+    @GetMapping(value="/firestation")
     @ResponseBody
     public Firestation showFirestationByStation(@RequestParam(name = "stationNumber") String station) throws FirestationNotFoundException {
 
@@ -43,27 +51,23 @@ public class SafetyalertsController {
         return firestation;
     }
 
+    @PostMapping(value="/firestation")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Firestation addFirestation(@Valid @RequestBody Firestation firestation) throws FirestationCanNotbeAddedException {
 
-    //TODO a supprimer
-    @GetMapping(value="/Firestations2")
-    public List<Firestation> listOfFirestations() {
-        return firestationDao.findAll();
-    }
-
-    //TODO a supprimer
-    @GetMapping(value="/Firestations/{station}")
-    public Firestation showFirestationsByStation(@PathVariable String station) throws FirestationNotFoundException {
-                logger.trace("Start");
-
-        Firestation firestation = firestationDao.findByStation(station);
-        if (firestation == null) {
-            throw new FirestationNotFoundException("station " + station + " does not exist");
+        logger.info("Start");
+        //logger.debug("station ask : " + station);
+        Firestation firestationResult = firestationDao.save(firestation);
+//TODO
+      if (firestationResult == null) {
+            throw new FirestationCanNotbeAddedException("station " + firestation.getStation() + " address " + firestation.getAddress() +" Can not be added");
         }
 
         //logger.debug(firestation);
-        logger.trace("Finish");
-        return firestation;
+        logger.info("Finish");
+        return firestationResult;
     }
+
     //TODO a supprimer
     @GetMapping(value="/Firestations/load")
     public List<Firestation> loadFirestations() {

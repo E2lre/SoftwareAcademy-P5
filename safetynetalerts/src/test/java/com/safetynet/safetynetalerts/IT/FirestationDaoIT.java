@@ -24,7 +24,7 @@ public class FirestationDaoIT {
         //GIVEN
         Firestation fireststationTest = new Firestation();
         //WHEN
-       fireststationTest = firestationDao.findByStation("4");
+        fireststationTest = firestationDao.findByStation("4");
 
         //THEN
         assertThat(fireststationTest.getStation()).isEqualTo("4");

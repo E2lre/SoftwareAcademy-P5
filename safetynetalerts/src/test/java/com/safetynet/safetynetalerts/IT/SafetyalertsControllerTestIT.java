@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.IT;
 
 
 import com.safetynet.safetynetalerts.dao.FirestationDao;
+import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 import org.junit.After;
 import org.junit.jupiter.api.DisplayName;
@@ -13,12 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.safetynet.safetynetalerts.UT.SafetyalertsControllerTest.asJsonString;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,6 +42,9 @@ public class SafetyalertsControllerTestIT {
     @Autowired
     private FirestationDao firestationDao;
 
+    //@Autowired
+    private Firestation firestation;
+
 /*    @Before
     public void setUp() {
 
@@ -48,7 +57,7 @@ public class SafetyalertsControllerTestIT {
         //GIVEN : Give an exiting firestation
 
         //WHEN //THEN return the station
-        this.mockMvc.perform(get("/Firestation?stationNumber=3"))
+        this.mockMvc.perform(get("/firestation?stationNumber=3"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.station").value("3"))
                 .andExpect(jsonPath("$.address").value("748 Townings Dr"));
@@ -60,10 +69,30 @@ public class SafetyalertsControllerTestIT {
         //GIVEN : Give an inexiting firestation
 
         //WHEN //THEN return the station
-        this.mockMvc.perform(get("/Firestation?stationNumber=0"))
+        this.mockMvc.perform(get("/firestation?stationNumber=0"))
                 .andExpect(status().isNotFound());
     }
-    @After
+
+    @Test
+    public void SafetyalertsController_addANewFirestation_theNewFireStationAndHTTPCodeAreReturn() throws Exception {
+        //GIVEN : Give an new firestation
+
+        //WHEN : the station is created
+
+        //THEN :
+        mockMvc.perform(post("/firestation")
+                .content(asJsonString(new Firestation("10 downing str","10")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.station").value("10"))
+                .andExpect(jsonPath("$.address").value("10 downing str"));
+
+    }
+
+
+        @After
     public  void downUp(){
         this.mockMvc = null;
     }
