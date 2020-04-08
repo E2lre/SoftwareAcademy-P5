@@ -39,11 +39,11 @@ public class SafetyalertsControllerTestIT {
     private MockMvc mockMvc;
 
     // @MockBean
-    @Autowired
+ /*   @Autowired
     private FirestationDao firestationDao;
-
+*/
     //@Autowired
-    private Firestation firestation;
+//    private Firestation firestation;
 
 /*    @Before
     public void setUp() {

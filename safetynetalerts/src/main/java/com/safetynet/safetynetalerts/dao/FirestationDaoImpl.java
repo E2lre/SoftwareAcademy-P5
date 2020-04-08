@@ -12,6 +12,7 @@ import java.util.List;
 public class FirestationDaoImpl implements FirestationDao {
 
     private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+
     public static List<Firestation> firestations = new ArrayList<>();
 
     //TODO : a retirer quand la lecture du fichier de data sera opérationnelle DEBUT

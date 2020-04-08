@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.dao.FirestationDao;
 import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.service.InputDataReader;
-import com.safetynet.safetynetalerts.service.firestation.FirestationService;
-import com.safetynet.safetynetalerts.service.firestation.FirestationServiceNew;
 import org.junit.After;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -39,18 +37,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SafetyalertsControllerTest {
+public class SafetyalertsControllerTestOLD {
     //@Autowired
-  //  private WebApplicationContext context;
+    //  private WebApplicationContext context;
     @Autowired
     private MockMvc mockMvc;
 
-/*
+    /*
+        @MockBean
+        private FirestationDao firestationDaoMock;
+    */
     @MockBean
-    private FirestationDao firestationDaoMock;
-*/
-    @MockBean
-    private FirestationServiceNew firestationService;
+    private FirestationDao firestationDao;
     @MockBean
     private Firestation firestationMock;
     @MockBean
@@ -66,23 +64,23 @@ public class SafetyalertsControllerTest {
 
 
 
-       //GIVEN : Give a firestation
+        //GIVEN : Give a firestation
         firestationMock = new Firestation(); //Fonctionne mais active un niveau inférieur
         firestationMock.setStation("3");
         firestationMock.setAddress("748 Townings Dr");
-        Mockito.when(firestationService.findByStation(anyString())).thenReturn(firestationMock);
+        Mockito.when(firestationDao.findByStation(anyString())).thenReturn(firestationMock);
         //WHEN //THEN return the station
         this.mockMvc.perform(get("/firestation?stationNumber=3"))
-                        .andExpect(status().isOk())
-                        .andExpect(jsonPath("$.station").value("3"))
-                        .andExpect(jsonPath("$.address").value("748 Townings Dr"));
-  }
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.station").value("3"))
+                .andExpect(jsonPath("$.address").value("748 Townings Dr"));
+    }
     @Test
     public void SafetyalertsController_anInexistingStationIsAsk_errorIsSended() throws Exception {
 
         //GIVEN : Give an inexiting firestation
 
-        Mockito.when(firestationService.findByStation(anyString())).thenReturn(null);
+        Mockito.when(firestationDao.findByStation(anyString())).thenReturn(null);
         //WHEN //THEN return the station
         this.mockMvc.perform(get("/firestation?stationNumber=3"))
                 .andExpect(status().isNotFound());
@@ -95,9 +93,9 @@ public class SafetyalertsControllerTest {
         firestationMock = new Firestation(); //Fonctionne mais active un niveau inférieur
         firestationMock.setStation("10");
         firestationMock.setAddress("10 downing str");
-        Mockito.when(firestationService.save(any(Firestation.class))).thenReturn(firestationMock);
+        Mockito.when(firestationDao.save(any(Firestation.class))).thenReturn(firestationMock);
         //WHEN //THEN return the station added
-         mockMvc.perform(post("/firestation")
+        mockMvc.perform(post("/firestation")
                 .content(asJsonString(new Firestation("10 downing str","10")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))

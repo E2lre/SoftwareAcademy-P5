@@ -1,8 +1,11 @@
 package com.safetynet.safetynetalerts.web.controller;
-import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.dao.FirestationDao;
+import com.safetynet.safetynetalerts.dao.FirestationDaoNew;
+import com.safetynet.safetynetalerts.model.Firestation;
 
 import com.safetynet.safetynetalerts.service.InputDataReader;
+import com.safetynet.safetynetalerts.service.firestation.FirestationService;
+import com.safetynet.safetynetalerts.service.firestation.FirestationServiceNew;
 import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotbeAddedException;
 import com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,7 @@ public class SafetyalertsController {
 
     private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
     @Autowired
-    private FirestationDao firestationDao;
+    private FirestationServiceNew firestationService;
     @Autowired
     private InputDataReader inputDataReader;
 
@@ -32,7 +35,7 @@ public class SafetyalertsController {
     //TODO a supprimer
     @GetMapping(value="/firestations")
     public List<Firestation> listOfFirestations() {
-        return firestationDao.findAll();
+        return firestationService.findAll();
     }
 
     @GetMapping(value="/firestation")
@@ -41,7 +44,7 @@ public class SafetyalertsController {
 
         logger.trace("Start");
         //logger.debug("station ask : " + station);
-        Firestation firestation = firestationDao.findByStation(station);
+        Firestation firestation = firestationService.findByStation(station);
         if (firestation == null) {
             throw new FirestationNotFoundException("station " + station + " does not exist");
         }
@@ -57,7 +60,7 @@ public class SafetyalertsController {
 
         logger.info("Start");
         //logger.debug("station ask : " + station);
-        Firestation firestationResult = firestationDao.save(firestation);
+        Firestation firestationResult = firestationService.save(firestation);
 //TODO
       if (firestationResult == null) {
             throw new FirestationCanNotbeAddedException("station " + firestation.getStation() + " address " + firestation.getAddress() +" Can not be added");
@@ -69,15 +72,15 @@ public class SafetyalertsController {
     }
 
     //TODO a supprimer
-    @GetMapping(value="/Firestations/load")
-    public List<Firestation> loadFirestations() {
-        logger.trace("Start");
-
-        List<Firestation> firestations = inputDataReader.readInputData();
-        firestationDao = inputDataReader.loadFirestation(firestations);
-        logger.debug(firestations);
-        logger.trace("Finish");
-        return firestations;
-
-    }
+//    @GetMapping(value="/Firestations/load")
+//    public List<Firestation> loadFirestations() {
+//        logger.trace("Start");
+//
+//        List<Firestation> firestations = inputDataReader.readInputData();
+//        firestationDao = inputDataReader.loadFirestation(firestations);
+//        logger.debug(firestations);
+//        logger.trace("Finish");
+//        return firestations;
+//
+//    }
 }
