@@ -30,27 +30,83 @@ public class FirestationDaoImpl implements FirestationDao {
     }
 
     @Override
-    //public Firestation finByStation(int station) {
+
     public Firestation findByStation(String station) {
-        logger.info("start");
+        logger.trace("start");
         Firestation localFirestation = null;
         for(Firestation firestation : firestations){
             if (firestation.getStation().equals(station)){
                 localFirestation = firestation;
             }
         }
-        logger.info("Finish");
+        logger.trace("Finish");
+        return localFirestation;
+    }
+
+    @Override
+    public Firestation findByAddress(String address) {
+        logger.trace("start");
+        Firestation localFirestation = null;
+        for(Firestation firestation : firestations){
+            if (firestation.getAddress().equals(address)){
+                localFirestation = firestation;
+            }
+        }
+        logger.trace("Finish");
         return localFirestation;
     }
 
     @Override
     public Firestation save(Firestation firestation) {
-        logger.info("start");
+        logger.trace("start");
         firestations.add(firestation);
         //TODO : ajouter Déjà existe
-        logger.info("Finish");
+        logger.trace("Finish");
         return firestation;
     }
 
+    /**
+     * update a station by a number station. only address will be updated. Number station is unchange
+     * @param firestation
+     * @return firestation if OK, null else
+     */
+    @Override
+    public Firestation updateByStation(Firestation firestation) {
+        logger.trace("start");
+        Firestation localFirestation = findByStation(firestation.getStation()); //find the station with right number station
+        if (localFirestation != null) {
+            int position = firestations.indexOf(localFirestation);
+            if (position <0) {    //station not found
+                firestation = null;
+            }
+            else {
+                firestations.set(position,firestation);
+            }
+         }
+        else {
+            firestation = null;
+        }
+        logger.trace("Finish");
+        return firestation;
+    }
+    @Override
+    public Firestation updateByAddress(Firestation firestation) {
+        logger.trace("start");
 
+        Firestation localFirestation = findByAddress(firestation.getAddress()); //find the station with right number station
+        if (localFirestation != null) {
+            int position = firestations.indexOf(localFirestation);
+            if (position <0) {    //station not found
+                firestation = null;
+            }
+            else {
+                firestations.set(position,firestation);
+            }
+        }
+        else {
+            firestation = null;
+        }
+        logger.trace("Finish");
+        return firestation;
+    }
 }

@@ -1,9 +1,9 @@
 package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.dao.FirestationDao;
-import com.safetynet.safetynetalerts.dao.FirestationDaoNew;
+
 import com.safetynet.safetynetalerts.model.Firestation;
-import com.safetynet.safetynetalerts.service.firestation.FirestationService;
+
 import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

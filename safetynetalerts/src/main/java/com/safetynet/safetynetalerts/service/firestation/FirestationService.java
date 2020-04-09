@@ -1,12 +1,15 @@
 package com.safetynet.safetynetalerts.service.firestation;
 
-import com.safetynet.safetynetalerts.dao.FirestationDaoNew;
+import com.safetynet.safetynetalerts.model.Firestation;
 
 import java.util.List;
 
 public interface FirestationService {
-    public List<FirestationDaoNew> findAll();
-    public FirestationDaoNew findByStation (String station);
-    public FirestationDaoNew save (FirestationDaoNew firestation);
-    public List<FirestationDaoNew> load (List<FirestationDaoNew> firestationList);
+    public List<Firestation> findAll();
+    public Firestation findByStation (String station);
+    public Firestation save (Firestation firestation);
+    public Firestation updateByStation(Firestation firestation);
+    public Firestation updateByAddress(Firestation firestation);
+    public List<Firestation> delete(Firestation firestation);
+  //  public List<Firestation> load (List<Firestation> firestationList);
 }

@@ -34,7 +34,6 @@
 2020-04-07 16:40:24.161 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
 2020-04-07 16:42:52.498 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
 2020-04-07 17:33:13.332 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
-2020-04-07 17:33:13.339 WARN     [main]:org.springframework.context.support.AbstractApplicationContext.refresh - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'safetyalertsController': Unsatisfied dependency expressed through field 'firestationService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.safetynet.safetynetalerts.service.firestation.FirestationService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 2020-04-07 17:33:13.340 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationEnded.preDestroy - Application terminated
 2020-04-07 17:33:13.546 ERROR    [main]:org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter.report - 
 
@@ -44,7 +43,6 @@ APPLICATION FAILED TO START
 
 Description:
 
-Field firestationService in com.safetynet.safetynetalerts.web.controller.SafetyalertsController required a bean of type 'com.safetynet.safetynetalerts.service.firestation.FirestationService' that could not be found.
 
 The injection point has the following annotations:
 	- @org.springframework.beans.factory.annotation.Autowired(required=true)
@@ -52,7 +50,6 @@ The injection point has the following annotations:
 
 Action:
 
-Consider defining a bean of type 'com.safetynet.safetynetalerts.service.firestation.FirestationService' in your configuration.
 
 2020-04-07 17:36:29.227 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started
 2020-04-07 17:41:11.285 WARN     [main]:com.safetynet.safetynetalerts.service.ApplicationStart.postConstruct - Application started

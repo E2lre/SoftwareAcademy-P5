@@ -20,10 +20,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.safetynet.safetynetalerts.UT.SafetyalertsControllerTest.asJsonString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -50,6 +53,11 @@ public class SafetyalertsControllerTestIT {
 
     }*/
 
+    /**
+     * Controler : firestation
+     * Test : Get : show an existing address
+     * @throws Exception
+     */
     @DisplayName("Test Spring @Autowired Integration for SafetyalertsController")
     @Test
     public void SafetyalertsController_anExistingStationIsAsk_theStationAskIsSended() throws Exception {
@@ -63,6 +71,12 @@ public class SafetyalertsControllerTestIT {
                 .andExpect(jsonPath("$.address").value("748 Townings Dr"));
 
     }
+
+    /**
+     * Controler : firestation
+     * Test : Get : try to show an inexisting address
+     * @throws Exception
+     */
     @Test
     public void SafetyalertsController_anInexistingStationIsAsk_errorIsSended() throws Exception {
 
@@ -73,6 +87,11 @@ public class SafetyalertsControllerTestIT {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * Controler : firestation
+     * Test : Add an new address
+     * @throws Exception
+     */
     @Test
     public void SafetyalertsController_addANewFirestation_theNewFireStationAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give an new firestation
@@ -91,8 +110,103 @@ public class SafetyalertsControllerTestIT {
 
     }
 
+    /**
+     * Controler : firestation
+     * Test : Update : update an existing address
+     * @throws Exception
+     */
+    @Test
+    public void SafetyalertsController_updateAFirestationByExistingSAddress_firestationUpdatedAndHTTPCodeAreReturn() throws Exception {
+        //GIVEN : Give  existing firestation
 
-        @After
+        //WHEN : the station is update
+
+        //THEN :
+        mockMvc.perform(put("/firestation")
+                .content(asJsonString(new Firestation("748 Townings Dr","10")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isAccepted())
+                .andExpect(jsonPath("$.station").value("10"))
+                .andExpect(jsonPath("$.address").value("748 Townings Dr"));
+
+    }
+
+    /**
+     * Controler : firestation
+     * Test : Update : try to update an inexisting address
+     * @throws Exception
+     */
+    @Test
+    public void SafetyalertsController_updateAFirestationByInexistingAddress_firestationNotUpdatedAndHTTPCodeAreReturn() throws Exception {
+        //GIVEN : Give  existing firestation
+
+        //WHEN : the station is update
+
+        //THEN :
+        mockMvc.perform(put("/firestation")
+                .content(asJsonString(new Firestation("10 downing street","99")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotModified());
+
+    }
+
+    /**
+     * Controler : firestation
+     * Test : Delete : Delete an existing address
+     * @throws Exception
+     */
+    @Test
+    public void SafetyalertsController_deleteFirestationByAddress_firestationDeletedAndHTTPCodeAreReturn() throws Exception {
+        //GIVEN : Give  existing firestation
+        String existingStation = "3";
+        String existingAddress = "748 Townings Dr";
+
+        //WHEN : the station is deleted
+        //THEN : return the station deleted
+
+        mockMvc.perform(delete("/firestation")
+                .content(asJsonString(new Firestation(existingAddress,existingStation)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+        //TODO implémeter la lecture de la liste dans le test
+    /*               .andExpect(jsonPath("$.station").value(existingStation))
+                .andExpect(jsonPath("$.address").value(existingAddress));
+*/
+    }
+
+    /**
+     * Controler : firestation
+     * Test : Delete : Try to delete an inexisting address
+     * @throws Exception
+     */
+    @Test
+    public void SafetyalertsController_deleteFirestationWithBAdAddress_firestationNotDeletedAndHTTPCodeAreReturn() throws Exception {
+        //GIVEN : Give an inexisting firestation
+
+        String stationToDelete = "99";
+        String addressToDelete = "100 Downing Str";
+
+
+        //WHEN : delete an inexisting station
+        //THEN : return an error
+
+        mockMvc.perform(delete("/firestation")
+                .content(asJsonString(new Firestation(addressToDelete,stationToDelete)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+
+    }
+
+
+    @After
     public  void downUp(){
         this.mockMvc = null;
     }

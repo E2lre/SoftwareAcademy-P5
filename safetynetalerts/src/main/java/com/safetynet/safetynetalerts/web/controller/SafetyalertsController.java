@@ -1,12 +1,12 @@
 package com.safetynet.safetynetalerts.web.controller;
-import com.safetynet.safetynetalerts.dao.FirestationDao;
-import com.safetynet.safetynetalerts.dao.FirestationDaoNew;
 import com.safetynet.safetynetalerts.model.Firestation;
 
 import com.safetynet.safetynetalerts.service.InputDataReader;
+
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
-import com.safetynet.safetynetalerts.service.firestation.FirestationServiceNew;
+import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotBeDeletedException;
 import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotbeAddedException;
+import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotBeModifyException;
 import com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class SafetyalertsController {
 
     private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
     @Autowired
-    private FirestationServiceNew firestationService;
+    private FirestationService firestationService;
     @Autowired
     private InputDataReader inputDataReader;
 
@@ -35,7 +35,10 @@ public class SafetyalertsController {
     //TODO a supprimer
     @GetMapping(value="/firestations")
     public List<Firestation> listOfFirestations() {
-        return firestationService.findAll();
+        List<Firestation> firestationList = firestationService.findAll() ;
+        logger.info("GET /firestations : " + firestationList);
+        return firestationList;
+//        return firestationService.findAll();
     }
 
     @GetMapping(value="/firestation")
@@ -49,38 +52,82 @@ public class SafetyalertsController {
             throw new FirestationNotFoundException("station " + station + " does not exist");
         }
 
-        //logger.debug(firestation);
+        logger.info("GET /firestation?stationNumber="+station+" : " + firestation);
         logger.trace("Finish");
         return firestation;
     }
 
+    /**
+     * Add a new firestation
+     * @param firestation
+     * @return firestationadded
+     * @throws FirestationCanNotbeAddedException
+     */
     @PostMapping(value="/firestation")
     @ResponseStatus(HttpStatus.CREATED)
     public Firestation addFirestation(@Valid @RequestBody Firestation firestation) throws FirestationCanNotbeAddedException {
 
-        logger.info("Start");
+        logger.trace("Start");
         //logger.debug("station ask : " + station);
         Firestation firestationResult = firestationService.save(firestation);
-//TODO
+//TODO A tester
       if (firestationResult == null) {
             throw new FirestationCanNotbeAddedException("station " + firestation.getStation() + " address " + firestation.getAddress() +" Can not be added");
         }
 
-        //logger.debug(firestation);
-        logger.info("Finish");
+        logger.info("POST /firestation : " + firestationResult);
+        logger.trace("Finish");
         return firestationResult;
     }
 
-    //TODO a supprimer
-//    @GetMapping(value="/Firestations/load")
-//    public List<Firestation> loadFirestations() {
-//        logger.trace("Start");
-//
-//        List<Firestation> firestations = inputDataReader.readInputData();
-//        firestationDao = inputDataReader.loadFirestation(firestations);
-//        logger.debug(firestations);
-//        logger.trace("Finish");
-//        return firestations;
-//
-//    }
+    /**
+     * update a firestation
+     * @param firestation
+     * @return the firestation updated
+     * @throws FirestationCanNotBeModifyException
+     */
+    @PutMapping(value="/firestation")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Firestation modifyFirestation(@Valid @RequestBody Firestation firestation) throws FirestationCanNotBeModifyException {
+
+        logger.trace("Start");
+
+        //Firestation firestationResult = firestationService.updateByStation(firestation);
+
+        Firestation firestationResult = firestationService.updateByAddress(firestation);
+//TODO A tester
+        if (firestationResult == null) {
+            throw new FirestationCanNotBeModifyException("station " + firestation.getStation() + " address " + firestation.getAddress() +" Can not be modify");
+        }
+
+        logger.info("PUT /firestation : " + firestationResult);
+        logger.trace("Finish");
+        return firestationResult;
+    }
+
+    /**
+     * Delete a fire station : the key is the address
+     * @param firestation
+     * @return firestation delete
+     * @throws FirestationCanNotBeDeletedException
+     */
+    @DeleteMapping(value="/firestation")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Firestation> deleteFirestation(@Valid @RequestBody Firestation firestation) throws FirestationCanNotBeDeletedException {
+
+        logger.trace("Start");
+
+        //Firestation firestationResult = firestationService.updateByStation(firestation);
+
+         List<Firestation> firestationList = firestationService.delete(firestation);
+//TODO A tester
+        if (firestationList == null) {
+            throw new FirestationCanNotBeDeletedException("station " + firestation.getStation() + " address " + firestation.getAddress() +" Can not be deleted");
+        }
+
+        logger.info("Delete /firestation : " + firestationList );
+        logger.trace("Finish");
+        return firestationList;
+    }
+
 }

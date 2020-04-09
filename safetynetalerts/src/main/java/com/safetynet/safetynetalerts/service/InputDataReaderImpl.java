@@ -4,10 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.dao.FirestationDao;
 import com.safetynet.safetynetalerts.dao.FirestationDaoImpl;
-import com.safetynet.safetynetalerts.dao.FirestationDaoNew;
+
 import com.safetynet.safetynetalerts.model.Firestation;
-import com.safetynet.safetynetalerts.service.firestation.FirestationService;
-import com.safetynet.safetynetalerts.service.firestation.FirestationServiceImpl;
+
 import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,13 @@ import java.util.List;
 public class InputDataReaderImpl implements InputDataReader {
     private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
 
+/*
     @Autowired
     FirestationService resultFirestationService;
-    @Autowired
+*/
+ /*   @Autowired
     FirestationDaoNew fsDao;
-
+*/
     @Override
     public List<Firestation> readInputDataXX() {
         logger.trace("Start");
@@ -33,9 +34,11 @@ public class InputDataReaderImpl implements InputDataReader {
             ObjectMapper mapper = new ObjectMapper();
             logger.trace("mapper");
 
+/*
             List<FirestationDaoNew> firestations = mapper.reader()
                     .forType(new TypeReference<List<Firestation>>(){})
                     .readValue(new File("data.json"));
+*/
             List<Firestation> firestation = mapper.reader()
                     .forType(new TypeReference<List<Firestation>>(){})
                     .readValue(new File("data.json"));
@@ -44,7 +47,7 @@ public class InputDataReaderImpl implements InputDataReader {
             //                                              .forType(FirestationDao.class)
             //                                              .readValue(new File("data.json"));
 
-            logger.debug(firestations);
+//            logger.debug(firestations);
             logger.debug(firestation);
 
             logger.trace("Finish");
@@ -73,7 +76,7 @@ public class InputDataReaderImpl implements InputDataReader {
 
 
 
-    @Override
+ /*   @Override
    public List<FirestationDaoNew> readInputData() {
         logger.trace("Start");
         // read json
@@ -115,14 +118,14 @@ public class InputDataReaderImpl implements InputDataReader {
     //    for(FirestationDaoNew eFirestation : listFirestation) {
 
         //for(FirestationDaoNew eFirestation : listFirestation) {
-  /*      for(FirestationDaoNew eFirestation : listFirestationDao) {
+  *//*      for(FirestationDaoNew eFirestation : listFirestationDao) {
 
             resultFirestationService.save(eFirestation);
-            }*/
+            }*//*
         resultFirestationService.load (firestationDaoList);
         logger.debug(resultFirestationService);
         logger.trace("Finish");
         return resultFirestationService;
-    }
+    }*/
 }
 
