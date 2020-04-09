@@ -11,6 +11,7 @@ public interface FirestationDao {
     public Firestation save (Firestation firestation);
     public Firestation updateByStation (Firestation firestation);
     public Firestation updateByAddress (Firestation firestation);
-
+    public List<Firestation> delete(Firestation firestation);
+    public boolean clear();
 
 }

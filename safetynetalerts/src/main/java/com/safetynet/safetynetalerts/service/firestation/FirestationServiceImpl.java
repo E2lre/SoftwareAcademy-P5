@@ -23,29 +23,30 @@ public class FirestationServiceImpl implements FirestationService {
 
     @Override
     public Firestation findByStation (String station) {
+        logger.debug("Start/finish");
         return firestationDao.findByStation(station);
     }
 
     @Override
     public Firestation save (Firestation firestation){
-        logger.trace("Start/finish");
+        logger.debug("Start/finish");
         return firestationDao.save(firestation);
     }
 
     @Override
     public Firestation updateByStation (Firestation firestation){
-        logger.trace("Start/finish");
+        logger.debug("Start/finish");
         return firestationDao.updateByStation(firestation);
     }
     @Override
     public Firestation updateByAddress(Firestation firestation){
-        logger.trace("Start/finish");
+        logger.debug("Start/finish");
         return firestationDao.updateByAddress(firestation);
     }
     @Override
     public List<Firestation> delete(Firestation firestation){
-        logger.trace("Start/finish");
-        return null;
+        logger.debug("Start/finish");
+        return firestationDao.delete(firestation);
     }
 
 

@@ -36,17 +36,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class SafetyalertsControllerTestIT {
 
-    //@Autowired
-    //  private WebApplicationContext context;
     @Autowired
     private MockMvc mockMvc;
 
-    // @MockBean
- /*   @Autowired
-    private FirestationDao firestationDao;
-*/
-    //@Autowired
-//    private Firestation firestation;
 
 /*    @Before
     public void setUp() {
@@ -58,8 +50,8 @@ public class SafetyalertsControllerTestIT {
      * Test : Get : show an existing address
      * @throws Exception
      */
-    @DisplayName("Test Spring @Autowired Integration for SafetyalertsController")
-    @Test
+    //@DisplayName("Test Spring @Autowired Integration for SafetyalertsController")
+    //@Test //TODO A réactiver avec la règle : ?stationNumber= <station_number> : retourner une liste des personnes couvertes par la caserne de pompiers correspondante.
     public void SafetyalertsController_anExistingStationIsAsk_theStationAskIsSended() throws Exception {
 
         //GIVEN : Give an exiting firestation
@@ -162,8 +154,8 @@ public class SafetyalertsControllerTestIT {
     @Test
     public void SafetyalertsController_deleteFirestationByAddress_firestationDeletedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give  existing firestation
-        String existingStation = "3";
-        String existingAddress = "748 Townings Dr";
+        String existingStation = "2";
+        String existingAddress = "951 LoneTree Rd";
 
         //WHEN : the station is deleted
         //THEN : return the station deleted
@@ -186,7 +178,7 @@ public class SafetyalertsControllerTestIT {
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_deleteFirestationWithBAdAddress_firestationNotDeletedAndHTTPCodeAreReturn() throws Exception {
+    public void SafetyalertsController_deleteFirestationWithBadAddress_firestationNotDeletedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give an inexisting firestation
 
         String stationToDelete = "99";

@@ -197,8 +197,8 @@ public class SafetyalertsControllerTest {
     @Test
     public void SafetyalertsController_deleteFirestationByAddress_firestationDeletedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give  existing firestation
-        String existingStation = "3";
-        String existingAddress = "748 Townings Dr";
+        String existingStation = "2";
+        String existingAddress = "951 LoneTree Rd";
 
 
         firestationMock = new Firestation(); //Fonctionne mais active un niveau inférieur

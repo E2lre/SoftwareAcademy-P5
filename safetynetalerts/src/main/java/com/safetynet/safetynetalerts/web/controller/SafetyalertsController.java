@@ -121,7 +121,7 @@ public class SafetyalertsController {
 
          List<Firestation> firestationList = firestationService.delete(firestation);
 //TODO A tester
-        if (firestationList == null) {
+        if ((firestationList == null) || (firestationList.size()==0)) {
             throw new FirestationCanNotBeDeletedException("station " + firestation.getStation() + " address " + firestation.getAddress() +" Can not be deleted");
         }
 

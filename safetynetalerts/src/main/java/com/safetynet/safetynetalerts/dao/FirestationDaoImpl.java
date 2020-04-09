@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -108,5 +109,68 @@ public class FirestationDaoImpl implements FirestationDao {
         }
         logger.trace("Finish");
         return firestation;
+    }
+
+    /**
+     * Delete a station or an adress
+     * @param firestation to delete, complete or only address or only station
+     * @return list of firestation deleted
+     */
+    @Override
+    public List<Firestation> delete(Firestation firestation) {
+        logger.trace("start");
+        List<Firestation> DeletedFirestation = new ArrayList<>();
+        if ((firestation.getAddress()!=null) && (firestation.getStation()==null)){ //Delete by address
+            Iterator itr = firestations.iterator();
+            while (itr.hasNext()){
+                Firestation indexFirestation = (Firestation)itr.next();
+                if (indexFirestation.getAddress().equals(firestation.getAddress())){
+                    DeletedFirestation.add(indexFirestation);
+                    itr.remove();
+                }
+            }
+        }
+        else{
+            if ((firestation.getAddress()==null) && (firestation.getStation()!=null)) { //Delete by station
+                Iterator itr = firestations.iterator();
+                while (itr.hasNext()){
+                    Firestation indexFirestation = (Firestation)itr.next();
+                    if (indexFirestation.getStation().equals(firestation.getStation())){
+                        DeletedFirestation.add(indexFirestation);
+                        itr.remove();
+                    }
+                }
+            }
+            else {
+                if ((firestation.getAddress()!=null) && (firestation.getStation()!=null)) { //Delete by adress & station
+                    Iterator itr = firestations.iterator();
+                    while (itr.hasNext()){
+                        Firestation indexFirestation = (Firestation)itr.next();
+                        //TODO : tester en comparant les firestation au lieu des get
+  //                      if ((indexFirestation.getStation()==firestation.getStation() && (indexFirestation.getAddress()==firestation.getAddress()))){
+                        if ((indexFirestation.getStation().equals(firestation.getStation())) && (indexFirestation.getAddress().equals(firestation.getAddress()))){
+                            DeletedFirestation.add(indexFirestation);
+                            itr.remove();
+                        }
+                    }
+                }
+                else { // Station and address are null
+                    logger.error("impossible to delete firestation because station is null and adress is null");
+                }
+            }
+        }
+        logger.trace("Finish");
+        return DeletedFirestation;
+    }
+
+    /**
+     * clear the list off firestation in mémory
+     * use by unit test
+     * @return true if ok (always)
+     */
+    @Override
+    public boolean clear(){
+        firestations.clear();
+        return true;
     }
 }

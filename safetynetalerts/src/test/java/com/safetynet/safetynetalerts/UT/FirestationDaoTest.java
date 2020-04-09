@@ -62,7 +62,9 @@ public class FirestationDaoTest {
 
     String correctAddress = "748 Townings Dr";
     String correctStation = "3";
-
+    String incorrectAddress = "Incorrect Address";
+    String incorrectStation ="99";
+    List<Firestation>  deletetdFirestations;
 
     @BeforeEach
     private void setUpPerTest() {
@@ -79,7 +81,7 @@ public class FirestationDaoTest {
         firestationDao.save(new Firestation(correctAddress, correctStation));
         firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
 */
-
+        deletetdFirestations= new ArrayList<>();
     }
 
 
@@ -87,6 +89,10 @@ public class FirestationDaoTest {
     private void cleanUpEach() {
     //    firestationDao = null;
     //    fireststationTest = null;
+//        if (!deletetdFirestations.isEmpty()) {
+//            firestationDao. .removeAll(Firestation);
+//        }
+        firestationDao.clear();
     }
 
     @Test
@@ -183,5 +189,298 @@ public class FirestationDaoTest {
         assertThat(nbFirestationFinal-nbFirestationStart).isEqualTo(2) ;
     }
 
+    @Test
+    public void findByAddress_aAddressExist_theFirestationIsReturn() {
+        //GIVEN
+        //Firestation fireststationTest = new Firestation();
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
 
+
+        //WHEN
+        //Firestation fireststationTest = new Firestation();
+        fireststationTest = firestationDao.findByAddress(correctAddress);
+
+        //THEN
+        assertThat(fireststationTest.getStation()).isEqualTo(firestation.getStation());
+        assertThat(fireststationTest.getAddress()).isEqualTo(firestation.getAddress());
+    }
+    @Test
+    public void findByAddress_aAddressNotExist_nullIsReturn() {
+
+        //GIVEN
+
+        firestationDao.save(new Firestation(correctAddress, correctStation));
+        firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
+
+
+        //WHEN
+        fireststationTest = firestationDao.findByAddress("Incorrect Address");
+
+        //THEN
+        assertThat(fireststationTest).isNull();
+    }
+
+
+    @Test
+    public void updateByAddress_addressExist_theFirestationIsUpdated() {
+        //GIVEN
+        //Firestation fireststationTest = new Firestation();
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
+        String newStation = "99";
+        Firestation fireStationToUpdate = new Firestation(correctAddress, newStation);
+
+        //WHEN
+        fireststationTest = firestationDao.updateByAddress(fireStationToUpdate);
+
+        //THEN
+        assertThat(fireststationTest.getStation()).isEqualTo(newStation);
+        assertThat(fireststationTest.getAddress()).isEqualTo(correctAddress);
+    }
+
+    @Test
+    public void updateByAddress_addressNotExist_nullIsReturn() {
+        //GIVEN
+        //Firestation fireststationTest = new Firestation();
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
+        String newStation = "99";
+        String incorrectAdress = "Error Street";
+        Firestation fireStationToUpdate = new Firestation(incorrectAdress, newStation);
+
+        //WHEN
+        fireststationTest = firestationDao.updateByAddress(fireStationToUpdate);
+
+        //THEN
+        assertThat(fireststationTest).isNull();
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void updateByStation_stationExist_theFirestationIsUpdated() {
+        //GIVEN
+        //Firestation fireststationTest = new Firestation();
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, correctStation);
+
+        //WHEN
+        fireststationTest = firestationDao.updateByStation(fireStationToUpdate);
+
+        //THEN
+        assertThat(fireststationTest.getStation()).isEqualTo(correctStation);
+        assertThat(fireststationTest.getAddress()).isEqualTo(newAddress);
+    }
+
+    @Test
+    public void updateBystation_stationNotExist_nullIsReturn() {
+        //GIVEN
+        //Firestation fireststationTest = new Firestation();
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
+        String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);
+
+        //WHEN
+        fireststationTest = firestationDao.updateByStation(fireStationToUpdate);
+
+        //THEN
+        assertThat(fireststationTest).isNull();
+    }
+
+    @Test
+    public void delete_byExistingAddress_firestationListdeletedIsReturn() {
+        //GIVEN
+
+    //    List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(correctAddress, null);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void delete_byExistingAddress_severalfirestationdeletedIsReturn() {
+        //GIVEN
+
+    //    List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, incorrectStation));
+        fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(correctAddress, null);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void delete_byInexistingAddress_firestationListdeletedIsReturn() {
+        //GIVEN
+
+    //    List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        //fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(incorrectAddress, null);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(0);
+        assertThat(deletetdFirestations).isEmpty();
+    }
+    @Test
+    public void delete_byExistingStation_firestationListdeletedIsReturn() {
+        //GIVEN
+
+    //    List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(null, correctStation);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(1);
+    }
+    @Test
+    public void delete_byExistingStation_severalfirestationdeletedIsReturn() {
+        //GIVEN
+
+   //     List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(incorrectAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(null, correctStation);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(2);
+    }
+    @Test
+    public void delete_byInexistingStation_firestationListdeletedIsReturn() {
+        //GIVEN
+
+   //     List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        //fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(null, incorrectStation);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(0);
+        assertThat(deletetdFirestations).isEmpty();
+    }
+
+    @Test
+    public void delete_byExistingStationAndAddress_firestationListdeletedIsReturn() {
+        //GIVEN
+
+    //    List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(correctAddress, correctStation);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(1);
+    }
+    @Test
+    public void delete_byInexistingStationAndAddress_firestationListdeletedIsReturn() {
+        //GIVEN
+
+    //    List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        //fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(incorrectAddress, incorrectStation);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(0);
+        assertThat(deletetdFirestations).isEmpty();
+    }
+
+    @Test
+    public void delete_nullStationAndAddress_emptyListfirestationIsReturn() {
+        //GIVEN
+
+    //    List<Firestation>  deletetdFirestations= new ArrayList<>();
+ /*       firesstations.add(new Firestation(correctAddress, correctStation));
+        firesstations.add(new Firestation(incorrectAddress, incorrectStation));
+ */
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+        //fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
+ /*       String incorrectStation = "98";
+        String newAddress = "new Address";
+        Firestation fireStationToUpdate = new Firestation(newAddress, incorrectStation);*/
+        Firestation fireStationToDelete = new Firestation(null, null);
+        //WHEN
+        deletetdFirestations = firestationDao.delete(fireStationToDelete);
+
+        //THEN
+        assertThat(deletetdFirestations.size()).isEqualTo(0);
+        assertThat(deletetdFirestations).isEmpty();
+    }
 }
