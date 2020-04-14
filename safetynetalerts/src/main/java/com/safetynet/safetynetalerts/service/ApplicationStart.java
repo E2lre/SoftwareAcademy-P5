@@ -29,13 +29,17 @@ public class ApplicationStart {
 
         logger.info("Start");
 
+        //TEST TEST TEST TEST
+        firestationDao=inputDataReader.readInputFile();
+        logger.debug(firestationDao);
+        //TEST TEST TEST TEST
    //     List<FirestationDaoNew> firestations = inputDataReader.readInputData();
-        List<Firestation> firestations = inputDataReader.readInputDataXX();
+ //       List<Firestation> firestations = inputDataReader.readInputDataXX();
 
         logger.info("file read");
    //     firestationService = inputDataReader.loadFirestation(firestations);
-        firestationDao  = inputDataReader.loadFirestationXX(firestations);
-        logger.debug(firestations);
+ //       firestationDao  = inputDataReader.loadFirestationXX(firestations);
+ //       logger.debug(firestations);
         logger.info("Finish");
         logger.warn("Application started");
     }

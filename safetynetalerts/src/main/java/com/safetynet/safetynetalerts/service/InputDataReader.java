@@ -10,6 +10,8 @@ import java.util.List;
 public interface InputDataReader {
     public List<Firestation> readInputDataXX();
     public FirestationDao loadFirestationXX(List<Firestation> listFirestation);
+    public FirestationDao readInputFile();
+
 /*
     public List<FirestationDaoNew> readInputData();
     public FirestationService loadFirestation(List<FirestationDaoNew> listFirestationDao);

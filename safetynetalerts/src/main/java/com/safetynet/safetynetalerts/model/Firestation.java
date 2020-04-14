@@ -7,7 +7,6 @@ public class Firestation {
 
 	private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
 	private String address;
-	//private int station;
 	private String station;
 
 	/**
@@ -40,13 +39,12 @@ public class Firestation {
 		this.address = address;
 	}
 
-	//public int getStation() {
+
 	public String getStation() {
 
 		return station;
 	}
 
-	//public void setStation(int station) {
 	public void setStation(String station) {
 		this.station = station;
 	}

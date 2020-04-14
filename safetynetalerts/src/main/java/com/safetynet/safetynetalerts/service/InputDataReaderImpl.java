@@ -2,17 +2,24 @@ package com.safetynet.safetynetalerts.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jsoniter.JsonIterator;
 import com.safetynet.safetynetalerts.dao.FirestationDao;
 import com.safetynet.safetynetalerts.dao.FirestationDaoImpl;
 
-import com.safetynet.safetynetalerts.model.Firestation;
+import com.safetynet.safetynetalerts.dao.PersonDao;
+import com.safetynet.safetynetalerts.model.*;
 
 import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StreamUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -26,6 +33,7 @@ public class InputDataReaderImpl implements InputDataReader {
  /*   @Autowired
     FirestationDaoNew fsDao;
 */
+    //TODO à supprimer
     @Override
     public List<Firestation> readInputDataXX() {
         logger.trace("Start");
@@ -41,7 +49,8 @@ public class InputDataReaderImpl implements InputDataReader {
 */
             List<Firestation> firestation = mapper.reader()
                     .forType(new TypeReference<List<Firestation>>(){})
-                    .readValue(new File("data.json"));
+                   // .readValue(new File("data.json"));
+                    .readValue(new File("data - firestation.json"));
 
             //   FirestationDao firestations = mapper.reader()
             //                                              .forType(FirestationDao.class)
@@ -62,6 +71,7 @@ public class InputDataReaderImpl implements InputDataReader {
 //           InputStream inputStream = TypeReference.class.getResourceAsStream("data.json");
 //            List<User> users = mapper.readValue(inputStream,typeReference);
     }
+    //TODO à supprimer
     @Override
     public FirestationDao  loadFirestationXX(List<Firestation> listFirestation){
         logger.trace("Start");
@@ -74,58 +84,37 @@ public class InputDataReaderImpl implements InputDataReader {
         return resultFirestationDao;
     }
 
-
-
- /*   @Override
-   public List<FirestationDaoNew> readInputData() {
-        logger.trace("Start");
-        // read json
+    @Override
+    public FirestationDao readInputFile() {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            logger.trace("mapper");
+            logger.debug("Start");
 
-            List<FirestationDaoNew> firestations = mapper.reader()
-                                                    .forType(new TypeReference<List<Firestation>>(){})
-                                                    .readValue(new File("data.json"));
-            List<Firestation> firestation = mapper.reader()
-                    .forType(new TypeReference<List<Firestation>>(){})
-                    .readValue(new File("data.json"));
+            String pathFile = "data.json";
 
-            //   FirestationDao firestations = mapper.reader()
-         //                                              .forType(FirestationDao.class)
-         //                                              .readValue(new File("data.json"));
+            String data = StreamUtils.copyToString(new ClassPathResource(pathFile).getInputStream(), Charset.defaultCharset());
 
-            logger.debug(firestations);
-            logger.debug(firestation);
 
-            logger.trace("Finish");
-            return firestations;
+            Firestations firestationList = JsonIterator.deserialize(data, Firestations.class);
+
+            FirestationDao resultFirestationDao = new FirestationDaoImpl();
+            List<Firestation> listFirestation = firestationList.getFirestations();
+            for(Firestation eFirestation : listFirestation) {
+                resultFirestationDao.save(eFirestation);
+            }
+
+
+            Persons personList = JsonIterator.deserialize(data, Persons.class);
+//            PersonDao personDao = JsonIterator.deserialize(data, PersonDao.class);
+            MedicalRecords medicalRecordList = JsonIterator.deserialize(data, MedicalRecords.class);
+
+            logger.debug("Finish");
+            return resultFirestationDao;
         }
-        catch (Exception e){
-            logger.error(e.getMessage());
-            logger.trace("Finish with error");
+        catch (IOException e){
+            logger.error(e);
             return null;
         }
-//            TypeReference<List<User>> typeReference = new TypeReference<List<User>>(){};
-//           InputStream inputStream = TypeReference.class.getResourceAsStream("data.json");
-//            List<User> users = mapper.readValue(inputStream,typeReference);
     }
 
-    @Override
-    public FirestationService loadFirestation(List<FirestationDaoNew> firestationDaoList){
-        logger.trace("Start");
-        //FirestationService resultFirestationService = new FirestationServiceImpl();
-    //    for(FirestationDaoNew eFirestation : listFirestation) {
-
-        //for(FirestationDaoNew eFirestation : listFirestation) {
-  *//*      for(FirestationDaoNew eFirestation : listFirestationDao) {
-
-            resultFirestationService.save(eFirestation);
-            }*//*
-        resultFirestationService.load (firestationDaoList);
-        logger.debug(resultFirestationService);
-        logger.trace("Finish");
-        return resultFirestationService;
-    }*/
 }
 
