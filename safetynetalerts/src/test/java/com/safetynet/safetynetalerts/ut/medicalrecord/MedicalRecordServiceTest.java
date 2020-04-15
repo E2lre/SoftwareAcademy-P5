@@ -100,7 +100,7 @@ public class MedicalRecordServiceTest {
         MedicalRecord medicalRecordServiceTest = medicalRecordService.add(medicalRecord);
         //THEN
         assertThat(medicalRecordServiceTest.getFirstName()).isEqualTo(firstNameConst);
-        assertThat(medicalRecordServiceTest.getLastName()).isEqualTo(lastNameInexistingConst);
+        assertThat(medicalRecordServiceTest.getLastName()).isEqualTo(lastNameConst);
         assertThat(medicalRecordServiceTest.getBirthdate()).isEqualTo(birthdateConst);
         assertThat(medicalRecordServiceTest.getAllergies()).isEqualTo(allergiesListConst);
         assertThat(medicalRecordServiceTest.getMedications()).isEqualTo(medicationsListConst);
@@ -138,8 +138,8 @@ public class MedicalRecordServiceTest {
         MedicalRecord medicalRecordServiceTest = medicalRecordService.update(medicalRecord);
         //THEN
         assertThat(medicalRecordServiceTest.getFirstName()).isEqualTo(firstNameConst);
-        assertThat(medicalRecordServiceTest.getLastName()).isEqualTo(lastNameInexistingConst);
-        assertThat(medicalRecordServiceTest.getBirthdate()).isEqualTo(birthdateConst);
+        assertThat(medicalRecordServiceTest.getLastName()).isEqualTo(lastNameConst);
+        assertThat(medicalRecordServiceTest.getBirthdate()).isEqualTo("01/01/1980");
         assertThat(medicalRecordServiceTest.getAllergies()).isEqualTo(allergiesListConst);
         assertThat(medicalRecordServiceTest.getMedications()).isEqualTo(medicationsListConst);
 

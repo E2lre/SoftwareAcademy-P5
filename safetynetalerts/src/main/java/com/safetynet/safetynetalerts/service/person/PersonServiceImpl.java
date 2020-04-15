@@ -1,26 +1,42 @@
 package com.safetynet.safetynetalerts.service.person;
 
+
+import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.model.Person;
-import com.safetynet.safetynetalerts.service.firestation.FirestationService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class PersonServiceImpl  {
-//public class PersonServiceImpl implements PersonService {
-    //@Override
+public class PersonServiceImpl implements PersonService {
+    private static final Logger logger = LogManager.getLogger(PersonServiceImpl.class);
+
+    @Autowired
+    private PersonDao personDao;
+
+    @Override
+    public Person get (Person person){
+        logger.debug("Start/finish");
+        return personDao.get(person);
+    }
+    @Override
     public Person add(Person person) {
-        return null;
+        logger.debug("Start/finish");
+        return personDao.add(person);
     }
 
-    //@Override
+    @Override
     public Person update(Person person) {
-        return null;
+        logger.debug("Start/finish");
+        return personDao.update(person);
     }
 
-    //@Override
+    @Override
     public List<Person> delete(Person person) {
-        return null;
+        logger.debug("Start/finish");
+        return personDao.delete(person);
     }
 }

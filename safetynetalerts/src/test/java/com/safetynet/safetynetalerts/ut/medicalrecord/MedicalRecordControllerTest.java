@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.ut.medicalrecord;
 
 import com.safetynet.safetynetalerts.model.MedicalRecord;
+import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 import com.safetynet.safetynetalerts.service.medicalrecord.MedicalRecordService;
 import org.junit.jupiter.api.BeforeEach;
@@ -76,12 +77,12 @@ public class MedicalRecordControllerTest {
 
         Mockito.when(medicalRecordService.get(any(MedicalRecord.class))).thenReturn(medicalRecord);
         //WHEN //THEN return the medical record ask
-        mockMvc.perform(get("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(get("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName").value(firstNameConst))
                 .andExpect(jsonPath("$.lastName").value(lastNameConst))
                 .andExpect(jsonPath("$.birthdate").value(birthdateConst));
@@ -99,12 +100,12 @@ public class MedicalRecordControllerTest {
 
         Mockito.when(medicalRecordService.add(any(MedicalRecord.class))).thenReturn(null);
         //WHEN //THEN return error
-        mockMvc.perform(get("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(get("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isNotModified());
+                .andExpect(status().isNotFound());
     }
 
     /*------------------------ Post ---------------------------------*/
@@ -121,8 +122,8 @@ public class MedicalRecordControllerTest {
 
         Mockito.when(medicalRecordService.add(any(MedicalRecord.class))).thenReturn(medicalRecord);
         //WHEN //THEN return the medical record
-        mockMvc.perform(post("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(post("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -144,8 +145,8 @@ public class MedicalRecordControllerTest {
 
         Mockito.when(medicalRecordService.add(any(MedicalRecord.class))).thenReturn(null);
         //WHEN //THEN return error
-        mockMvc.perform(post("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(post("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -168,8 +169,8 @@ public class MedicalRecordControllerTest {
 
         // WHEN
         //THEN
-        mockMvc.perform(put("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(put("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isAccepted())
@@ -191,8 +192,8 @@ public class MedicalRecordControllerTest {
 
         // WHEN
         //THEN
-        mockMvc.perform(put("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(put("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotModified());
@@ -206,19 +207,19 @@ public class MedicalRecordControllerTest {
     @Test
     public void MedicalRecordController_deleteAExistingMedicalRecord_medicalRecordDeletedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN Delete an existing MedicalRecord
-        Mockito.when(medicalRecordService.update(any(MedicalRecord.class))).thenReturn(medicalRecord);
+        List<MedicalRecord> medicalRecordList = new ArrayList<>();
+        medicalRecordList.add(medicalRecord);
+
+        Mockito.when(medicalRecordService.delete(any(MedicalRecord.class))).thenReturn(medicalRecordList);
 
         // WHEN
         //THEN
-        mockMvc.perform(delete("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(delete("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName").value(firstNameConst))
-                .andExpect(jsonPath("$.lastName").value(lastNameConst))
-                .andExpect(jsonPath("$.birthdate").value(birthdateConst));
+                .andExpect(status().isOk());
         //TODO completer la liste et ajouter la suppression de plusieurs personnes à controler / demande???
     }
 
@@ -230,12 +231,12 @@ public class MedicalRecordControllerTest {
     @Test
     public void MedicalRecordController_deleteAnInexistingMedicalRecord_medicalRecordNotDeletedAndHTTPErrorCodeIsReturn() throws Exception {
         //GIVEN Delete an Inexisting MedicalRecord
-        Mockito.when(medicalRecordService.update(any(MedicalRecord.class))).thenReturn(null);
+        Mockito.when(medicalRecordService.delete(any(MedicalRecord.class))).thenReturn(null);
 
         // WHEN
         //THEN
-        mockMvc.perform(delete("/medicalrecord")
-                .content(asJsonString(medicalRecordService))
+        mockMvc.perform(delete("/medicalReport")
+                .content(asJsonString(new MedicalRecord(firstNameConst,lastNameConst,birthdateConst,allergiesListConst,medicationsListConst)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())

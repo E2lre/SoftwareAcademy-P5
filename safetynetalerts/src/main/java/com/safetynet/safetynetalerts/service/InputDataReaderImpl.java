@@ -4,11 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jsoniter.JsonIterator;
 import com.jsoniter.spi.TypeLiteral;
-import com.safetynet.safetynetalerts.dao.FirestationDao;
-import com.safetynet.safetynetalerts.dao.FirestationDaoImpl;
+import com.safetynet.safetynetalerts.dao.*;
 
-import com.safetynet.safetynetalerts.dao.PersonDao;
-import com.safetynet.safetynetalerts.dao.PersonDaoImpl;
 import com.safetynet.safetynetalerts.model.*;
 
 import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
@@ -111,7 +108,7 @@ public class InputDataReaderImpl implements InputDataReader {
                 resultFirestationDao.save(eFirestation);
             }
 
-
+//TODO revoir tout cette gestion avec les new et les lists de dao
             //Persons personList = JsonIterator.deserialize(data, Persons.class);
             Persons persons = JsonIterator.deserialize(data, Persons.class);
             List<Person> personList = persons.getPersons();
@@ -125,8 +122,11 @@ public class InputDataReaderImpl implements InputDataReader {
             //personDao= JsonIterator.deserialize(data, PersonDaoImpl.class);
             //List<Person> personList= JsonIterator.deserialize(data,new TypeLiteral<List<Person>>(){});
   //          personDao.load(personList);
-            MedicalRecords medicalRecordList = JsonIterator.deserialize(data, MedicalRecords.class);
+            MedicalRecords medicalRecords = JsonIterator.deserialize(data, MedicalRecords.class);
+            List<MedicalRecord> medicalRecordList = medicalRecords.getMedicalRecords();
 
+            MedicalRecordDao medicalRecordDao = new MedicalRecordDaoImpl();
+            resultat =medicalRecordDao.load(medicalRecordList);
             logger.debug("Finish");
             return resultFirestationDao;
         }

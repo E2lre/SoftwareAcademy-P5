@@ -13,6 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.safetynet.safetynetalerts.ut.firestation.FirestationControllerTest.asJsonString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -57,7 +60,49 @@ public class PersonControllerTest {
     }
     /*------------------------ Get ---------------------------------*/
     //TODO Get personCOntroller TEST
+    /**
+     * Test : Controler Person
+     * Get : get an existing person
+     * @throws Exception
+     */
+    @Test
+    public void PersonController_getAnExistingPerson_thePersonAndHTTPCodeAreReturn() throws Exception {
 
+
+        //GIVEN : Give a person to get
+
+
+        Mockito.when(personService.get(any(Person.class))).thenReturn(personMock);
+        //WHEN //THEN return the person added
+        mockMvc.perform(get("/person")
+                .content(asJsonString(new Person(firstNameConst,lastNameConst,addressConst,cityConst,zipConst,phoneConst,emailConst)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName").value("Bill"))
+                .andExpect(jsonPath("$.lastName").value("Gates"));
+
+    }
+
+    /**
+     * Test : Controler Person
+     * Get : get an Inexisting person
+     * @throws Exception
+     */
+    @Test
+    public void PersonController_getAnInexistingPerson_HTTPErrorCodeIsReturn() throws Exception {
+        //GIVEN : Give a person to add
+
+        Mockito.when(personService.get(any(Person.class))).thenReturn(null);
+        //WHEN //THEN return the person added
+        mockMvc.perform(get("/person")
+                .content(asJsonString(new Person(firstNameConst,lastNameConst,addressConst,cityConst,zipConst,phoneConst,emailConst)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
 
     /*------------------------ Post ---------------------------------*/
     /**
@@ -153,7 +198,10 @@ public class PersonControllerTest {
     @Test
     public void PersonController_deleteAExistingPerson_personDeletedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN Delete an existing person
-        Mockito.when(personService.update(any(Person.class))).thenReturn(personMock);
+        List<Person> personList = new ArrayList<>();
+        personList.add(personMock);
+
+        Mockito.when(personService.delete(any(Person.class))).thenReturn(personList);
 
         // WHEN
         //THEN
@@ -162,9 +210,8 @@ public class PersonControllerTest {
                .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName").value("Bill"))
-                .andExpect(jsonPath("$.lastName").value("Gates"));
+                .andExpect(status().isOk());
+
         //TODO completer la liste et ajouter la suppression de plusieurs personnes à controler / demande???
     }
 
@@ -176,7 +223,7 @@ public class PersonControllerTest {
     @Test
     public void PersonController_deleteAnInexistingPerson_personNotDeletedAndHTTPErrorCodeIsReturn() throws Exception {
         //GIVEN Delete an Inexisting person
-        Mockito.when(personService.update(any(Person.class))).thenReturn(null);
+        Mockito.when(personService.delete(any(Person.class))).thenReturn(null);
 
         // WHEN
         //THEN

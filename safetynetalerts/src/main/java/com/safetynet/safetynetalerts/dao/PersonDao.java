@@ -14,4 +14,5 @@ public interface PersonDao {
     public Person update (Person person);
     public List<Person> delete (Person person);
     public boolean load (List<Person> personList);
+    public boolean clear();
 }

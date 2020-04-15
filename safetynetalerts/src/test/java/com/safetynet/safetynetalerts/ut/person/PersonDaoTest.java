@@ -1,14 +1,20 @@
 package com.safetynet.safetynetalerts.ut.person;
 
+import com.safetynet.safetynetalerts.dao.FirestationDao;
+import com.safetynet.safetynetalerts.dao.FirestationDaoImpl;
 import com.safetynet.safetynetalerts.dao.PersonDao;
+import com.safetynet.safetynetalerts.dao.PersonDaoImpl;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.service.InputDataReader;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +23,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class PersonDaoTest {
+
+    @TestConfiguration
+    static class PersonDaoImplTestContextConfiguration {
+        @Bean
+        public PersonDao personDao () {
+            return new PersonDaoImpl();
+        }
+    }
     @Autowired
     private PersonDao personDao;
     //@MockBean
     private Person personMock;
     @MockBean
-    private Person resultPerson;
+    private Person person;
+
+    private Person existingPerson;
+    private Person inexistingPerson;
 /*
     @MockBean
     private InputDataReader inputDataReader;
@@ -56,16 +73,43 @@ public class PersonDaoTest {
         personMock.setPhone(phoneConst);
         personMock.setEmail(emailConst);
 
-        Mockito.when(resultPerson.getFirstName()).thenReturn(firstNameConst);
-        Mockito.when(resultPerson.getLastName()).thenReturn(lastNameConst);
-        Mockito.when(resultPerson.getAddress()).thenReturn(addressConst);
-        Mockito.when(resultPerson.getCity()).thenReturn(cityConst);
-        Mockito.when(resultPerson.getZip()).thenReturn(zipConst);
-        Mockito.when(resultPerson.getPhone()).thenReturn(phoneConst);
-        Mockito.when(resultPerson.getEmail()).thenReturn(emailConst);
-        Mockito.when(resultPerson.toString()).thenReturn("Person [firstName=" + firstNameConst + ", lastName=" + lastNameConst + ", address=" + addressConst + ", city=" + cityConst + ", zip=" + zipConst + ", phone=" + phoneConst + ", email=" + emailConst + "]");
+        existingPerson = new Person();
+        existingPerson.setFirstName(firstNameConst);
+        existingPerson.setLastName(lastNameConst);
+        existingPerson.setAddress(addressConst);
+        existingPerson.setCity(cityConst);
+        existingPerson.setZip(zipConst);
+        existingPerson.setPhone(phoneConst);
+        existingPerson.setEmail(emailConst);
+
+        inexistingPerson = new Person();
+        inexistingPerson.setFirstName(firstNameConst);
+        inexistingPerson.setLastName(lastNameInexistingConst);
+        inexistingPerson.setAddress(addressConst);
+        inexistingPerson.setCity(cityConst);
+        inexistingPerson.setZip(zipConst);
+        inexistingPerson.setPhone(phoneConst);
+        inexistingPerson.setEmail(emailConst);
 
 
+        List<Person> existingPersonList = new ArrayList<>();
+        existingPersonList.add(existingPerson);
+        boolean personLoadResult = personDao.load(existingPersonList);
+
+        Mockito.when(person.getFirstName()).thenReturn(firstNameConst);
+        Mockito.when(person.getLastName()).thenReturn(lastNameConst);
+        Mockito.when(person.getAddress()).thenReturn(addressConst);
+        Mockito.when(person.getCity()).thenReturn(cityConst);
+        Mockito.when(person.getZip()).thenReturn(zipConst);
+        Mockito.when(person.getPhone()).thenReturn(phoneConst);
+        Mockito.when(person.getEmail()).thenReturn(emailConst);
+        Mockito.when(person.toString()).thenReturn("Person [firstName=" + firstNameConst + ", lastName=" + lastNameConst + ", address=" + addressConst + ", city=" + cityConst + ", zip=" + zipConst + ", phone=" + phoneConst + ", email=" + emailConst + "]");
+
+    }
+    @AfterEach
+    private void cleanUpEach() {
+
+        personDao.clear();
     }
     /*------------------------ Get ---------------------------------*/
 
@@ -98,9 +142,11 @@ public class PersonDaoTest {
     @Test
     public void get_inexistingFirstnameLastnameGiven_nullIsReturn() {
         //GIVEN
-        personMock.setLastName(lastNameInexistingConst);
+
+        //personMock.setLastName(lastNameInexistingConst);
         //WHEN
-        Person personDaoTest = personDao.get(personMock);
+        //Person personDaoTest = personDao.get(personMock);
+        Person personDaoTest = personDao.get(inexistingPerson);
         //THEN
         assertThat(personDaoTest).isNull();
     }
@@ -113,9 +159,9 @@ public class PersonDaoTest {
     @Test
     public void add_inexistingFirstnameLastnameGiven_thePersonIsReturn() {
         //GIVEN
-        personMock.setLastName(lastNameInexistingConst);
+        //personMock.setLastName(lastNameInexistingConst);
         //WHEN
-        Person personDaoTest = personDao.add(personMock);
+        Person personDaoTest = personDao.add(inexistingPerson);
         //THEN
         assertThat(personDaoTest.getFirstName()).isEqualTo(firstNameConst);
         assertThat(personDaoTest.getLastName()).isEqualTo(lastNameInexistingConst);
@@ -133,7 +179,7 @@ public class PersonDaoTest {
     @Test
     public void add_existingFirstnameLastnameGiven_nullIsReturn() {
         //GIVEN
-        personMock.setLastName(lastNameConst);
+        //personMock.setLastName(lastNameConst);
         //WHEN
         Person personDaoTest = personDao.add(personMock);
         //THEN
@@ -174,9 +220,9 @@ public class PersonDaoTest {
     @Test
     public void update_inexistingFirstnameLastnameGiven_nullIsReturn() {
         //GIVEN
-        personMock.setLastName(lastNameInexistingConst);
+        //personMock.setLastName(lastNameInexistingConst);
         //WHEN
-        Person personDaoTest = personDao.update(personMock);
+        Person personDaoTest = personDao.update(inexistingPerson);
         //THEN
         assertThat(personDaoTest).isNull();
     }
@@ -188,11 +234,12 @@ public class PersonDaoTest {
      */
     @Test
     public void delete_existingFirstnameLastnameGiven_thePersonIsReturn() {
-        //GIVEN
+        //GIVEN add a second person
+        Person personDaoTest = personDao.add(inexistingPerson);
         //WHEN
-        List<Person> personDaoTest = personDao.delete(personMock);
+        List<Person> personDaoTestList = personDao.delete(personMock);
         //THEN
-        assertThat(personDaoTest.size()).isEqualTo(1);
+        assertThat(personDaoTestList.size()).isEqualTo(1);
 
     }
 
@@ -203,11 +250,11 @@ public class PersonDaoTest {
     @Test
     public void delete_inexistingFirstnameLastnameGiven_nullIsReturn() {
         //GIVEN
-        personMock.setLastName(lastNameInexistingConst);
+        //personMock.setLastName(lastNameInexistingConst);
         //WHEN
-        List<Person> personDaoTest = personDao.delete(personMock);
+        List<Person> personDaoTest = personDao.delete(inexistingPerson);
         //THEN
-        assertThat(personDaoTest).isNull();
+        assertThat(personDaoTest).isEmpty();
     }
     /*------------------------ Load ---------------------------------*/
 

@@ -11,4 +11,5 @@ public interface MedicalRecordDao {
     public MedicalRecord update (MedicalRecord medicalRecord);
     public List<MedicalRecord> delete (MedicalRecord medicalRecord);
     public boolean load (List<MedicalRecord> medicalRecordList);
+    public boolean clear();
 }
