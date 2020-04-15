@@ -3,15 +3,19 @@ package com.safetynet.safetynetalerts.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jsoniter.JsonIterator;
+import com.jsoniter.spi.TypeLiteral;
 import com.safetynet.safetynetalerts.dao.FirestationDao;
 import com.safetynet.safetynetalerts.dao.FirestationDaoImpl;
 
 import com.safetynet.safetynetalerts.dao.PersonDao;
+import com.safetynet.safetynetalerts.dao.PersonDaoImpl;
 import com.safetynet.safetynetalerts.model.*;
 
 import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StreamUtils;
@@ -24,7 +28,8 @@ import java.util.List;
 
 @Repository
 public class InputDataReaderImpl implements InputDataReader {
-    private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+    //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+    private static final Logger logger = LogManager.getLogger(InputDataReaderImpl.class);
 
 /*
     @Autowired
@@ -33,6 +38,10 @@ public class InputDataReaderImpl implements InputDataReader {
  /*   @Autowired
     FirestationDaoNew fsDao;
 */
+
+    @Autowired
+    PersonDao personDao;
+
     //TODO à supprimer
     @Override
     public List<Firestation> readInputDataXX() {
@@ -83,18 +92,18 @@ public class InputDataReaderImpl implements InputDataReader {
         logger.trace("Finish");
         return resultFirestationDao;
     }
-
+//TODO revoir le chargement et le réécrire ==> Lundi aprem
     @Override
     public FirestationDao readInputFile() {
         try {
             logger.debug("Start");
-
+            boolean resultat = false;
             String pathFile = "data.json";
 
             String data = StreamUtils.copyToString(new ClassPathResource(pathFile).getInputStream(), Charset.defaultCharset());
 
-
             Firestations firestationList = JsonIterator.deserialize(data, Firestations.class);
+           // List<Firestation> firestationList = JsonIterator.deserialize(data, firestationList.class);
 
             FirestationDao resultFirestationDao = new FirestationDaoImpl();
             List<Firestation> listFirestation = firestationList.getFirestations();
@@ -103,8 +112,19 @@ public class InputDataReaderImpl implements InputDataReader {
             }
 
 
-            Persons personList = JsonIterator.deserialize(data, Persons.class);
-//            PersonDao personDao = JsonIterator.deserialize(data, PersonDao.class);
+            //Persons personList = JsonIterator.deserialize(data, Persons.class);
+            Persons persons = JsonIterator.deserialize(data, Persons.class);
+            List<Person> personList = persons.getPersons();
+
+            PersonDao personDao = new PersonDaoImpl() ;
+            resultat = personDao.load(personList);
+//            for(Person ePerson : personList){
+//                personDao.add(ePerson);
+//            }
+            //PersonDao personList = JsonIterator.deserialize(data, PersonDaoImpl.class);
+            //personDao= JsonIterator.deserialize(data, PersonDaoImpl.class);
+            //List<Person> personList= JsonIterator.deserialize(data,new TypeLiteral<List<Person>>(){});
+  //          personDao.load(personList);
             MedicalRecords medicalRecordList = JsonIterator.deserialize(data, MedicalRecords.class);
 
             logger.debug("Finish");

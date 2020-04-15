@@ -4,15 +4,14 @@ import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
-import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotBeDeletedException;
-import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotbeAddedException;
-import com.safetynet.safetynetalerts.web.exceptions.FirestationCanNotBeModifyException;
-import com.safetynet.safetynetalerts.web.exceptions.FirestationNotFoundException;
+import com.safetynet.safetynetalerts.web.exceptions.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,7 +22,9 @@ import java.util.List;
 @RestController
 public class SafetyalertsController {
 
-    private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+    //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+    private static final Logger logger = LogManager.getLogger(SafetyalertsController.class);
+
     @Autowired
     private FirestationService firestationService;
     @Autowired
@@ -46,7 +47,7 @@ public class SafetyalertsController {
     @ResponseBody
     public Firestation showFirestationByStation(@RequestParam(name = "stationNumber") String station) throws FirestationNotFoundException {
 
-        logger.trace("Start");
+        logger.debug("Start");
         //logger.debug("station ask : " + station);
         Firestation firestation = firestationService.findByStation(station);
         if (firestation == null) {
@@ -54,7 +55,7 @@ public class SafetyalertsController {
         }
 
         logger.info("GET /firestation?stationNumber="+station+" : " + firestation);
-        logger.trace("Finish");
+        logger.debug("Finish");
         return firestation;
     }
 
@@ -68,7 +69,7 @@ public class SafetyalertsController {
     @ResponseStatus(HttpStatus.CREATED)
     public Firestation addFirestation(@Valid @RequestBody Firestation firestation) throws FirestationCanNotbeAddedException {
 
-        logger.trace("Start");
+        logger.debug("Start");
         //logger.debug("station ask : " + station);
         Firestation firestationResult = firestationService.save(firestation);
 //TODO A tester
@@ -77,7 +78,7 @@ public class SafetyalertsController {
         }
 
         logger.info("POST /firestation : " + firestationResult);
-        logger.trace("Finish");
+        logger.debug("Finish");
         return firestationResult;
     }
 
@@ -91,7 +92,7 @@ public class SafetyalertsController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Firestation modifyFirestation(@Valid @RequestBody Firestation firestation) throws FirestationCanNotBeModifyException {
 
-        logger.trace("Start");
+        logger.debug("Start");
 
         //Firestation firestationResult = firestationService.updateByStation(firestation);
 
@@ -102,7 +103,7 @@ public class SafetyalertsController {
         }
 
         logger.info("PUT /firestation : " + firestationResult);
-        logger.trace("Finish");
+        logger.debug("Finish");
         return firestationResult;
     }
 
@@ -116,7 +117,7 @@ public class SafetyalertsController {
     @ResponseStatus(HttpStatus.OK)
     public List<Firestation> deleteFirestation(@Valid @RequestBody Firestation firestation) throws FirestationCanNotBeDeletedException {
 
-        logger.trace("Start");
+        logger.debug("Start");
 
         //Firestation firestationResult = firestationService.updateByStation(firestation);
 
@@ -127,7 +128,7 @@ public class SafetyalertsController {
         }
 
         logger.info("Delete /firestation : " + firestationList );
-        logger.trace("Finish");
+        logger.debug("Finish");
         return firestationList;
     }
 

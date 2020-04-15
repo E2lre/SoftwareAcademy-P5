@@ -1,11 +1,16 @@
 package com.safetynet.safetynetalerts.model;
 
+import com.safetynet.safetynetalerts.service.InputDataReaderImpl;
 import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Firestation {
 
-	private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+	//private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+	private static final Logger logger = LogManager.getLogger(Firestation.class);
+
 	private String address;
 	private String station;
 
