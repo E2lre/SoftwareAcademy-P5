@@ -2,9 +2,6 @@ package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.dao.FirestationDao;
 
-import com.safetynet.safetynetalerts.model.Firestation;
-
-import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 //import org.apache.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @Component
 public class ApplicationStart {

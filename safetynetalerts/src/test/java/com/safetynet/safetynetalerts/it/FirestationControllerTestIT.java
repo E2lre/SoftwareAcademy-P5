@@ -32,23 +32,21 @@ public class FirestationControllerTestIT {
     public void setUp() {
 
     }*/
-
+    /*---------------------------------------- GET -------------------------------*/
     /**
      * Controler : firestation
      * Test : Get : show an existing address
      * @throws Exception
      */
     //@DisplayName("Test Spring @Autowired Integration for SafetyalertsController")
-    //@Test //TODO A réactiver avec la règle : ?stationNumber= <station_number> : retourner une liste des personnes couvertes par la caserne de pompiers correspondante.
+    @Test
     public void SafetyalertsController_anExistingStationIsAsk_theStationAskIsSended() throws Exception {
 
         //GIVEN : Give an exiting firestation
 
         //WHEN //THEN return the station
         this.mockMvc.perform(get("/firestation?stationNumber=3"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.station").value("3"))
-                .andExpect(jsonPath("$.address").value("748 Townings Dr"));
+                .andExpect(status().isOk());
 
     }
 
@@ -66,7 +64,7 @@ public class FirestationControllerTestIT {
         this.mockMvc.perform(get("/firestation?stationNumber=0"))
                 .andExpect(status().isNotFound());
     }
-
+    /*---------------------------------------- POST -------------------------------*/
     /**
      * Controler : firestation
      * Test : Add an new address
@@ -89,7 +87,7 @@ public class FirestationControllerTestIT {
                 .andExpect(jsonPath("$.address").value("10 downing str"));
 
     }
-
+    /*---------------------------------------- PUT -------------------------------*/
     /**
      * Controler : firestation
      * Test : Update : update an existing address
@@ -133,7 +131,7 @@ public class FirestationControllerTestIT {
                 .andExpect(status().isNotModified());
 
     }
-
+    /*---------------------------------------- DELETE -------------------------------*/
     /**
      * Controler : firestation
      * Test : Delete : Delete an existing address

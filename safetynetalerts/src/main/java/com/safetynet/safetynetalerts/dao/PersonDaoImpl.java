@@ -1,8 +1,6 @@
 package com.safetynet.safetynetalerts.dao;
 
-import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.Person;
-import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 //import org.apache.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -169,5 +167,20 @@ public class PersonDaoImpl implements PersonDao {
     public boolean clear(){
         persons.clear();
         return true;
+    }
+
+    @Override
+    public List<Person> getPersonByAdress (List<String> addresses){
+        logger.debug("start");
+        List<Person> localPersonList = new ArrayList<>();
+        for (String eAddress : addresses ) {
+            for (Person ePerson : persons) {
+                if (ePerson.getAddress().equals(eAddress)) {
+                    localPersonList.add(ePerson);
+                }
+            }
+        }
+        logger.debug("Finish");
+        return localPersonList;
     }
 }

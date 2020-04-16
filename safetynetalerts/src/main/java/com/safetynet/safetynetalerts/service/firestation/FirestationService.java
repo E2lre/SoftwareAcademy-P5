@@ -12,5 +12,7 @@ public interface FirestationService {
     public Firestation updateByStation(Firestation firestation);
     public Firestation updateByAddress(Firestation firestation);
     public List<Firestation> delete(Firestation firestation);
-  //  public List<Firestation> load (List<Firestation> firestationList);
+    public List<Person> getPersonByStation(String station);
+
+    //  public List<Firestation> load (List<Firestation> firestationList);
 }

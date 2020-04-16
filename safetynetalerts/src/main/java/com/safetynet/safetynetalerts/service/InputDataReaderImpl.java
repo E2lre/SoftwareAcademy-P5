@@ -3,14 +3,11 @@ package com.safetynet.safetynetalerts.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jsoniter.JsonIterator;
-import com.jsoniter.spi.TypeLiteral;
 import com.safetynet.safetynetalerts.dao.*;
 
 import com.safetynet.safetynetalerts.model.*;
 
-import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 //import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.core.io.ClassPathResource;
@@ -20,7 +17,6 @@ import org.springframework.util.StreamUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository

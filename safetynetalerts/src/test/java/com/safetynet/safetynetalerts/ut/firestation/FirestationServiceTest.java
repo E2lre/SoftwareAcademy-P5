@@ -1,7 +1,9 @@
 package com.safetynet.safetynetalerts.ut.firestation;
 
 import com.safetynet.safetynetalerts.dao.FirestationDao;
+import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.model.Firestation;
+import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,10 +24,13 @@ import static org.mockito.ArgumentMatchers.anyString;
 public class FirestationServiceTest {
 
     private Firestation fireststationTest;
+    //private Person person;
     @Autowired
     private FirestationService firestationService;
     @MockBean
     private FirestationDao firestationDao;
+    @MockBean
+    private PersonDao personDao;
     @MockBean
     private InputDataReader inputDataReader;
 
@@ -43,6 +48,43 @@ public class FirestationServiceTest {
         incorrectStation ="99";
     }
 
+    /*----------------------- get ---------------------------*/
+
+    @Test
+    public void getPersonByStation_aStationNumberGiven_listofPersonReturn() {
+        //Given
+        List<Firestation>  firestations = new ArrayList<>();
+        firestations.add(new Firestation("adress1", "1"));
+        firestations.add(new Firestation("adress2", "1"));
+
+        List<Person> persons = new ArrayList<>();
+        persons.add(new Person("firstName1","lastName1","address1","city1","zip1","phone1","email1"));
+        persons.add(new Person("firstName2","lastName2","address1","city1","zip1","phone2","email2"));
+
+        Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(firestations);
+        Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(persons);
+
+        //WHEN
+        List<Person> personList = firestationService.getPersonByStation("1");
+        //THEN
+        assertThat(personList.size()).isEqualTo(2);
+        //TODO : ajouter l'analyse de la liste
+    }
+
+    @Test
+    public void getPersonByStation_anInexistingStationNumberGiven_nullIsReturn() {
+        //GIVEN
+        List<Firestation> firestationListMock = new ArrayList<>();
+        List<Person> personListMock = new ArrayList<>();
+        Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(firestationListMock);
+        Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(personListMock);
+        //WHEN
+        //WHEN
+        List<Person> personList = firestationService.getPersonByStation("1");
+        //THEN
+        assertThat(personList.size()).isEqualTo(0);
+
+    }
     @Test
     public void findAll_twoStationAdd_twoStationMoreAreReturn() {
         //GIVEN
@@ -55,6 +97,7 @@ public class FirestationServiceTest {
         //THEN
         assertThat(fireststatioList.size()).isEqualTo(2);
     }
+
 
     @Test
     public void findByStation_aStationExist_theStationIsReturn() {
@@ -79,6 +122,7 @@ public class FirestationServiceTest {
         assertThat(fireststationTest).isNull();
 
     }
+    /*----------------------- Add ---------------------------*/
     @Test
     public void save_oneStationToAdd_theStationAddedIsReturn() {
         //GIVEN
@@ -104,6 +148,8 @@ public class FirestationServiceTest {
 
 
     }
+
+    /*----------------------- update ---------------------------*/
     @Test
     public void updateByStation_aStationExist_firestationIsReturn() {
         //GIVEN
@@ -152,6 +198,8 @@ public class FirestationServiceTest {
         assertThat(fireststationTest).isNull();
 
     }
+
+    /*----------------------- Delete ---------------------------*/
     @Test
     public void delete_anAddressExist_firestationIsReturn() {
         //GIVEN

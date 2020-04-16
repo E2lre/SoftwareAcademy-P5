@@ -84,29 +84,7 @@ public class FirestationDaoTest {
         firestationDao.clear();
     }
 
-    @Test
-    public void save_oneStationToAdd_theStationAddedIsReturn() {
-
-        //GIVEN
-/*
-        String correctAddress = "748 Townings Dr";
-        String correctStation = "3";
-        Mockito.when(firestation.getStation()).thenReturn(correctStation);
-        Mockito.when(firestation.getAddress()).thenReturn(correctAddress);
-        Mockito.when(firestation.toString()).thenReturn("Firestation [address="+correctAddress+", station="+correctStation+"]");
-*/
-        //WHEN
-        //Firestation fireststationTest = new Firestation();
-        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
-
-        //THEN
-        List<Firestation>  fireststations = firestationDao.findAll();
-        assertThat(fireststations.size()).isEqualTo(1) ;
-        assertThat(fireststationTest.getStation()).isEqualTo(firestation.getStation());
-        assertThat(fireststationTest.getAddress()).isEqualTo(firestation.getAddress());
-    }
-
-
+    /*----------------------- get ---------------------------*/
     @Test
     public void findByStation_aStationExist_theStationIsReturn() {
 
@@ -210,7 +188,59 @@ public class FirestationDaoTest {
         assertThat(fireststationTest).isNull();
     }
 
+    @Test
+    public void getFirestationListByStation_stationExist_listOfFirestationReturn(){
+        //GIVEN
 
+        firestationDao.save(new Firestation(correctAddress, correctStation));
+        firestationDao.save(new Firestation(incorrectAddress,incorrectStation));
+
+
+        //WHEN
+        List<Firestation> firestationList= firestationDao.getFirestationListByStation(correctStation);
+
+        //THEN
+        assertThat(firestationList.size()).isEqualTo(1);
+        //TODO ajouter controle de la liste
+    }
+
+    @Test
+    public void getFirestationListByStation_stationNotExist_nullIsReturn(){
+        //GIVEN
+
+        firestationDao.save(new Firestation(correctAddress, correctStation));
+
+
+
+        //WHEN
+        List<Firestation> firestationList= firestationDao.getFirestationListByStation(incorrectStation);
+
+        //THEN
+        assertThat(firestationList).isEmpty();
+    }
+    /*----------------------- add ---------------------------*/
+    @Test
+    public void save_oneStationToAdd_theStationAddedIsReturn() {
+
+        //GIVEN
+/*
+        String correctAddress = "748 Townings Dr";
+        String correctStation = "3";
+        Mockito.when(firestation.getStation()).thenReturn(correctStation);
+        Mockito.when(firestation.getAddress()).thenReturn(correctAddress);
+        Mockito.when(firestation.toString()).thenReturn("Firestation [address="+correctAddress+", station="+correctStation+"]");
+*/
+        //WHEN
+        //Firestation fireststationTest = new Firestation();
+        fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
+
+        //THEN
+        List<Firestation>  fireststations = firestationDao.findAll();
+        assertThat(fireststations.size()).isEqualTo(1) ;
+        assertThat(fireststationTest.getStation()).isEqualTo(firestation.getStation());
+        assertThat(fireststationTest.getAddress()).isEqualTo(firestation.getAddress());
+    }
+    /*----------------------- update ---------------------------*/
     @Test
     public void updateByAddress_addressExist_theFirestationIsUpdated() {
         //GIVEN
@@ -281,7 +311,7 @@ public class FirestationDaoTest {
         //THEN
         assertThat(fireststationTest).isNull();
     }
-
+    /*----------------------- delete ---------------------------*/
     @Test
     public void delete_byExistingAddress_firestationListdeletedIsReturn() {
         //GIVEN

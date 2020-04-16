@@ -40,10 +40,8 @@ public class PersonDaoTest {
 
     private Person existingPerson;
     private Person inexistingPerson;
-/*
     @MockBean
     private InputDataReader inputDataReader;
-*/
 
     //constantes de test
     String firstNameConst = "Bill";
@@ -149,6 +147,44 @@ public class PersonDaoTest {
         Person personDaoTest = personDao.get(inexistingPerson);
         //THEN
         assertThat(personDaoTest).isNull();
+    }
+
+    /**
+     * PersonDAO
+     * Test : getPersonByAdress with a existing adress
+     */
+    @Test
+    public void getPersonByAdress_existingAdressGiven_personListReturn(){
+        //GIVEN
+        Person personDaoTest = personDao.add(existingPerson);
+        personDaoTest = personDao.add(inexistingPerson);
+        List<String> addressList = new ArrayList<>();
+        addressList.add(existingPerson.getAddress()); //same address for existingPerson & inexistingPerson
+
+        //WHEN
+        List<Person> personDaoListTest = personDao.getPersonByAdress(addressList);
+        //THEN
+        assertThat(personDaoListTest.size()).isEqualTo(2);
+        //TODO : check de la list
+    }
+
+    /**
+     * PersonDAO
+     * Test : getPersonByAdress with a inexisting adress
+     */
+    @Test
+    public void getPersonByAdress_inexistingAdressGiven_nullReturn(){
+        //GIVEN
+        Person personDaoTest = personDao.add(existingPerson);
+        personDaoTest = personDao.add(inexistingPerson);
+        List<String> addressList = new ArrayList<>();
+        addressList.add("0"); //same address for existingPerson & inexistingPerson
+
+        //WHEN
+        List<Person> personDaoListTest = personDao.getPersonByAdress(addressList);
+        //THEN
+        assertThat(personDaoListTest).isEmpty();
+
     }
     /*------------------------ Add ---------------------------------*/
 

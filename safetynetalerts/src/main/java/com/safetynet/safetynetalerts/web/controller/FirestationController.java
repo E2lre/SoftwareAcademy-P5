@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.web.controller;
 import com.safetynet.safetynetalerts.model.Firestation;
 
+import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
@@ -20,10 +21,10 @@ import java.util.List;
 //TODO RENOMER CE CONTROLEUR
 
 @RestController
-public class SafetyalertsController {
+public class FirestationController {
 
     //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
-    private static final Logger logger = LogManager.getLogger(SafetyalertsController.class);
+    private static final Logger logger = LogManager.getLogger(FirestationController.class);
 
     @Autowired
     private FirestationService firestationService;
@@ -45,9 +46,20 @@ public class SafetyalertsController {
 
     @GetMapping(value="/firestation")
     @ResponseBody
-    public Firestation showFirestationByStation(@RequestParam(name = "stationNumber") String station) throws FirestationNotFoundException {
+    public List<Person> showFirestationByStation(@RequestParam(name = "stationNumber") String station) throws FirestationNotFoundException {
 
         logger.debug("Start");
+        //logger.debug("station ask : " + station);
+        List<Person> personList = firestationService.getPersonByStation(station);
+        if (personList.isEmpty()) {
+            throw new FirestationNotFoundException("no person for station " + station );
+        }
+
+        logger.info("GET /firestation?stationNumber="+personList);
+        logger.debug("Finish");
+        return personList;
+
+ /*       logger.debug("Start");    //Ancien code
         //logger.debug("station ask : " + station);
         Firestation firestation = firestationService.findByStation(station);
         if (firestation == null) {
@@ -56,7 +68,7 @@ public class SafetyalertsController {
 
         logger.info("GET /firestation?stationNumber="+station+" : " + firestation);
         logger.debug("Finish");
-        return firestation;
+        return firestation;*/
     }
 
     /**

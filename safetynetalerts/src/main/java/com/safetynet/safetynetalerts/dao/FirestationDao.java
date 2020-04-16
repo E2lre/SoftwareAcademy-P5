@@ -14,4 +14,7 @@ public interface FirestationDao {
     public List<Firestation> delete(Firestation firestation);
     public boolean clear();
 
+    public List<Firestation> getFirestationListByStation (String station);
+
+
 }

@@ -1,7 +1,5 @@
 package com.safetynet.safetynetalerts.web.exceptions;
 
-import com.safetynet.safetynetalerts.web.controller.PersonController;
-import com.safetynet.safetynetalerts.web.controller.SafetyalertsController;
 //import org.apache.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

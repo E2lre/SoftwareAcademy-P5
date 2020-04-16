@@ -15,4 +15,5 @@ public interface PersonDao {
     public List<Person> delete (Person person);
     public boolean load (List<Person> personList);
     public boolean clear();
+    public List<Person> getPersonByAdress (List<String> address); //TODO ATTENTION a adress ==> créer un type
 }

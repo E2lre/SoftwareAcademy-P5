@@ -3,6 +3,7 @@ package com.safetynet.safetynetalerts.ut.firestation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.model.Firestation;
+import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
@@ -31,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@WithMockUser
 //@WebAppConfiguration
-//@ContextConfiguration(classes = SafetyalertsController.class)
+//@ContextConfiguration(classes = FirestationController.class)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -50,6 +51,8 @@ public class FirestationControllerTest {
     @MockBean
     private Firestation firestationMock;
     @MockBean
+    private Person personMock;
+    @MockBean
     private InputDataReader inputDataReaderMock;
 
 /*    @Before
@@ -57,26 +60,32 @@ public class FirestationControllerTest {
 
     }*/
 
+    /*------------------------ Get ---------------------------------*/
     /**
      * Controler : firestation
-     * Test : Get : show an existing address
+     * Test : Get : show person list for a station number
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_anExistingStationIsAsk_theStationAskIsSended() throws Exception {
+    public void FirestationController_anExistingStationIsAsk_personListIsSended() throws Exception {
+        //GIVEN : Give a Person list
+        //constantes de test
+        String firstNameConst = "Bill";
+        String lastNameConst = "Gates";
+        String addressConst = "Somewhere in US";
+        String cityConst = "a US City";
+        String zipConst = "12345";
+        String phoneConst = "0123456789";
+        String emailConst = "bill.gates@microsoft.com";
+        personMock = new Person(firstNameConst,lastNameConst,addressConst,cityConst,zipConst,phoneConst,emailConst);
+        List<Person> personList = new ArrayList<>();
+        personList.add(personMock);
 
 
-
-       //GIVEN : Give a firestation
-        firestationMock = new Firestation(); //Fonctionne mais active un niveau inférieur
-        firestationMock.setStation("3");
-        firestationMock.setAddress("748 Townings Dr");
-        Mockito.when(firestationService.findByStation(anyString())).thenReturn(firestationMock);
+        Mockito.when(firestationService.getPersonByStation(anyString())).thenReturn(personList);
         //WHEN //THEN return the station
         this.mockMvc.perform(get("/firestation?stationNumber=3"))
-                        .andExpect(status().isOk())
-                        .andExpect(jsonPath("$.station").value("3"))
-                        .andExpect(jsonPath("$.address").value("748 Townings Dr"));
+                        .andExpect(status().isOk());
   }
 
     /**
@@ -85,22 +94,24 @@ public class FirestationControllerTest {
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_anInexistingStationIsAsk_errorIsSended() throws Exception {
+    public void FirestationController_anInexistingStationIsAsk_errorIsSended() throws Exception {
 
         //GIVEN : Give an inexiting firestation
-
-        Mockito.when(firestationService.findByStation(anyString())).thenReturn(null);
+        List<Person> personList = new ArrayList<>();
+        Mockito.when(firestationService.getPersonByStation(anyString())).thenReturn(personList);
         //WHEN //THEN return the station
         this.mockMvc.perform(get("/firestation?stationNumber=3"))
                 .andExpect(status().isNotFound());
     }
+
+    /*------------------------ POST ---------------------------------*/
     /**
      * Controler : firestation
      * Test : Add an new address
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_addANewFirestation_theNewFireStationAndHTTPCodeAreReturn() throws Exception {
+    public void FirestationController_addANewFirestation_theNewFireStationAndHTTPCodeAreReturn() throws Exception {
 
         //GIVEN : Give a firestation
         firestationMock = new Firestation(); //Fonctionne mais active un niveau inférieur
@@ -132,7 +143,7 @@ public class FirestationControllerTest {
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_updateAFirestationByExistingAddress_firestationUpdatedAndHTTPCodeAreReturn() throws Exception {
+    public void FirestationController_updateAFirestationByExistingAddress_firestationUpdatedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give  existing firestation
         String existingStation = "3";
         String existingAddress = "748 Townings Dr";
@@ -158,13 +169,14 @@ public class FirestationControllerTest {
                 .andExpect(jsonPath("$.address").value(updateAddress));
 
     }
+    /*------------------------ Put ---------------------------------*/
     /**
      * Controler : firestation
      * Test : Update : try to update an inexisting address
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_updateAFirestationByInexistingAddress_firestationNotUpdatedAndHTTPCodeAreReturn() throws Exception {
+    public void FirestationController_updateAFirestationByInexistingAddress_firestationNotUpdatedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give  existing firestation
         String existingStation = "3";
         String existingAddress = "748 Townings Dr";
@@ -188,14 +200,14 @@ public class FirestationControllerTest {
                 .andExpect(status().isNotModified());
 
     }
-
+    /*------------------------ Delete ---------------------------------*/
     /**
      * Controler : firestation
      * Test : Delete : Delete an existing address
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_deleteFirestationByAddress_firestationDeletedAndHTTPCodeAreReturn() throws Exception {
+    public void FirestationController_deleteFirestationByAddress_firestationDeletedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give  existing firestation
         String existingStation = "2";
         String existingAddress = "951 LoneTree Rd";
@@ -229,7 +241,7 @@ public class FirestationControllerTest {
      * @throws Exception
      */
     @Test
-    public void SafetyalertsController_deleteFirestationWithBAdAddress_firestationNotDeletedAndHTTPCodeAreReturn() throws Exception {
+    public void FirestationController_deleteFirestationWithBAdAddress_firestationNotDeletedAndHTTPCodeAreReturn() throws Exception {
         //GIVEN : Give  existing firestation
         String existingStation = "3";
         String existingAddress = "748 Townings Dr";
