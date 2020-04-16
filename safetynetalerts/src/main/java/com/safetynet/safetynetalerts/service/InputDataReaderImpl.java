@@ -25,7 +25,7 @@ import java.util.List;
 
 @Repository
 public class InputDataReaderImpl implements InputDataReader {
-    //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+
     private static final Logger logger = LogManager.getLogger(InputDataReaderImpl.class);
 
 /*
@@ -36,8 +36,8 @@ public class InputDataReaderImpl implements InputDataReader {
     FirestationDaoNew fsDao;
 */
 
-    @Autowired
-    PersonDao personDao;
+/*    @Autowired
+    PersonDao personDao;*/
 
     //TODO à supprimer
     @Override
@@ -115,6 +115,8 @@ public class InputDataReaderImpl implements InputDataReader {
 
             PersonDao personDao = new PersonDaoImpl() ;
             resultat = personDao.load(personList);
+
+            //logger.debug(personList);
 //            for(Person ePerson : personList){
 //                personDao.add(ePerson);
 //            }

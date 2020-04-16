@@ -19,15 +19,6 @@ public class FirestationDaoImpl implements FirestationDao {
 
     public static List<Firestation> firestations = new ArrayList<>();
 
-    //TODO : a retirer quand la lecture du fichier de data sera opérationnelle DEBUT
- //   static {
-       // firestations.add(new Firestation(new String ("1509 Culver St"), 3));
-        //firestations.add(new Firestation(new String ("29 15th St"), 2));
-        //firestations.add(new Firestation(new String ("834 Binoc Ave"), 3));
-  //  }
-
-    //TODO : a retirer quand la lecture du fichier de data sera opérationnelle FIN
-
     @Override
     public List<Firestation> findAll() {
         return firestations;

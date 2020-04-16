@@ -34,7 +34,7 @@ public class MedicalRecordController {
             throw new MedicalRecordCanNotBeFoundException("FirstName " + medicalRecord.getFirstName() + " lastname " + medicalRecord.getLastName() +" Can not be added");
         }
 
-        logger.info("GET /person : " + medicalRecordResult);
+        logger.info("GET /medicalReport : " + medicalRecordResult);
         logger.debug("Finish");
         return medicalRecordResult;
 
@@ -52,7 +52,7 @@ public class MedicalRecordController {
             throw new MedicalRecordCanNotbeAddedException("FirstName " + medicalRecord.getFirstName() + " lastname " + medicalRecord.getLastName() +" Can not be added");
         }
 
-        logger.info("POST /person : " + medicalRecordResult);
+        logger.info("POST /medicalReport : " + medicalRecordResult);
         logger.debug("Finish");
         return medicalRecordResult;
 
@@ -72,7 +72,7 @@ public class MedicalRecordController {
             throw new MedicalRecordCanNotBeModifyException("FirstName " + medicalRecord.getFirstName() + " lastname " + medicalRecord.getLastName() +" Can not be modified");
         }
 
-        logger.info("PUT /person : " + medicalRecordResult);
+        logger.info("PUT /medicalReport : " + medicalRecordResult);
         logger.debug("Finish");
         return medicalRecordResult;
 
@@ -93,7 +93,7 @@ public class MedicalRecordController {
             throw new MedicalRecordCanNotBeDeletedException("FirstName " + medicalRecord.getFirstName() + " lastname " + medicalRecord.getLastName() +" Can not be deleted");
         }
 
-        logger.info("Delete /person : " + medicalRecordList );
+        logger.info("Delete /medicalReport : " + medicalRecordList );
         logger.debug("Finish");
         return medicalRecordList;
 

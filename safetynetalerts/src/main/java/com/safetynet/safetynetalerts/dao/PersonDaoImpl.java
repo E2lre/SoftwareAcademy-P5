@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -16,7 +17,7 @@ public class PersonDaoImpl implements PersonDao {
 
     private static final Logger logger = LogManager.getLogger(PersonDaoImpl.class);
 
-    private List<Person> persons = new ArrayList<>();;
+    private static List<Person> persons = new ArrayList<>();;
 
     public PersonDaoImpl() {
 
@@ -28,13 +29,15 @@ public class PersonDaoImpl implements PersonDao {
 
     /**
      * Get a person
-     * @param person firstname and lastname to find
+     * @param person firstName and lastName to find
      * @return the person ask, null if not found
      */
     @Override
     public Person get (Person person){
         logger.debug("start");
         Person  resultPerson = null;
+
+        logger.debug(persons);
 
         for(Person ePerson : persons){
             if ((ePerson.getFirstName().equals(person.getFirstName()))&&(ePerson.getLastName().equals(person.getLastName()))){
@@ -67,7 +70,7 @@ public class PersonDaoImpl implements PersonDao {
             persons.add(person) ;
             resultPerson = person;
         } else {
-            logger.debug("Person already exist : Firstname :" + person.getFirstName()+" Lastname :" + person.getLastName());
+            logger.debug("Person already exist : FirstName :" + person.getFirstName()+" LastName :" + person.getLastName());
         }
 
 
@@ -76,13 +79,13 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     /**
-     * update an existing person (Firstname + Lastname is the key)
+     * update an existing person (FirstName + LastName is the key)
      * @param person to update
      * @return person updated, null if the person doesn't exist
      */
     @Override
     public Person update(Person person) {
-        logger.debug("start");
+        logger.debug("Start");
         Person  resultPerson = null;
 
 
@@ -105,7 +108,7 @@ public class PersonDaoImpl implements PersonDao {
 
     /**
      * delete an existing person
-     * @param person person to delete (firstname + lastname is the key
+     * @param person person to delete (firstName + lastName is the key
      * @return person delete, else null
      */
     @Override
@@ -116,13 +119,24 @@ public class PersonDaoImpl implements PersonDao {
 
 
         //Detect if the person already exist
-        for(Person ePerson : persons){
+/*        for(Person ePerson : persons){
             if ((ePerson.getFirstName().equals(person.getFirstName()))&&(ePerson.getLastName().equals(person.getLastName()))){
                 int position = persons.indexOf(ePerson); //If the person exist, find the position in the list in memory and delete
                 if (position >=0)  {
                     resultPersonList.add(ePerson);
                     persons.remove(position);
                  }
+            }
+        }*/
+
+        Iterator itr = persons.iterator();
+
+        while (itr.hasNext()){
+            Person indexPerson = (Person) itr.next();
+            //Detect if the person already exist
+            if ((indexPerson.getFirstName().equals(person.getFirstName())) && (indexPerson.getLastName().equals(person.getLastName()))){
+                resultPersonList.add(indexPerson);
+                itr.remove();
             }
         }
 
@@ -138,10 +152,11 @@ public class PersonDaoImpl implements PersonDao {
      */
     @Override
     public boolean load (List<Person> personList) {
-        logger.debug("start");
+        logger.debug("load-start");
         persons.addAll(personList);
 //TODO gérer les erreurs
-        logger.debug("Finish");
+        logger.debug(persons);
+        logger.debug("load-Finish");
         return true;
     }
 

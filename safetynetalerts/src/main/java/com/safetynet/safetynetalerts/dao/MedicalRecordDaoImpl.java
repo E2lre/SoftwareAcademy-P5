@@ -8,13 +8,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
 public class MedicalRecordDaoImpl implements MedicalRecordDao  {
     private static final Logger logger = LogManager.getLogger(PersonDaoImpl.class);
 
-    private List<MedicalRecord> medicalRecords = new ArrayList<>();;
+    private static List<MedicalRecord> medicalRecords = new ArrayList<>();;
 
     /**
      * Get a medicalRecord
@@ -110,6 +111,7 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
 
 
         //Detect if the person already exist
+/*
         for(MedicalRecord eMedicalRecord : medicalRecords){
             if ((eMedicalRecord.getFirstName().equals(medicalRecord.getFirstName()))&&(eMedicalRecord.getLastName().equals(medicalRecord.getLastName()))){
                 int position = medicalRecords.indexOf(eMedicalRecord); //If the person exist, find the position in the list in memory and delete
@@ -119,7 +121,18 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
                 }
             }
         }
+*/
 
+        Iterator itr = medicalRecords.iterator();
+
+        while (itr.hasNext()){
+            MedicalRecord indexMedicaRecord = (MedicalRecord) itr.next();
+            //Detect if the medicaj record already exist
+            if ((indexMedicaRecord.getFirstName().equals(medicalRecord.getFirstName())) && (indexMedicaRecord.getLastName().equals(medicalRecord.getLastName()))){
+                resultMedicalRecordList.add(indexMedicaRecord);
+                itr.remove();
+            }
+        }
         logger.debug("Finish");
         return resultMedicalRecordList;
     }

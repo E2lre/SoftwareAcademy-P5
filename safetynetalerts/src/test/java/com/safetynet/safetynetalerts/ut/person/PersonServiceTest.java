@@ -65,7 +65,7 @@ public class PersonServiceTest {
      * Test : Get en existing person
      */
     @Test
-    public void get_existingFirstnameLastnameGiven_thePersonIsReturn(){
+    public void get_existingFirstNameLastNameGiven_thePersonIsReturn(){
         //GIVEN
         Mockito.when(personDao.get(any(Person.class))).thenReturn(personMock);
         //WHEN
@@ -86,7 +86,7 @@ public class PersonServiceTest {
      * Test : Get en INexisting person
      */
     @Test
-    public void get_inexistingFirstnameLastnameGiven_nullIsReturn() {
+    public void get_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
         Mockito.when(personDao.get(any(Person.class))).thenReturn(null);
         //WHEN
@@ -101,7 +101,7 @@ public class PersonServiceTest {
      * Test : add en INexisting person
      */
     @Test
-    public void add_inexistingFirstnameLastnameGiven_thePersonIsReturn() {
+    public void add_inexistingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN
         Mockito.when(personDao.add(any(Person.class))).thenReturn(personMock);
         //WHEN
@@ -121,7 +121,7 @@ public class PersonServiceTest {
      * Test : add en existing person
      */
     @Test
-    public void add_existingFirstnameLastnameGiven_tnullIsReturn() {
+    public void add_existingFirstNameLastNameGiven_tnullIsReturn() {
         //GIVEN
         Mockito.when(personDao.add(any(Person.class))).thenReturn(null);
         //WHEN
@@ -135,7 +135,7 @@ public class PersonServiceTest {
      * Test : update en existing person
      */
     @Test
-    public void update_existingFirstnameLastnameGiven_thePersonIsReturn() {
+    public void update_existingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN
 
         personMock.setAddress(newAddressConst);
@@ -162,7 +162,7 @@ public class PersonServiceTest {
      * Test : update an Inexisting person
      */
     @Test
-    public void update_inexistingFirstnameLastnameGiven_tnullIsReturn() {
+    public void update_inexistingFirstNameLastNameGiven_tnullIsReturn() {
         //GIVEN
         Mockito.when(personDao.update(any(Person.class))).thenReturn(null);
         //WHEN
@@ -177,7 +177,7 @@ public class PersonServiceTest {
      * Test : delete en existing person
      */
     @Test
-    public void delete_existingFirstnameLastnameGiven_thePersonIsReturn() {
+    public void delete_existingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN
         List<Person> personList = new ArrayList<>();
         personList.add(personMock);
@@ -193,7 +193,7 @@ public class PersonServiceTest {
      * Test : delete an Inexisting person
      */
     @Test
-    public void delete_inexistingFirstnameLastnameGiven_nullIsReturn() {
+    public void delete_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
         Mockito.when(personDao.delete(any(Person.class))).thenReturn(null);
         //WHEN

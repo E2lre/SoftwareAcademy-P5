@@ -118,7 +118,7 @@ public class PersonDaoTest {
      * Test : Get en existing person
      */
     @Test
-    public void get_existingFirstnameLastnameGiven_thePersonIsReturn() {
+    public void get_existingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN
 
         //WHEN
@@ -140,7 +140,7 @@ public class PersonDaoTest {
      * Test : Get en INexisting person
      */
     @Test
-    public void get_inexistingFirstnameLastnameGiven_nullIsReturn() {
+    public void get_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
 
         //personMock.setLastName(lastNameInexistingConst);
@@ -157,7 +157,7 @@ public class PersonDaoTest {
      * Test : add en INexisting person
      */
     @Test
-    public void add_inexistingFirstnameLastnameGiven_thePersonIsReturn() {
+    public void add_inexistingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN
         //personMock.setLastName(lastNameInexistingConst);
         //WHEN
@@ -177,7 +177,7 @@ public class PersonDaoTest {
      * Test : add en existing person
      */
     @Test
-    public void add_existingFirstnameLastnameGiven_nullIsReturn() {
+    public void add_existingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
         //personMock.setLastName(lastNameConst);
         //WHEN
@@ -193,7 +193,7 @@ public class PersonDaoTest {
      * Test : update en existing person
      */
     @Test
-    public void update_existingFirstnameLastnameGiven_thePersonIsReturn() {
+    public void update_existingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN
         personMock.setAddress(newAddressConst);
         personMock.setCity(newCityConst);
@@ -218,7 +218,7 @@ public class PersonDaoTest {
      * Test : update an Inexisting person
      */
     @Test
-    public void update_inexistingFirstnameLastnameGiven_nullIsReturn() {
+    public void update_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
         //personMock.setLastName(lastNameInexistingConst);
         //WHEN
@@ -233,7 +233,7 @@ public class PersonDaoTest {
      * Test : delete en existing person
      */
     @Test
-    public void delete_existingFirstnameLastnameGiven_thePersonIsReturn() {
+    public void delete_existingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN add a second person
         Person personDaoTest = personDao.add(inexistingPerson);
         //WHEN
@@ -248,7 +248,7 @@ public class PersonDaoTest {
      * Test : delete an Inexisting person
      */
     @Test
-    public void delete_inexistingFirstnameLastnameGiven_nullIsReturn() {
+    public void delete_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
         //personMock.setLastName(lastNameInexistingConst);
         //WHEN

@@ -107,6 +107,7 @@ public class Person {
     @Override
     public String toString() {
         logger.debug("start/finish");
+        //logger.debug("firstName=" + firstName+ ", lastName=" + lastName); //TODO A retirer
         return "Person [firstName=" + firstName+ ", lastName=" + lastName + ", address=" + address +", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email+ "]";
     }
 }

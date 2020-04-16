@@ -31,7 +31,7 @@ public class PersonController {
         Person personResult = personService.get(person);
 
         if (personResult == null) {
-            throw new PersonCanNotBeFoundException("FirstName " + person.getFirstName() + " lastname " + person.getLastName() +" Can not be added");
+            throw new PersonCanNotBeFoundException("FirstName " + person.getFirstName() + " lastName " + person.getLastName() +" Can not be found");
         }
 
         logger.info("GET /person : " + personResult);
@@ -49,7 +49,7 @@ public class PersonController {
         Person personResult = personService.add(person);
 
         if (personResult == null) {
-            throw new PersonCanNotbeAddedException("FirstName " + person.getFirstName() + " lastname " + person.getLastName() +" Can not be added");
+            throw new PersonCanNotbeAddedException("FirstName " + person.getFirstName() + " lastName " + person.getLastName() +" Can not be added");
         }
 
         logger.info("POST /person : " + personResult);
@@ -69,7 +69,7 @@ public class PersonController {
         Person personResult = personService.update(person);
 
         if (personResult == null) {
-            throw new PersonCanNotBeModifyException("FirstName " + person.getFirstName() + " lastname " + person.getLastName() +" Can not be modified");
+            throw new PersonCanNotBeModifyException("FirstName " + person.getFirstName() + " lastName " + person.getLastName() +" Can not be modified");
         }
 
         logger.info("PUT /person : " + personResult);
@@ -90,7 +90,7 @@ public class PersonController {
         List<Person> personList = personService.delete(person);
 
         if ((personList == null) || (personList.size()==0)) {
-            throw new PersonCanNotBeDeletedException("FirstName " + person.getFirstName() + " lastname " + person.getLastName() +" Can not be deleted");
+            throw new PersonCanNotBeDeletedException("FirstName " + person.getFirstName() + " lastName " + person.getLastName() +" Can not be deleted");
         }
 
         logger.info("Delete /person : " + personList );
