@@ -6,11 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class NoChildAtThisAddressException extends Exception {
-    private static final Logger logger = LogManager.getLogger(NoChildAtThisAddressException.class);
+public class NoPhoneAtThisAddressException extends Exception {
+    private static final Logger logger = LogManager.getLogger(NoPhoneAtThisAddressException.class);
 
-    public NoChildAtThisAddressException(String s) {
+    public NoPhoneAtThisAddressException(String s) {
         super(s);
         logger.warn(s);
     }
+
 }

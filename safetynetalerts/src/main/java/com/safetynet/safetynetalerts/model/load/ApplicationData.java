@@ -6,6 +6,9 @@ import com.safetynet.safetynetalerts.model.Person;
 
 import java.util.List;
 
+/**
+ * classe utilisée pour le chargement de données avant l'envoi dans les DOA
+ */
 public class ApplicationData {
 
 
@@ -29,7 +32,6 @@ public class ApplicationData {
     public void setFirestations(List<Firestation> firestations) {
         this.firestations = firestations;
     }
-
 
 
     public List<MedicalRecord> getMedicalrecords() {

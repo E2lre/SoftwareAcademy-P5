@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Person {
-    //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+
     private static final Logger logger = LogManager.getLogger(Person.class);
 
     private String firstName;

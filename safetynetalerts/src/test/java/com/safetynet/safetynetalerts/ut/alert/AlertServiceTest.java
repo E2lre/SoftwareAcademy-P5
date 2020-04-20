@@ -3,8 +3,10 @@ package com.safetynet.safetynetalerts.ut.alert;
 import com.safetynet.safetynetalerts.dao.FirestationDao;
 import com.safetynet.safetynetalerts.dao.MedicalRecordDao;
 import com.safetynet.safetynetalerts.dao.PersonDao;
+import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.Phone;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 import com.safetynet.safetynetalerts.service.alert.AlertService;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +34,8 @@ public class AlertServiceTest {
     private MedicalRecordDao medicalRecordDao;
     @MockBean
     private PersonDao personDao;
+    @MockBean
+    private FirestationDao firestationDao;
     @MockBean
     private InputDataReader inputDataReader;
 
@@ -80,10 +84,10 @@ public class AlertServiceTest {
 
     }
 
-    /*----------------------- get ---------------------------*/
+    /*----------------------- get Child ---------------------------*/
 
     @Test
-    public void getChildByAddress_anExistingAdressIsGiven_listOfchildAndHTTPCodeAreReturn() {
+    public void getChildByAddress_anExistingAdressIsGiven_listOfChildAndHTTPCodeAreReturn() {
         //GIVEN
         List<Person> personList = new ArrayList<>();
         personList.add(person);
@@ -130,5 +134,40 @@ public class AlertServiceTest {
 
     }
 
+    /*----------------------- get Phone ---------------------------*/
 
+    @Test
+    public void getPhoneByStation_anExistingAdressIsGiven_listOfPhoneAndHTTPCodeAreReturn() {
+        //GIVEN
+        List<Firestation> firestationList = new ArrayList<>();
+        firestationList.add(new Firestation(addressConst,"2"));
+        Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(firestationList);
+        List<Person> personList = new ArrayList<>();
+        personList.add(person);
+        Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(personList);
+
+
+        //WHEN
+        List<Phone> phoneList = alertService.getPhoneByStation("2");
+        //THEN
+        assertThat(phoneList.size()).isEqualTo(1);
+        Phone phone = phoneList.get(0);
+        assertThat(phone.getFirstName()).isEqualTo(firstNameConst);
+        assertThat(phone.getLastName()).isEqualTo(lastNameConst);
+    }
+
+    @Test
+    public void getPhoneByStation_anInexistingAdressIsGiven_HTTPErrorCodeIsReturn() {
+        //GIVEN
+        Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(null);
+        Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(null);
+
+
+        //WHEN
+        List<Phone> phoneList = alertService.getPhoneByStation("2");
+        //THEN
+        assertThat(phoneList.size()).isEqualTo(0);
+        assertThat(phoneList).isEmpty();
+
+    }
 }

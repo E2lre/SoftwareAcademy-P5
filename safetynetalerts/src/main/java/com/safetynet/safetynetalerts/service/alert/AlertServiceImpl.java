@@ -1,9 +1,12 @@
 package com.safetynet.safetynetalerts.service.alert;
 
+import com.safetynet.safetynetalerts.dao.FirestationDao;
 import com.safetynet.safetynetalerts.dao.MedicalRecordDao;
 import com.safetynet.safetynetalerts.dao.PersonDao;
+import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.Phone;
 import com.safetynet.safetynetalerts.service.person.PersonServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,9 +25,11 @@ public class AlertServiceImpl implements AlertService {
     @Autowired
     private PersonDao personDao;
     @Autowired
+    private FirestationDao firestationDao;
+    @Autowired
     private MedicalRecordDao medicalRecordDao;
     /**
-     * Get Child list bey address
+     * Get Child list by address
      * @param address
      * @return
      */
@@ -50,5 +55,33 @@ public class AlertServiceImpl implements AlertService {
             return null; //TODO logger correctement
         }*/
         return childListResult;
+    }
+
+    /**
+     * Get phone list by station
+     * @param station
+     * @return
+     */
+    @Override
+    public List<Phone> getPhoneByStation (String station){
+        List<Phone> phoneList = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        List<Firestation> firestationList = firestationDao.getFirestationListByStation(station);
+        if ((firestationList != null) && (!firestationList.isEmpty())) {
+            for (Firestation eFirestation: firestationList){
+                addressList.add(eFirestation.getAddress());
+            }
+            if ((addressList != null) && (!addressList.isEmpty())) {
+                Phone phone = null;
+                List<Person> personListAddress = personDao.getPersonByAdress(addressList);
+                if ((personListAddress != null) && (!personListAddress.isEmpty())) {
+                    for (Person ePerson : personListAddress) {
+                        phone = new Phone(ePerson.getFirstName(), ePerson.getLastName(), ePerson.getPhone());
+                        phoneList.add(phone);
+                    }
+                }
+            }
+        }
+        return phoneList;
     }
 }

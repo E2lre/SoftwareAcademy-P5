@@ -29,7 +29,7 @@ public class AlertControllerTestIT {
     String incorrectAddressConst = "10 Downing Str";
 
 
-    /*---------------------------------------- GET -------------------------------*/
+    /*---------------------------------------- GET Child-------------------------------*/
     @Test
     public void childAlertController_getAnExistingAdressWithChild_theListOfChildAndHTTPCodeAreReturn() throws Exception {
 
@@ -47,15 +47,43 @@ public class AlertControllerTestIT {
      * @throws Exception
      */
     @Test
-    public void PersonController_getInexistingPerson_errorIsSended() throws Exception {
+    public void childAlertController_getInexistingPerson_anHTTPErrorIsReturn() throws Exception {
 
         //GIVEN : Give an inexisting address
 
 
         //WHEN //THEN return notfound
         mockMvc.perform(get("/childAlert?address="+incorrectAddressConst))
-                .andExpect(status().isNotFound())
-        ;
+                .andExpect(status().isNotFound());
+    }
+
+
+    /*---------------------------------------- GET Phone-------------------------------*/
+    @Test
+    public void phoneAlertController_getAnExistingStationWithChild_theListOfPhoneAndHTTPCodeAreReturn() throws Exception {
+
+        //GIVEN : Give an exiting station
+
+        //WHEN //THEN return list of phone
+        mockMvc.perform(get("/phoneAlert?station=2"))
+                .andExpect(status().isOk());
+//TODO verifier liste non null
+    }
+
+    /**
+     * Controler : person
+     * Test : Get : try to get an inexisting address
+     * @throws Exception
+     */
+    @Test
+    public void phoneAlertController_getInexistingDtation_anHTTPErrorIsReturn() throws Exception {
+
+        //GIVEN : Give an inexisting station
+
+
+        //WHEN //THEN return notfound
+        mockMvc.perform(get("/phoneAlert?station=99"))
+                .andExpect(status().isNotFound());
     }
 
 }
