@@ -12,6 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +32,8 @@ public class MedicalRecordDaoTest {
     private MedicalRecord medicalRecord;
     private MedicalRecord existingMedicalRecord;
     private MedicalRecord inexistingMedicalRecord;
+    private MedicalRecord childMedicalRecord;
+
     @MockBean
     private MedicalRecord resultMedicalRecord;
     @MockBean
@@ -39,6 +46,10 @@ public class MedicalRecordDaoTest {
     List<String> medicationsListConst;
     List<String> allergiesListConst;
     String lastNameInexistingConst = "Invisible Man";
+    String childFirstNameConst = "Harry";
+    String childLastNameConst = "Potter";
+    String childBirthdateConst = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+
     @BeforeEach
     public void setUpEach() {
 
@@ -217,7 +228,7 @@ public class MedicalRecordDaoTest {
     /*------------------------ Load ---------------------------------*/
 
     /**
-     * PersonDAO
+     * MedicalRecordDao
      * Test : load a medicalrecordlist
      */
     @Test
@@ -231,5 +242,82 @@ public class MedicalRecordDaoTest {
         assertThat(medicalRecordLoadResult).isTrue();
 
 
+    }
+
+    /*------------------------ getChildByPersonList ---------------------------------*/
+
+    /**
+     * MedicalRecordDao
+     * Test : get Child list By PersonList
+     */
+    @Test
+    public void getChildByPersonList_giveAPersonListWithOneChild_personChildIsReturn() {
+        //GIVEN
+        List<Person> personList = new ArrayList<>();
+        Person child = new Person(childFirstNameConst,childLastNameConst,"","","","","");
+        personList.add(child);
+
+        childMedicalRecord = new MedicalRecord();
+        childMedicalRecord.setFirstName(childFirstNameConst);
+        childMedicalRecord.setLastName(childLastNameConst);
+        childMedicalRecord.setBirthdate(childBirthdateConst);
+        childMedicalRecord.setAllergies(allergiesListConst);
+        childMedicalRecord.setMedications(medicationsListConst);
+        List<MedicalRecord> existingMedicalRecordList = new ArrayList<>();
+        existingMedicalRecordList.add(childMedicalRecord);
+        boolean medicalRecordLoadResult = medicalRecordDao.load(existingMedicalRecordList);
+
+        Mockito.when(resultMedicalRecord.getFirstName()).thenReturn(childFirstNameConst);
+        Mockito.when(resultMedicalRecord.getLastName()).thenReturn(childLastNameConst);
+        Mockito.when(resultMedicalRecord.getBirthdate()).thenReturn(childBirthdateConst);
+
+        //WHEN
+ /*       try{
+  */
+
+            List<MedicalRecord> personChildList = medicalRecordDao.getChildByPersonList(personList);
+
+            //THEN
+            assertThat(personChildList.size()).isEqualTo(1);
+            MedicalRecord personChild = personChildList.get(0);
+            assertThat(personChild.getFirstName()).isEqualTo(childFirstNameConst);
+            assertThat(personChild.getLastName()).isEqualTo(childLastNameConst);
+            assertThat(personChild.getBirthdate()).isEqualTo(childBirthdateConst);
+ /*       } catch (
+                ParseException e)
+        {
+            //TODO
+        }*/
+
+    }
+
+
+    /**
+     * MedicalRecordDao
+     * Test : get Child list By PersonList
+     */
+    @Test
+    public void getChildByPersonList_giveAPersonListWithNoChild_nullIsRetunr() {
+        //GIVEN
+        List<Person> personList = new ArrayList<>();
+        Person child = new Person(firstNameConst,lastNameConst,"","","","","");
+        personList.add(child);
+
+
+        Mockito.when(resultMedicalRecord.getFirstName()).thenReturn(childFirstNameConst);
+        Mockito.when(resultMedicalRecord.getLastName()).thenReturn(childLastNameConst);
+        Mockito.when(resultMedicalRecord.getBirthdate()).thenReturn(birthdateConst);
+
+        //WHEN
+  //      try{
+            List<MedicalRecord> personChildList = medicalRecordDao.getChildByPersonList(personList);
+            //THEN
+            assertThat(personChildList.size()).isEqualTo(0);
+            assertThat(personChildList).isEmpty();
+    /*    } catch (ParseException e)
+        {
+            //TODO
+        }
+*/
     }
 }

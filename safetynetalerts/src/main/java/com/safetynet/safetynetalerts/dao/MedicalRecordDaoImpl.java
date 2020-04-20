@@ -7,9 +7,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.time.LocalDateTime;
+
 
 @Repository
 public class MedicalRecordDaoImpl implements MedicalRecordDao  {
@@ -150,5 +158,42 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
     public boolean clear(){
         medicalRecords.clear();
         return true;
+    }
+
+    /**
+     * give a list of medical of child in a list of person
+     * @param personList of personwhere child must be found
+     * @return medical record only with firstname lastname ans birthdate
+     */
+    @Override
+    public List<MedicalRecord> getChildByPersonList (List<Person> personList) { //throws ParseException {
+        List<MedicalRecord> medicalRecordListResult = new ArrayList<>();
+        //Date date = new Date();
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate today = LocalDate.now();
+
+        try {
+            for (Person ePerson : personList) {
+                for (MedicalRecord eMedicalRecod : medicalRecords) {
+                    if ((ePerson.getFirstName().equals(eMedicalRecod.getFirstName())) && (ePerson.getLastName().equals(eMedicalRecod.getLastName()))) {
+
+                        LocalDate birthdate = LocalDate.parse(eMedicalRecod.getBirthdate(), formatter);
+
+                        Period period = Period.between(birthdate, today);
+
+                        if (period.getYears() < 18) {
+                            medicalRecordListResult.add(eMedicalRecod);
+                        }
+                    }
+                }
+            }
+            return medicalRecordListResult;
+        }catch(Exception e){
+            logger.error(e.getMessage());
+            return null;
+        }
+
     }
 }

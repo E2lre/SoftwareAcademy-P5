@@ -8,6 +8,7 @@ import com.safetynet.safetynetalerts.dao.*;
 import com.safetynet.safetynetalerts.model.*;
 
 //import org.apache.log4j.Logger;
+import com.safetynet.safetynetalerts.model.load.ApplicationData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.core.io.ClassPathResource;
@@ -94,8 +95,29 @@ public class InputDataReaderImpl implements InputDataReader {
             String pathFile = "data.json";
 
             String data = StreamUtils.copyToString(new ClassPathResource(pathFile).getInputStream(), Charset.defaultCharset());
+            ///tests
 
-            Firestations firestationList = JsonIterator.deserialize(data, Firestations.class);
+            ApplicationData applicationData = JsonIterator.deserialize(data,ApplicationData.class);
+            List<Firestation> listFirestation = applicationData.getFirestations();
+            FirestationDao resultFirestationDao = new FirestationDaoImpl();
+            for(Firestation eFirestation : listFirestation) {
+                resultFirestationDao.save(eFirestation);
+            }
+
+
+            List<Person> personList = applicationData.getPersons();
+
+            PersonDao personDao = new PersonDaoImpl() ;
+            resultat = personDao.load(personList);
+
+            List<MedicalRecord> medicalRecordList = applicationData.getMedicalrecords();
+            MedicalRecordDao medicalRecordDao = new MedicalRecordDaoImpl();
+            resultat =medicalRecordDao.load(medicalRecordList);
+
+
+
+
+ /*           Firestations firestationList = JsonIterator.deserialize(data, Firestations.class);
            // List<Firestation> firestationList = JsonIterator.deserialize(data, firestationList.class);
 
             FirestationDao resultFirestationDao = new FirestationDaoImpl();
@@ -103,14 +125,18 @@ public class InputDataReaderImpl implements InputDataReader {
             for(Firestation eFirestation : listFirestation) {
                 resultFirestationDao.save(eFirestation);
             }
+*/
 
-//TODO revoir tout cette gestion avec les new et les lists de dao
             //Persons personList = JsonIterator.deserialize(data, Persons.class);
-            Persons persons = JsonIterator.deserialize(data, Persons.class);
-            List<Person> personList = persons.getPersons();
+      /*      Persons persons = JsonIterator.deserialize(data, Persons.class);
+            List<Person> personList = persons.getPersons();*/
+/*
+
+            List<Person> personList = applicationData.getPersons();
 
             PersonDao personDao = new PersonDaoImpl() ;
             resultat = personDao.load(personList);
+*/
 
             //logger.debug(personList);
 //            for(Person ePerson : personList){
@@ -120,11 +146,18 @@ public class InputDataReaderImpl implements InputDataReader {
             //personDao= JsonIterator.deserialize(data, PersonDaoImpl.class);
             //List<Person> personList= JsonIterator.deserialize(data,new TypeLiteral<List<Person>>(){});
   //          personDao.load(personList);
-            MedicalRecords medicalRecords = JsonIterator.deserialize(data, MedicalRecords.class);
-            List<MedicalRecord> medicalRecordList = medicalRecords.getMedicalRecords();
+  /*          MedicalRecords medicalRecords = JsonIterator.deserialize(data, MedicalRecords.class);
+            List<MedicalRecord> medicalRecordList = medicalRecords.getMedicalRecords();*/
 
+/*
+            List<MedicalRecord> medicalRecordList = applicationData.getMedicalrecords();
             MedicalRecordDao medicalRecordDao = new MedicalRecordDaoImpl();
             resultat =medicalRecordDao.load(medicalRecordList);
+
+*/
+
+
+
             logger.debug("Finish");
             return resultFirestationDao;
         }

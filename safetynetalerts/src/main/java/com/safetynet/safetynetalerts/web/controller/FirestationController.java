@@ -18,7 +18,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-//TODO RENOMER CE CONTROLEUR
 
 @RestController
 public class FirestationController {
@@ -36,12 +35,11 @@ public class FirestationController {
 //TODO DAO avec le cours https://openclassrooms.com/fr/courses/4668056-construisez-des-microservices/5122884-creez-un-microservice-grace-a-spring-boot
 
     //TODO a supprimer
-    @GetMapping(value="/firestations")
+    @GetMapping(value="/firestation/list")
     public List<Firestation> listOfFirestations() {
         List<Firestation> firestationList = firestationService.findAll() ;
-        logger.info("GET /firestations : " + firestationList);
+        logger.info("GET /firestation/list : " + firestationList);
         return firestationList;
-//        return firestationService.findAll();
     }
 
     @GetMapping(value="/firestation")
@@ -49,6 +47,7 @@ public class FirestationController {
     public List<Person> showFirestationByStation(@RequestParam(name = "stationNumber") String station) throws FirestationNotFoundException {
 
         logger.debug("Start");
+
         //logger.debug("station ask : " + station);
         List<Person> personList = firestationService.getPersonByStation(station);
         if (personList.isEmpty()) {

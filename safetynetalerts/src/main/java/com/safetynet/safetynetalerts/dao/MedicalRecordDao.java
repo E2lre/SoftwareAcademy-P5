@@ -3,6 +3,7 @@ package com.safetynet.safetynetalerts.dao;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface MedicalRecordDao {
@@ -12,4 +13,5 @@ public interface MedicalRecordDao {
     public List<MedicalRecord> delete (MedicalRecord medicalRecord);
     public boolean load (List<MedicalRecord> medicalRecordList);
     public boolean clear();
+    public List<MedicalRecord> getChildByPersonList (List<Person> personList);// throws ParseException;
 }

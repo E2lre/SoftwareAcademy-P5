@@ -1,0 +1,75 @@
+2020-04-20 08:39:14,356 INFO c.s.s.SafetynetalertsApplication-logStarting [main] Starting SafetynetalertsApplication on UC715467VW7JAV with PID 4548 (C:\Devenv\git\P5\SoftwareAcademy-P5\safetynetalerts\target\classes started by S058601 in C:\Devenv\git\P5\SoftwareAcademy-P5\safetynetalerts)
+2020-04-20 08:39:14,387 DEBUG c.s.s.SafetynetalertsApplication-logStarting [main] Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+2020-04-20 08:39:14,387 INFO c.s.s.SafetynetalertsApplication-logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-20 08:39:16,403 INFO o.a.c.h.Http11NioProtocol-log [main] Initializing ProtocolHandler ["http-nio-8080"]
+2020-04-20 08:39:16,403 INFO o.a.c.c.StandardService-log [main] Starting service [Tomcat]
+2020-04-20 08:39:16,403 INFO o.a.c.c.StandardEngine-log [main] Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-04-20 08:39:16,543 INFO o.a.c.c.C.[.[.[/]-log [main] Initializing Spring embedded WebApplicationContext
+2020-04-20 08:39:16,590 DEBUG i.m.c.u.i.l.InternalLoggerFactory-newDefaultFactory [main] Using SLF4J as the default logging framework
+2020-04-20 08:39:16,715 INFO c.s.s.s.ApplicationStart-postConstruct [main] Start
+2020-04-20 08:39:16,715 DEBUG c.s.s.s.InputDataReaderImpl-readInputFile [main] Start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] start
+2020-04-20 08:39:16,762 DEBUG c.s.s.d.FirestationDaoImpl-save [main] Finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.d.PersonDaoImpl-load [main] load-start
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.m.Person-toString [main] start/finish
+2020-04-20 08:39:16,778 DEBUG c.s.s.d.PersonDaoImpl-load [main] [Person [firstName=John, lastName=Boyd, address=1509 Culver St, city=Culver, zip=97451, phone=841-874-6512, email=jaboyd@email.com], Person [firstName=Jacob, lastName=Boyd, address=1509 Culver St, city=Culver, zip=97451, phone=841-874-6513, email=drk@email.com], Person [firstName=Tenley, lastName=Boyd, address=1509 Culver St, city=Culver, zip=97451, phone=841-874-6512, email=tenz@email.com], Person [firstName=Roger, lastName=Boyd, address=1509 Culver St, city=Culver, zip=97451, phone=841-874-6512, email=jaboyd@email.com], Person [firstName=Felicia, lastName=Boyd, address=1509 Culver St, city=Culver, zip=97451, phone=841-874-6544, email=jaboyd@email.com], Person [firstName=Jonanathan, lastName=Marrack, address=29 15th St, city=Culver, zip=97451, phone=841-874-6513, email=drk@email.com], Person [firstName=Tessa, lastName=Carman, address=834 Binoc Ave, city=Culver, zip=97451, phone=841-874-6512, email=tenz@email.com], Person [firstName=Peter, lastName=Duncan, address=644 Gershwin Cir, city=Culver, zip=97451, phone=841-874-6512, email=jaboyd@email.com], Person [firstName=Foster, lastName=Shepard, address=748 Townings Dr, city=Culver, zip=97451, phone=841-874-6544, email=jaboyd@email.com], Person [firstName=Tony, lastName=Cooper, address=112 Steppes Pl, city=Culver, zip=97451, phone=841-874-6874, email=tcoop@ymail.com], Person [firstName=Lily, lastName=Cooper, address=489 Manchester St, city=Culver, zip=97451, phone=841-874-9845, email=lily@email.com], Person [firstName=Sophia, lastName=Zemicks, address=892 Downing Ct, city=Culver, zip=97451, phone=841-874-7878, email=soph@email.com], Person [firstName=Warren, lastName=Zemicks, address=892 Downing Ct, city=Culver, zip=97451, phone=841-874-7512, email=ward@email.com], Person [firstName=Zach, lastName=Zemicks, address=892 Downing Ct, city=Culver, zip=97451, phone=841-874-7512, email=zarc@email.com], Person [firstName=Reginold, lastName=Walker, address=908 73rd St, city=Culver, zip=97451, phone=841-874-8547, email=reg@email.com], Person [firstName=Jamie, lastName=Peters, address=908 73rd St, city=Culver, zip=97451, phone=841-874-7462, email=jpeter@email.com], Person [firstName=Ron, lastName=Peters, address=112 Steppes Pl, city=Culver, zip=97451, phone=841-874-8888, email=jpeter@email.com], Person [firstName=Allison, lastName=Boyd, address=112 Steppes Pl, city=Culver, zip=97451, phone=841-874-9888, email=aly@imail.com], Person [firstName=Brian, lastName=Stelzer, address=947 E. Rose Dr, city=Culver, zip=97451, phone=841-874-7784, email=bstel@email.com], Person [firstName=Shawna, lastName=Stelzer, address=947 E. Rose Dr, city=Culver, zip=97451, phone=841-874-7784, email=ssanw@email.com], Person [firstName=Kendrik, lastName=Stelzer, address=947 E. Rose Dr, city=Culver, zip=97451, phone=841-874-7784, email=bstel@email.com], Person [firstName=Clive, lastName=Ferguson, address=748 Townings Dr, city=Culver, zip=97451, phone=841-874-6741, email=clivfd@ymail.com], Person [firstName=Eric, lastName=Cadigan, address=951 LoneTree Rd, city=Culver, zip=97451, phone=841-874-7458, email=gramps@email.com]]
+2020-04-20 08:39:16,793 DEBUG c.s.s.d.PersonDaoImpl-load [main] load-Finish
+2020-04-20 08:39:16,809 DEBUG c.s.s.s.InputDataReaderImpl-readInputFile [main] Finish
+2020-04-20 08:39:16,809 DEBUG c.s.s.s.ApplicationStart-postConstruct [main] com.safetynet.safetynetalerts.dao.FirestationDaoImpl@1faf386c
+2020-04-20 08:39:16,809 DEBUG c.s.s.s.ApplicationStart-postConstruct [main] file read
+2020-04-20 08:39:16,809 DEBUG c.s.s.s.ApplicationStart-postConstruct [main] Finish
+2020-04-20 08:39:16,809 WARN c.s.s.s.ApplicationStart-postConstruct [main] Application started
+2020-04-20 08:39:17,528 INFO o.a.c.h.Http11NioProtocol-log [main] Starting ProtocolHandler ["http-nio-8080"]
+2020-04-20 08:39:17,684 INFO o.a.c.h.Http11NioProtocol-log [main] Initializing ProtocolHandler ["http-nio-8090"]
+2020-04-20 08:39:17,684 INFO o.a.c.c.StandardService-log [main] Starting service [Tomcat]
+2020-04-20 08:39:17,684 INFO o.a.c.c.StandardEngine-log [main] Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-04-20 08:39:17,731 INFO o.a.c.c.C.[.[.[/]-log [main] Initializing Spring embedded WebApplicationContext
+2020-04-20 08:39:17,825 INFO o.a.c.h.Http11NioProtocol-log [main] Starting ProtocolHandler ["http-nio-8090"]
+2020-04-20 08:39:17,840 INFO c.s.s.SafetynetalertsApplication-logStarted [main] Started SafetynetalertsApplication in 4.271 seconds (JVM running for 7.07)
+2020-04-20 08:39:18,387 INFO o.a.c.c.C.[.[.[/]-log [RMI TCP Connection(1)-10.0.2.15] Initializing Spring DispatcherServlet 'dispatcherServlet'

@@ -183,4 +183,17 @@ public class PersonDaoImpl implements PersonDao {
         logger.debug("Finish");
         return localPersonList;
     }
+
+    @Override
+    public List<Person> getPersonByName (List<Person> personList) {
+        List<Person> personListResult = new ArrayList<>();
+        for (Person ePerson : persons) {
+            for (Person ePersonList : personList) {
+                if ((ePersonList.getFirstName().equals(ePerson.getFirstName())) && (ePersonList.getLastName().equals(ePerson.getLastName()))) {
+                    personListResult.add(ePerson);
+                }
+            }
+         }
+        return personListResult;
+    }
 }

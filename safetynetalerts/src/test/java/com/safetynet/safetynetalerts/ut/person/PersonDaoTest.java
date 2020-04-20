@@ -186,6 +186,40 @@ public class PersonDaoTest {
         assertThat(personDaoListTest).isEmpty();
 
     }
+
+
+    /**
+     * PersonDAO
+     * Test : getPersonByName with a existing Name
+     */
+    @Test
+    public void getPersonByName_existingNameGiven_personListReturn(){
+        //GIVEN
+        List<Person> personList = new ArrayList<>();
+        personList.add(existingPerson);
+
+        //WHEN
+        List<Person> personDaoListTest = personDao.getPersonByName(personList);
+        //THEN
+        assertThat(personDaoListTest.size()).isEqualTo(1);
+
+    }
+
+    /**
+     * PersonDAO
+     * Test : getPersonByName with a inexisting Name
+     */
+    @Test
+    public void getPersonByName_inexistingNameGiven_nullReturn(){
+        List<Person> personList = new ArrayList<>();
+        personList.add(inexistingPerson);
+
+        //WHEN
+        List<Person> personDaoListTest = personDao.getPersonByName(personList);
+        //THEN
+        assertThat(personDaoListTest).isEmpty();
+
+    }
     /*------------------------ Add ---------------------------------*/
 
     /**
@@ -310,4 +344,6 @@ public class PersonDaoTest {
 
 
     }
+
+
 }
