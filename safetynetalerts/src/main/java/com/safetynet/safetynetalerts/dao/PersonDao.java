@@ -17,4 +17,5 @@ public interface PersonDao {
     public boolean clear();
     public List<Person> getPersonByAdress (List<String> address);
     public List<Person> getPersonByName (List<Person> personList);
+    public List<Person> getPersonByCity (String city);
 }

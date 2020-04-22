@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.service.firestation;
 
 import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.StationNumberInfo;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface FirestationService {
     public Firestation updateByStation(Firestation firestation);
     public Firestation updateByAddress(Firestation firestation);
     public List<Firestation> delete(Firestation firestation);
-    public List<Person> getPersonByStation(String station);
+    public StationNumberInfo getPersonByStation(String station);
 
-    //  public List<Firestation> load (List<Firestation> firestationList);
+
 }

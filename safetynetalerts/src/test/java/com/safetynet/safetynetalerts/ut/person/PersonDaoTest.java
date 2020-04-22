@@ -173,7 +173,7 @@ public class PersonDaoTest {
      * Test : getPersonByAdress with a inexisting adress
      */
     @Test
-    public void getPersonByAdress_inexistingAdressGiven_nullReturn(){
+    public void getPersonByAdress_inexistingAdressGiven_emptyReturn(){
         //GIVEN
         Person personDaoTest = personDao.add(existingPerson);
         personDaoTest = personDao.add(inexistingPerson);
@@ -210,12 +210,49 @@ public class PersonDaoTest {
      * Test : getPersonByName with a inexisting Name
      */
     @Test
-    public void getPersonByName_inexistingNameGiven_nullReturn(){
+    public void getPersonByName_inexistingNameGiven_emptyReturn(){
         List<Person> personList = new ArrayList<>();
         personList.add(inexistingPerson);
 
         //WHEN
         List<Person> personDaoListTest = personDao.getPersonByName(personList);
+        //THEN
+        assertThat(personDaoListTest).isEmpty();
+
+    }
+
+
+
+
+
+    /**
+     * PersonDAO
+     * Test : getPersonByCity with a existing City
+     */
+    @Test
+    public void getPersonByCity_existingCityGiven_personListReturn(){
+        //GIVEN
+        List<Person> personList = new ArrayList<>();
+        personList.add(existingPerson);
+
+        //WHEN
+        List<Person> personDaoListTest = personDao.getPersonByCity(cityConst);
+        //THEN
+        assertThat(personDaoListTest.size()).isEqualTo(1);
+
+    }
+
+    /**
+     * PersonDAO
+     * Test : getPersonByCity with a inexisting City
+     */
+    @Test
+    public void getPersonByCity_inexistingCityGiven_emptyReturn(){
+        List<Person> personList = new ArrayList<>();
+        personList.add(inexistingPerson);
+
+        //WHEN
+        List<Person> personDaoListTest = personDao.getPersonByCity(newCityConst);
         //THEN
         assertThat(personDaoListTest).isEmpty();
 

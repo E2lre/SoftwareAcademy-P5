@@ -178,7 +178,7 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
 
                         Period period = Period.between(birthdate, today);
 
-                        if (period.getYears() < 18) {
+                        if (period.getYears() <= 18) {
                             medicalRecordListResult.add(eMedicalRecod);
                         }
                     }
@@ -190,5 +190,29 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
             return null;
         }
 
+    }
+
+    /**
+     * Return the age of a person
+     * @param person
+     * @return
+     */
+    @Override
+    public int getAgeByPerson (Person person){
+        int ageResult = -1;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate today = LocalDate.now();
+
+        for (MedicalRecord eMedicalRecod : medicalRecords) {
+            if ((person.getFirstName().equals(eMedicalRecod.getFirstName())) && (person.getLastName().equals(eMedicalRecod.getLastName()))) {
+
+                LocalDate birthdate = LocalDate.parse(eMedicalRecod.getBirthdate(), formatter);
+
+                Period period = Period.between(birthdate, today);
+
+                ageResult = period.getYears();
+            }
+        }
+        return ageResult;
     }
 }

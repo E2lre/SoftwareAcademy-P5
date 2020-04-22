@@ -272,22 +272,16 @@ public class MedicalRecordDaoTest {
         Mockito.when(resultMedicalRecord.getBirthdate()).thenReturn(childBirthdateConst);
 
         //WHEN
- /*       try{
-  */
 
-            List<MedicalRecord> personChildList = medicalRecordDao.getChildByPersonList(personList);
 
-            //THEN
-            assertThat(personChildList.size()).isEqualTo(1);
-            MedicalRecord personChild = personChildList.get(0);
-            assertThat(personChild.getFirstName()).isEqualTo(childFirstNameConst);
-            assertThat(personChild.getLastName()).isEqualTo(childLastNameConst);
-            assertThat(personChild.getBirthdate()).isEqualTo(childBirthdateConst);
- /*       } catch (
-                ParseException e)
-        {
-            //TODO
-        }*/
+        List<MedicalRecord> personChildList = medicalRecordDao.getChildByPersonList(personList);
+
+        //THEN
+        assertThat(personChildList.size()).isEqualTo(1);
+        MedicalRecord personChild = personChildList.get(0);
+        assertThat(personChild.getFirstName()).isEqualTo(childFirstNameConst);
+        assertThat(personChild.getLastName()).isEqualTo(childLastNameConst);
+        assertThat(personChild.getBirthdate()).isEqualTo(childBirthdateConst);
 
     }
 
@@ -297,7 +291,7 @@ public class MedicalRecordDaoTest {
      * Test : get Child list By PersonList
      */
     @Test
-    public void getChildByPersonList_giveAPersonListWithNoChild_nullIsRetunr() {
+    public void getChildByPersonList_giveAPersonListWithNoChild_emptyIsRetunr() {
         //GIVEN
         List<Person> personList = new ArrayList<>();
         Person child = new Person(firstNameConst,lastNameConst,"","","","","");
@@ -309,15 +303,54 @@ public class MedicalRecordDaoTest {
         Mockito.when(resultMedicalRecord.getBirthdate()).thenReturn(birthdateConst);
 
         //WHEN
-  //      try{
-            List<MedicalRecord> personChildList = medicalRecordDao.getChildByPersonList(personList);
-            //THEN
-            assertThat(personChildList.size()).isEqualTo(0);
-            assertThat(personChildList).isEmpty();
-    /*    } catch (ParseException e)
-        {
-            //TODO
-        }
-*/
+
+        List<MedicalRecord> personChildList = medicalRecordDao.getChildByPersonList(personList);
+        //THEN
+        assertThat(personChildList.size()).isEqualTo(0);
+        assertThat(personChildList).isEmpty();
+
     }
+
+
+
+    /*------------------------ getAgeByPerson ---------------------------------*/
+
+    /**
+     * MedicalRecordDao
+     * Test : get age of a person
+     */
+    @Test
+    public void getAgeByPerson_giveAPerson_ageIsReturn() {
+        //GIVEN
+
+        Person person = new Person(childFirstNameConst,childLastNameConst,"","","","","");
+
+
+        childMedicalRecord = new MedicalRecord();
+        childMedicalRecord.setFirstName(childFirstNameConst);
+        childMedicalRecord.setLastName(childLastNameConst);
+        childMedicalRecord.setBirthdate(childBirthdateConst);
+        childMedicalRecord.setAllergies(allergiesListConst);
+        childMedicalRecord.setMedications(medicationsListConst);
+        List<MedicalRecord> existingMedicalRecordList = new ArrayList<>();
+        existingMedicalRecordList.add(childMedicalRecord);
+        boolean medicalRecordLoadResult = medicalRecordDao.load(existingMedicalRecordList);
+
+        Mockito.when(resultMedicalRecord.getFirstName()).thenReturn(childFirstNameConst);
+        Mockito.when(resultMedicalRecord.getLastName()).thenReturn(childLastNameConst);
+        Mockito.when(resultMedicalRecord.getBirthdate()).thenReturn(childBirthdateConst);
+
+        //WHEN
+
+
+        int age = medicalRecordDao.getAgeByPerson(person);
+
+        //THEN
+        assertThat(age).isEqualTo(0);
+
+
+    }
+
+
+
 }

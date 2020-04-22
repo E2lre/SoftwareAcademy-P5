@@ -1,9 +1,11 @@
 package com.safetynet.safetynetalerts.ut.firestation;
 
 import com.safetynet.safetynetalerts.dao.FirestationDao;
+import com.safetynet.safetynetalerts.dao.MedicalRecordDao;
 import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.StationNumberInfo;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +33,8 @@ public class FirestationServiceTest {
     private FirestationDao firestationDao;
     @MockBean
     private PersonDao personDao;
+    @MockBean
+    private MedicalRecordDao medicalRecordDao;
     @MockBean
     private InputDataReader inputDataReader;
 
@@ -63,11 +67,13 @@ public class FirestationServiceTest {
 
         Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(firestations);
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(persons);
+        Mockito.when(medicalRecordDao.getAgeByPerson(any(Person.class))).thenReturn(20);
 
         //WHEN
-        List<Person> personList = firestationService.getPersonByStation("1");
+        StationNumberInfo stationNumberInfo = firestationService.getPersonByStation("1");
         //THEN
-        assertThat(personList.size()).isEqualTo(2);
+        assertThat(stationNumberInfo.getNbAdulte()).isEqualTo("2");
+        assertThat(stationNumberInfo.getNbChild()).isEqualTo("0");
         //TODO : ajouter l'analyse de la liste
     }
 
@@ -78,11 +84,12 @@ public class FirestationServiceTest {
         List<Person> personListMock = new ArrayList<>();
         Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(firestationListMock);
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(personListMock);
+        Mockito.when(medicalRecordDao.getAgeByPerson(any(Person.class))).thenReturn(0);
         //WHEN
         //WHEN
-        List<Person> personList = firestationService.getPersonByStation("1");
+        StationNumberInfo stationNumberInfo = firestationService.getPersonByStation("1");
         //THEN
-        assertThat(personList.size()).isEqualTo(0);
+        assertThat(stationNumberInfo.getPersons()).isEmpty();
 
     }
     @Test

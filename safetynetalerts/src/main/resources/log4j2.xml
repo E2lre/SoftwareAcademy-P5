@@ -2,19 +2,9 @@
 <Configuration status="WARN">
     <Appenders>
         <Console name="LogToConsole" target="SYSTEM_OUT">
-                        <!--<PatternLayout pattern="%d %highlight{%p} %style{%logger}{bright,cyan} %C{1.} %msg%n"/>-->
-<!--            <PatternLayout pattern="%highlight{%d [%t] %-5level: %msg%n%throwable}{FATAL=white, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}"/>-->
-<!--
-            <PatternLayout pattern="%d [%t] %highlight{%-5level {FATAL=white, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}} %throwable{short.methodName}  %logger{36} - %msg%n"/>
--->
-<!--            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] %-5level: %msg %throwable{short.methodName}}{FATAL=white, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}  %logger{36} - %msg%n"/>-->
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level  %logger{36}-%M - %msg%n"/>
         </Console>
-<!--       <File name="LogToFile" fileName="log/safetynetApplication.log">
-            <PatternLayout>
-                <Pattern>%d %p %c{1.}-%M [%t] %m%n</Pattern>
-            </PatternLayout>
-        </File>-->
+
         <RollingFile
                 name="LogToFile"
                 fileName="log/safetynetApplication.log"
@@ -28,15 +18,6 @@
             </Policies>
             <DefaultRolloverStrategy max="5" />
         </RollingFile>
- <!--       <RollingFile  name="LogToFile" fileName="log/safetynetApplication.log" filePattern="log/safetynetApplication%d{yyyy-MM-dd}-%i.log">
-             <PatternLayout>
-                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
-            </PatternLayout>
-          <Policies>
-                <SizeBasedTriggeringPolicy size="10MB" />
-            </Policies>
-            <DefaultRolloverStrategy max="10"/>
-        </RollingFile>-->
     </Appenders>
     <Loggers>
         <Logger name="com.safetynet.safetynetalerts" level="debug" additivity="false">
@@ -56,6 +37,5 @@
             <AppenderRef ref="LogToFile"/>
             <AppenderRef ref="LogToConsole"/>
         </Root>
-
     </Loggers>
 </Configuration>

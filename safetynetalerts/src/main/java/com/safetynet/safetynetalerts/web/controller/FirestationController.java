@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.web.controller;
 import com.safetynet.safetynetalerts.model.Firestation;
 
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.StationNumberInfo;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
@@ -44,9 +45,22 @@ public class FirestationController {
 
     @GetMapping(value="/firestation")
     @ResponseBody
-    public List<Person> showFirestationByStation(@RequestParam(name = "stationNumber") String station) throws FirestationNotFoundException {
+    public StationNumberInfo showFirestationByStation(@RequestParam(name = "stationNumber") String station) throws FirestationNotFoundException {
 
         logger.debug("Start");
+
+        //logger.debug("station ask : " + station);
+        StationNumberInfo stationNumberInfo = firestationService.getPersonByStation(station);
+       // if (stationNumberInfo.getPersons().isEmpty()) {
+        if ((stationNumberInfo.getPersons()==null)||((stationNumberInfo.getNbAdulte().equals("0"))&&(stationNumberInfo.getNbChild().equals("0")))) {
+            throw new FirestationNotFoundException("no person for station " + station );
+        }
+
+        logger.info("GET /firestation?stationNumber="+stationNumberInfo);
+        logger.debug("Finish");
+        return stationNumberInfo;
+
+        /*        logger.debug("Start");
 
         //logger.debug("station ask : " + station);
         List<Person> personList = firestationService.getPersonByStation(station);
@@ -56,7 +70,7 @@ public class FirestationController {
 
         logger.info("GET /firestation?stationNumber="+personList);
         logger.debug("Finish");
-        return personList;
+        return personList;*/
 
  /*       logger.debug("Start");    //Ancien code
         //logger.debug("station ask : " + station);

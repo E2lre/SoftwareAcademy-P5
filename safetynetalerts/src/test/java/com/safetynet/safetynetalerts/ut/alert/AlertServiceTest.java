@@ -6,6 +6,8 @@ import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.Child;
+import com.safetynet.safetynetalerts.model.detail.Childs;
 import com.safetynet.safetynetalerts.model.detail.Phone;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 import com.safetynet.safetynetalerts.service.alert.AlertService;
@@ -87,57 +89,49 @@ public class AlertServiceTest {
     /*----------------------- get Child ---------------------------*/
 
     @Test
-    public void getChildByAddress_anExistingAdressIsGiven_listOfChildAndHTTPCodeAreReturn() {
+    public void getChildByAddress_anExistingAdressIsGiven_listOfChildIsReturn() {
         //GIVEN
         List<Person> personList = new ArrayList<>();
         personList.add(person);
         List<MedicalRecord> medicalRecordList = new ArrayList<>();
         medicalRecordList.add(medicalRecord);
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(personList);
- //       try {
-            Mockito.when(medicalRecordDao.getChildByPersonList(any(List.class))).thenReturn(medicalRecordList);
-  /*      } catch (ParseException e)
-        {
-            //TODO
-        }
- */
+
+        Mockito.when(medicalRecordDao.getChildByPersonList(any(List.class))).thenReturn(medicalRecordList);
+        Mockito.when(medicalRecordDao.getAgeByPerson(any(Person.class))).thenReturn(10);
         Mockito.when(personDao.getPersonByName(any(List.class))).thenReturn(personList);
         //WHEN
-        List<Person> childList = alertService.getChildByAddress(correctAddress);
+        Childs childList = alertService.getChildByAddress(correctAddress);
         //THEN
-        assertThat(childList.size()).isEqualTo(1);
-        Person child = childList.get(0);
+        assertThat(childList.getChilds().size()).isEqualTo(1);
+        Child child = childList.getChilds().get(0);
         assertThat(child.getFirstName()).isEqualTo(firstNameConst);
         assertThat(child.getLastName()).isEqualTo(lastNameConst);
     }
 
     @Test
-    public void getChildByAddress_anInexistingAdressIsGiven_HTTPErrorCodeIsReturn() {
+    public void getChildByAddress_anInexistingAdressIsGiven_nullIsReturn() {
         //GIVEN
-/*        List<Person> personList = new ArrayList<>();
-        personList.add(person);
-        List<MedicalRecord> medicalRecordList = new ArrayList<>();
-        medicalRecordList.add(medicalRecord);*/
+
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(null);
- //       try {
-            Mockito.when(medicalRecordDao.getChildByPersonList(any(List.class))).thenReturn(null);
- /*       } catch (ParseException e)
-        {
-            //TODO
-        }*/
+
+        Mockito.when(medicalRecordDao.getChildByPersonList(any(List.class))).thenReturn(null);
+
         Mockito.when(personDao.getPersonByName(any(List.class))).thenReturn(null);
+        Mockito.when(medicalRecordDao.getAgeByPerson(any(Person.class))).thenReturn(10);
         //WHEN
-        List<Person> childList = alertService.getChildByAddress(correctAddress);
+        Childs childList = alertService.getChildByAddress(correctAddress);
+        //List<Person> childList = alertService.getChildByAddress(correctAddress);
         //THEN
-        assertThat(childList.size()).isEqualTo(0);
-        assertThat(childList).isEmpty();
+        assertThat(childList.getChilds()).isNull();
+        assertThat(childList.getPersons()).isNull();
 
     }
 
     /*----------------------- get Phone ---------------------------*/
 
     @Test
-    public void getPhoneByStation_anExistingAdressIsGiven_listOfPhoneAndHTTPCodeAreReturn() {
+    public void getPhoneByStation_anExistingAdressIsGiven_listOfPhoneIsReturn() {
         //GIVEN
         List<Firestation> firestationList = new ArrayList<>();
         firestationList.add(new Firestation(addressConst,"2"));
@@ -157,7 +151,7 @@ public class AlertServiceTest {
     }
 
     @Test
-    public void getPhoneByStation_anInexistingAdressIsGiven_HTTPErrorCodeIsReturn() {
+    public void getPhoneByStation_anInexistingAdressIsGiven_nullIsReturn() {
         //GIVEN
         Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(null);
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(null);

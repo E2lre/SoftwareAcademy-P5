@@ -1,6 +1,8 @@
 package com.safetynet.safetynetalerts.ut.alert;
 
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.Child;
+import com.safetynet.safetynetalerts.model.detail.Childs;
 import com.safetynet.safetynetalerts.model.detail.Phone;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 import com.safetynet.safetynetalerts.service.alert.AlertService;
@@ -15,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +44,17 @@ public class AlertServiceControllerTest {
     private InputDataReader inputDataReaderMock;
 
     //constantes de test
-    String firstNameConst = "Harry";
+    String firstNameConst = "Lily";
     String lastNameConst = "Potter";
     String addressConst = "4, Privet Drive";
     String cityConst = "Little Whinging";
     String zipConst = "12345";
     String phoneConst = "0123456789";
     String emailConst = "harry.potter@poudlard.com";
+    String firstNameChildConst = "Harry";
+    String lastNameChildConst = "Potter";
+    String ageChildConst = "12";
+
 
     @BeforeEach
     public void setUpEach() {
@@ -75,10 +82,12 @@ public class AlertServiceControllerTest {
 
 
         //GIVEN : Give a child to get
-        List<Person> childList = new ArrayList<>();
-        childList.add(personMock);
+        List<Child> childList= new ArrayList<>();
+        childList.add(new Child(firstNameChildConst,lastNameChildConst,ageChildConst));
+        List<Person> personList = new ArrayList<>();
+        personList.add(personMock);
 
-        Mockito.when(alertService.getChildByAddress((anyString()))).thenReturn(childList);
+        Mockito.when(alertService.getChildByAddress((anyString()))).thenReturn(new Childs(childList,personList));
         //WHEN //THEN return the person added
         mockMvc.perform(get("/childAlert?address="+addressConst))
                 .andExpect(status().isOk());
@@ -93,8 +102,10 @@ public class AlertServiceControllerTest {
     @Test
     public void childAlertController_getAnExistingAdressWithNoChild_HTTPErrorCodeIsReturn() throws Exception {
         //GIVEN : Give a person to add
+        List<Child> childList= null;
+        List<Person> personList = null;
 
-        Mockito.when(alertService.getChildByAddress((anyString()))).thenReturn(null);
+        Mockito.when(alertService.getChildByAddress((anyString()))).thenReturn(new Childs(childList,personList));
         //WHEN //THEN return the person added
         mockMvc.perform(get("/childAlert?address=No child at this address"))
                 .andExpect(status().isNotFound());

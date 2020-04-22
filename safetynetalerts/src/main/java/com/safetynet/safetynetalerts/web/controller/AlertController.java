@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.web.controller;
 
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.Childs;
 import com.safetynet.safetynetalerts.model.detail.Phone;
 import com.safetynet.safetynetalerts.service.alert.AlertService;
 import com.safetynet.safetynetalerts.service.person.PersonService;
@@ -19,26 +20,30 @@ import java.util.List;
 
 @RestController
 public class AlertController {
-    private static final Logger logger = LogManager.getLogger(PersonController.class);
+    private static final Logger logger = LogManager.getLogger(AlertController.class);
     @Autowired
     private AlertService alertService;
 
     /*---------------------------  Get childAlert ----------------------------*/
     @GetMapping(value="/childAlert")
     @ResponseStatus(HttpStatus.OK)
-    public List<Person> getChild(@RequestParam(name = "address") String address) throws NoChildAtThisAddressException {
+    public Childs getChild(@RequestParam(name = "address") String address) throws NoChildAtThisAddressException {
+
 
         logger.debug("Start");
 
-        List<Person> childListResult = alertService.getChildByAddress(address);
+        Childs childListResult = alertService.getChildByAddress(address);
 
-        if ((childListResult == null) ||(childListResult.isEmpty())) {
+       // if ((childListResult == null) ||((childListResult.getChilds().isEmpty())&&(childListResult.getPersons().isEmpty()))) {
+        if ((childListResult.getChilds()==null)&&(childListResult.getPersons()==null)) {
+
             throw new NoChildAtThisAddressException("No Child at the address : "+ address);
         }
 
         logger.info("GET /childAlert : " + childListResult);
         logger.debug("Finish");
         return childListResult;
+
 
     }
 

@@ -6,6 +6,8 @@ import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.Child;
+import com.safetynet.safetynetalerts.model.detail.Childs;
 import com.safetynet.safetynetalerts.model.detail.Phone;
 import com.safetynet.safetynetalerts.service.person.PersonServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +36,35 @@ public class AlertServiceImpl implements AlertService {
      * @return
      */
     @Override
+    public Childs getChildByAddress (String address){
+
+        Childs childsResult = new Childs();
+        List<Child> childList = new ArrayList<>();
+        List<Person> personList = new ArrayList<>();
+        int age = 0;
+        //List<Person> childListResult = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        addressList.add(address);
+        //Person child = null;
+        //Get all person at this address
+        List<Person> personListAddress = personDao.getPersonByAdress(addressList);
+
+        if ((personListAddress != null) && (!personListAddress.isEmpty())) {
+            for (Person ePerson : personListAddress) {
+                age = medicalRecordDao.getAgeByPerson(ePerson);
+                if (age <= 18) {
+                    childList.add(new Child(ePerson.getFirstName(), ePerson.getLastName(), String.valueOf(age)));
+                } else {
+                    personList.add(ePerson);
+                }
+            }
+            childsResult.setChilds(childList);
+            childsResult.setPersons(personList);
+        }
+
+        return childsResult;
+    }
+ /*   @Override
     public List<Person> getChildByAddress (String address){
         List<Person> childListResult = new ArrayList<>();
         List<String> addressList = new ArrayList<>();
@@ -41,7 +72,7 @@ public class AlertServiceImpl implements AlertService {
         Person child = null;
         //Get all person at this address
         List<Person> personListAddress = personDao.getPersonByAdress(addressList);
-  //     try {
+
             if ((personListAddress != null) && (!personListAddress.isEmpty())) {
                 List<MedicalRecord> medicalRecordList = medicalRecordDao.getChildByPersonList(personListAddress);
                 List<Person> childList = new ArrayList<>();
@@ -51,11 +82,9 @@ public class AlertServiceImpl implements AlertService {
                 }
                 childListResult = personDao.getPersonByName(childList);
             }
- /*       } catch (ParseException e){
-            return null; //TODO logger correctement
-        }*/
+
         return childListResult;
-    }
+    }*/
 
     /**
      * Get phone list by station

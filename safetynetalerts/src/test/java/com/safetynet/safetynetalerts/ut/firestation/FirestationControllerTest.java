@@ -4,6 +4,7 @@ package com.safetynet.safetynetalerts.ut.firestation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.Person;
+import com.safetynet.safetynetalerts.model.detail.StationNumberInfo;
 import com.safetynet.safetynetalerts.service.InputDataReader;
 
 import com.safetynet.safetynetalerts.service.firestation.FirestationService;
@@ -29,23 +30,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@WithMockUser
-//@WebAppConfiguration
-//@ContextConfiguration(classes = FirestationController.class)
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class FirestationControllerTest {
-    //@Autowired
-  //  private WebApplicationContext context;
+
     @Autowired
     private MockMvc mockMvc;
 
-/*
-    @MockBean
-    private FirestationDao firestationDaoMock;
-*/
     @MockBean
     private FirestationService firestationService;
     @MockBean
@@ -55,10 +48,7 @@ public class FirestationControllerTest {
     @MockBean
     private InputDataReader inputDataReaderMock;
 
-/*    @Before
-    public void setUp() {
 
-    }*/
 
     /*------------------------ Get ---------------------------------*/
     /**
@@ -81,8 +71,9 @@ public class FirestationControllerTest {
         List<Person> personList = new ArrayList<>();
         personList.add(personMock);
 
+        StationNumberInfo stationNumberInfo = new StationNumberInfo("1","0",personList);
 
-        Mockito.when(firestationService.getPersonByStation(anyString())).thenReturn(personList);
+        Mockito.when(firestationService.getPersonByStation(anyString())).thenReturn(stationNumberInfo);
         //WHEN //THEN return the station
         this.mockMvc.perform(get("/firestation?stationNumber=3"))
                         .andExpect(status().isOk());
@@ -98,7 +89,8 @@ public class FirestationControllerTest {
 
         //GIVEN : Give an inexiting firestation
         List<Person> personList = new ArrayList<>();
-        Mockito.when(firestationService.getPersonByStation(anyString())).thenReturn(personList);
+        StationNumberInfo stationNumberInfo = new StationNumberInfo();
+        Mockito.when(firestationService.getPersonByStation(anyString())).thenReturn(stationNumberInfo);
         //WHEN //THEN return the station
         this.mockMvc.perform(get("/firestation?stationNumber=3"))
                 .andExpect(status().isNotFound());
@@ -127,14 +119,7 @@ public class FirestationControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.station").value("10"))
                 .andExpect(jsonPath("$.address").value("10 downing str"));
-   /*     mockMvc.perform(MockMvcRequestBuilders
-                .post("/firestation")
-                .content(asJsonString(new Firestation("10 downing str","5")))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.station").value("5"))
-                .andExpect(jsonPath("$.address").value("10 downing str"));*/
+
     }
 
     /**

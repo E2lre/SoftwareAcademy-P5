@@ -13,5 +13,6 @@ public interface MedicalRecordDao {
     public List<MedicalRecord> delete (MedicalRecord medicalRecord);
     public boolean load (List<MedicalRecord> medicalRecordList);
     public boolean clear();
-    public List<MedicalRecord> getChildByPersonList (List<Person> personList);// throws ParseException;
+    public List<MedicalRecord> getChildByPersonList (List<Person> personList);
+    public int getAgeByPerson (Person person);
 }

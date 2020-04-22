@@ -40,7 +40,7 @@ public class FirestationControllerTestIT {
      */
     //@DisplayName("Test Spring @Autowired Integration for SafetyalertsController")
     @Test
-    public void SafetyalertsController_anExistingStationIsAsk_theStationAskIsSended() throws Exception {
+    public void SafetyalertsController_anExistingStationIsAsk_thePersonListIsReturn() throws Exception {
 
         //GIVEN : Give an exiting firestation
 
