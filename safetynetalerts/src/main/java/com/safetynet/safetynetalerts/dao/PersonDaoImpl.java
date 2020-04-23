@@ -16,6 +16,7 @@ public class PersonDaoImpl implements PersonDao {
 
     private static List<Person> persons = new ArrayList<>();;
 
+/*
     public PersonDaoImpl() {
 
     }
@@ -23,6 +24,7 @@ public class PersonDaoImpl implements PersonDao {
     public PersonDaoImpl(List<Person> persons) {
         this.persons = persons;
     }
+*/
 
     /**
      * Get a person

@@ -73,11 +73,11 @@ public class FirestationServiceImpl implements FirestationService {
         int nbChild=0;
         int age=0;
         StationNumberInfo stationNumberInfo = new StationNumberInfo();
-        List<Firestation> firestationListResult = new ArrayList<>();
-        List<Person> personListResult = new ArrayList<>();
+        //List<Firestation> firestationListResult = new ArrayList<>();
+        //List<Person> personListResult = new ArrayList<>();
 
         //recupérer les adresse associées à un numéro de station
-        firestationListResult = firestationDao.getFirestationListByStation(station);
+        List<Firestation> firestationListResult = firestationDao.getFirestationListByStation(station);
 
         //get adresses for the station
         List<String> adresses = new ArrayList<>();
@@ -85,7 +85,7 @@ public class FirestationServiceImpl implements FirestationService {
             adresses.add(eFirestation.getAddress());
         }
         //Get persons at the address
-        personListResult = personDao.getPersonByAdress(adresses);
+        List<Person> personListResult = personDao.getPersonByAdress(adresses);
         stationNumberInfo.setPersons(personListResult);
         for (Person ePerson: personListResult){
             age=medicalRecordDao.getAgeByPerson(ePerson);

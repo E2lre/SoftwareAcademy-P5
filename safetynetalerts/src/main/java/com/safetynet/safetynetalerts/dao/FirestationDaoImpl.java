@@ -14,7 +14,7 @@ public class FirestationDaoImpl implements FirestationDao {
 
     private static final Logger logger = LogManager.getLogger(FirestationDaoImpl.class);
 
-    public static List<Firestation> firestations = new ArrayList<>();
+    private static List<Firestation> firestations = new ArrayList<>();
 
     /**
      * get the list of all the firestation in memory

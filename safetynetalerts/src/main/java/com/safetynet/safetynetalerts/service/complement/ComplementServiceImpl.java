@@ -39,12 +39,13 @@ public class ComplementServiceImpl implements  ComplementService {
         //get the station number
         Firestation firestation = firestationDao.findByAddress(address);
 
-        List<Person> personList = new ArrayList<>();
+
         if (firestation!=null){
             //Get list of person at this adresss
+
             List<String> addressList = new ArrayList<>();
             addressList.add(address);
-            personList = personDao.getPersonByAdress(addressList);
+            List<Person> personList = personDao.getPersonByAdress(addressList);
             if (personList!=null) {
                 for(Person ePerson: personList){
                     //get medical info for each person
