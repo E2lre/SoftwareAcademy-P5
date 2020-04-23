@@ -1,9 +1,7 @@
 package com.safetynet.safetynetalerts.web.controller;
 
 import com.safetynet.safetynetalerts.model.MedicalRecord;
-import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.service.medicalrecord.MedicalRecordService;
-import com.safetynet.safetynetalerts.service.person.PersonService;
 import com.safetynet.safetynetalerts.web.exceptions.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,11 +20,19 @@ public class MedicalRecordController {
     private MedicalRecordService medicalRecordService;
 
     /*---------------------------  Get -----------------------------*/
+
+    /**
+     * get a medicalRecord by firstname and lastname
+     * @param medicalRecord firstname and lastname mandatory in a medical record
+     * @return the medical record
+     * @throws MedicalRecordCanNotBeFoundException in case of error
+     */
     @GetMapping(value="/medicalReport")
     @ResponseStatus(HttpStatus.OK)
-    public MedicalRecord getPerson(@Valid @RequestBody MedicalRecord medicalRecord) throws MedicalRecordCanNotBeFoundException {
+    public MedicalRecord getMedicalRecord(@Valid @RequestBody MedicalRecord medicalRecord) throws MedicalRecordCanNotBeFoundException {
 
-        logger.debug("Start");
+
+        logger.info("GET/medicalReport=" + medicalRecord);
 
         MedicalRecord medicalRecordResult = medicalRecordService.get(medicalRecord);
 
@@ -35,16 +41,24 @@ public class MedicalRecordController {
         }
 
         logger.info("GET /medicalReport : " + medicalRecordResult);
-        logger.debug("Finish");
+
         return medicalRecordResult;
 
     }
     /*---------------------------  Post -----------------------------*/
+
+    /**
+     * Add a medical record in memory
+     * @param medicalRecord to be add
+     * @return medical record added
+     * @throws MedicalRecordCanNotbeAddedException in case of error
+     */
     @PostMapping(value="/medicalReport")
     @ResponseStatus(HttpStatus.CREATED)
     public MedicalRecord addMedicalRecord(@Valid @RequestBody MedicalRecord medicalRecord) throws MedicalRecordCanNotbeAddedException {
 
-        logger.debug("Start");
+
+        logger.info("POST/medicalReport=" + medicalRecord);
 
         MedicalRecord medicalRecordResult = medicalRecordService.add(medicalRecord);
 
@@ -53,18 +67,24 @@ public class MedicalRecordController {
         }
 
         logger.info("POST /medicalReport : " + medicalRecordResult);
-        logger.debug("Finish");
+
         return medicalRecordResult;
 
     }
     /*---------------------------  Put -----------------------------*/
 
+    /**
+     * update a medical record
+     * @param medicalRecord new value of medical record
+     * @return medical record added
+     * @throws MedicalRecordCanNotBeModifyException in case of error
+     */
     @PutMapping(value="/medicalReport")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public MedicalRecord modifyMedicalRecord(@Valid @RequestBody MedicalRecord medicalRecord) throws MedicalRecordCanNotBeModifyException {
 
-        logger.debug("Start");
 
+        logger.info("PUT/medicalReport=" + medicalRecord);
 
         MedicalRecord medicalRecordResult = medicalRecordService.update(medicalRecord);
 
@@ -73,19 +93,24 @@ public class MedicalRecordController {
         }
 
         logger.info("PUT /medicalReport : " + medicalRecordResult);
-        logger.debug("Finish");
+
         return medicalRecordResult;
 
     }
 
     /*---------------------------  Delete -----------------------------*/
 
+    /**
+     * delate a medical record
+     * @param medicalRecord medical record to be deleted
+     * @return medical record deleted
+     * @throws MedicalRecordCanNotBeDeletedException in case of error
+     */
     @DeleteMapping(value="/medicalReport")
     @ResponseStatus(HttpStatus.OK)
     public List<MedicalRecord> deleteMedicalRecord(@Valid @RequestBody MedicalRecord medicalRecord) throws MedicalRecordCanNotBeDeletedException {
 
-        logger.debug("Start");
-
+        logger.info("Delete/medicalReport=" + medicalRecord );
 
         List<MedicalRecord> medicalRecordList = medicalRecordService.delete(medicalRecord);
 
@@ -94,7 +119,7 @@ public class MedicalRecordController {
         }
 
         logger.info("Delete /medicalReport : " + medicalRecordList );
-        logger.debug("Finish");
+
         return medicalRecordList;
 
     }

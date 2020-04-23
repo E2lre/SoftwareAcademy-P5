@@ -110,6 +110,7 @@ public class FirestationControllerTest {
         firestationMock.setStation("10");
         firestationMock.setAddress("10 downing str");
         Mockito.when(firestationService.save(any(Firestation.class))).thenReturn(firestationMock);
+
         //WHEN //THEN return the station added
          mockMvc.perform(post("/firestation")
                 .content(asJsonString(new Firestation("10 downing str","10")))
@@ -140,12 +141,11 @@ public class FirestationControllerTest {
         firestationMock.setStation(updateStation);
         firestationMock.setAddress(existingAddress);
         Mockito.when(firestationService.updateByAddress(any(Firestation.class))).thenReturn(firestationMock);
+
         //WHEN : the station is update
         //THEN : return the station updates
-
         mockMvc.perform(put("/firestation")
                 .content(asJsonString(new Firestation(updateAddress,updateStation)))
-//                .content(asJsonString(new Firestation("748 Townings Dr","3")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -173,11 +173,10 @@ public class FirestationControllerTest {
         firestationMock.setStation(existingStation);
         firestationMock.setAddress(existingAddress);
         Mockito.when(firestationService.updateByAddress(any(Firestation.class))).thenReturn(null);
+
         //WHEN : the station is update whith incorrect address
         //THEN : return the station updates
-
          mockMvc.perform(put("/firestation")
-//                .content(asJsonString(new Firestation(updateAddress,updateStation)))
                  .content(asJsonString(new Firestation("748 Townings Dr","10")))
                  .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -197,7 +196,6 @@ public class FirestationControllerTest {
         String existingStation = "2";
         String existingAddress = "951 LoneTree Rd";
 
-
         firestationMock = new Firestation(); //Fonctionne mais active un niveau inférieur
         firestationMock.setStation(existingAddress);
         firestationMock.setAddress(existingAddress);
@@ -205,19 +203,16 @@ public class FirestationControllerTest {
         List<Firestation> firestationMockList = new ArrayList<>();
         firestationMockList.add(firestationMock);
         Mockito.when(firestationService.delete(any(Firestation.class))).thenReturn(firestationMockList);
+
         //WHEN : the station is deleted
         //THEN : return the station deleted
-
         mockMvc.perform(delete("/firestation")
                 .content(asJsonString(new Firestation(existingAddress,existingStation)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
- //TODO implémeter la lecture de la liste dans le test
-    /*               .andExpect(jsonPath("$.station").value(existingStation))
-                .andExpect(jsonPath("$.address").value(existingAddress));
-*/
+
     }
 
     /**
@@ -240,9 +235,9 @@ public class FirestationControllerTest {
         List<Firestation> firestationMockList = new ArrayList<>();
         firestationMockList.add(firestationMock);
         Mockito.when(firestationService.delete(any(Firestation.class))).thenReturn(null);
+
         //WHEN : delete an inexisting station
         //THEN : return an error
-
         mockMvc.perform(delete("/firestation")
                 .content(asJsonString(new Firestation(addressToDelete,stationToDelete)))
                 .contentType(MediaType.APPLICATION_JSON)

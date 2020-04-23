@@ -1,7 +1,6 @@
 package com.safetynet.safetynetalerts.service.medicalrecord;
 
 import com.safetynet.safetynetalerts.dao.MedicalRecordDao;
-import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.service.person.PersonServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Repository
 public class MedicalRecordServiceImpl implements MedicalRecordService {
-    private static final Logger logger = LogManager.getLogger(PersonServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(MedicalRecordServiceImpl.class);
 
     @Autowired
     private MedicalRecordDao medicalRecordDao;

@@ -10,6 +10,6 @@ public class MedicalRecordCanNotbeAddedException extends Exception {
     private static final Logger logger = LogManager.getLogger(MedicalRecordCanNotbeAddedException.class);
     public MedicalRecordCanNotbeAddedException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

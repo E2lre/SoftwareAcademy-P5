@@ -10,6 +10,6 @@ public class MedicalRecordCanNotBeFoundException extends Exception {
     private static final Logger logger = LogManager.getLogger(MedicalRecordCanNotBeFoundException.class);
     public MedicalRecordCanNotBeFoundException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

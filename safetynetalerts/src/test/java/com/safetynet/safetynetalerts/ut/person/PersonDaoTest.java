@@ -1,7 +1,6 @@
 package com.safetynet.safetynetalerts.ut.person;
 
-import com.safetynet.safetynetalerts.dao.FirestationDao;
-import com.safetynet.safetynetalerts.dao.FirestationDaoImpl;
+
 import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.dao.PersonDaoImpl;
 import com.safetynet.safetynetalerts.model.Person;
@@ -33,11 +32,10 @@ public class PersonDaoTest {
     }
     @Autowired
     private PersonDao personDao;
-    //@MockBean
-    private Person personMock;
     @MockBean
     private Person person;
 
+    private Person personMock;
     private Person existingPerson;
     private Person inexistingPerson;
     @MockBean
@@ -141,9 +139,8 @@ public class PersonDaoTest {
     public void get_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
 
-        //personMock.setLastName(lastNameInexistingConst);
+
         //WHEN
-        //Person personDaoTest = personDao.get(personMock);
         Person personDaoTest = personDao.get(inexistingPerson);
         //THEN
         assertThat(personDaoTest).isNull();
@@ -165,7 +162,7 @@ public class PersonDaoTest {
         List<Person> personDaoListTest = personDao.getPersonByAdress(addressList);
         //THEN
         assertThat(personDaoListTest.size()).isEqualTo(2);
-        //TODO : check de la list
+
     }
 
     /**
@@ -221,10 +218,6 @@ public class PersonDaoTest {
 
     }
 
-
-
-
-
     /**
      * PersonDAO
      * Test : getPersonByCity with a existing City
@@ -266,7 +259,7 @@ public class PersonDaoTest {
     @Test
     public void add_inexistingFirstNameLastNameGiven_thePersonIsReturn() {
         //GIVEN
-        //personMock.setLastName(lastNameInexistingConst);
+
         //WHEN
         Person personDaoTest = personDao.add(inexistingPerson);
         //THEN
@@ -286,7 +279,7 @@ public class PersonDaoTest {
     @Test
     public void add_existingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
-        //personMock.setLastName(lastNameConst);
+
         //WHEN
         Person personDaoTest = personDao.add(personMock);
         //THEN
@@ -327,7 +320,7 @@ public class PersonDaoTest {
     @Test
     public void update_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
-        //personMock.setLastName(lastNameInexistingConst);
+
         //WHEN
         Person personDaoTest = personDao.update(inexistingPerson);
         //THEN
@@ -357,7 +350,7 @@ public class PersonDaoTest {
     @Test
     public void delete_inexistingFirstNameLastNameGiven_nullIsReturn() {
         //GIVEN
-        //personMock.setLastName(lastNameInexistingConst);
+
         //WHEN
         List<Person> personDaoTest = personDao.delete(inexistingPerson);
         //THEN

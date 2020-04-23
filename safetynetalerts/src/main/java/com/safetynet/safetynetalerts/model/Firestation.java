@@ -1,12 +1,12 @@
 package com.safetynet.safetynetalerts.model;
 
-//import org.apache.log4j.Logger;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Firestation {
 
-	//private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+
 	private static final Logger logger = LogManager.getLogger(Firestation.class);
 
 	private String address;
@@ -16,7 +16,6 @@ public class Firestation {
 	 * Default constructor
 	 */
 	public Firestation() {
-		//logger.trace("construct vide");
 	}
 
 	/**
@@ -24,12 +23,12 @@ public class Firestation {
 	 * @param address firestation adress
 	 * @param station firestation id
 	 */
-	//public Firestation(String address, int station) {
+
 	public Firestation(String address, String station) {
-		//logger.trace("start");
+
 		this.address = address;
 		this.station = station;
-		//logger.trace("finish");
+
 	}
 	
 	public String getAddress() {

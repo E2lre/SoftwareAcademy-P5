@@ -1,7 +1,7 @@
 package com.safetynet.safetynetalerts.service.firestation;
 
 import com.safetynet.safetynetalerts.model.Firestation;
-import com.safetynet.safetynetalerts.model.Person;
+
 import com.safetynet.safetynetalerts.model.detail.StationNumberInfo;
 
 import java.util.List;

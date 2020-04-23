@@ -10,7 +10,6 @@ import com.safetynet.safetynetalerts.model.detail.Email;
 import com.safetynet.safetynetalerts.model.detail.Fire;
 import com.safetynet.safetynetalerts.model.detail.Flood;
 import com.safetynet.safetynetalerts.model.detail.PersonInfo;
-import com.safetynet.safetynetalerts.service.person.PersonServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +56,7 @@ public class ComplementServiceImpl implements  ComplementService {
                         fireListResult.add(fire);
                     }
                 }
-
             }
-
         }
         logger.debug("Finish");
      return fireListResult;
@@ -67,7 +64,7 @@ public class ComplementServiceImpl implements  ComplementService {
 
     /**
      * return flood list with a station list
-     * @param stationList
+     * @param stationList station Number list
      * @return flood list full or empty
      */
     @Override
@@ -87,7 +84,6 @@ public class ComplementServiceImpl implements  ComplementService {
                          floodListResult.add(new Flood(eFirestation.getAddress(),fireList));
                      }
                  }
-
              }
         }
 
@@ -96,6 +92,12 @@ public class ComplementServiceImpl implements  ComplementService {
          return floodListResult;
     }
 
+    /**
+     * Get a list of PersonInfo by firstname and lastname or lastname
+     * @param firstName of person
+     * @param lastName of person
+     * @return a list of PersonInfo
+     */
     @Override
     public List<PersonInfo> getPersonInfoByFisrtNameLastName (String firstName, String lastName){
         logger.debug("Start");
@@ -115,7 +117,7 @@ public class ComplementServiceImpl implements  ComplementService {
 
     /**
      * get email on person of city
-     * @param city
+     * @param city to analyse
      * @return list  email of person of city
      */
     @Override

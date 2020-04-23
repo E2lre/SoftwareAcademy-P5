@@ -11,6 +11,6 @@ public class NoFloodForStationListException extends Exception {
 
     public NoFloodForStationListException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

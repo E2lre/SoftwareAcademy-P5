@@ -11,6 +11,6 @@ public class NoEmailForCityException extends Exception {
 
     public NoEmailForCityException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

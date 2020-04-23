@@ -1,0 +1,13 @@
+com.safetynet.safetynetalerts
+com.safetynet.safetynetalerts.dao
+com.safetynet.safetynetalerts.model
+com.safetynet.safetynetalerts.model.detail
+com.safetynet.safetynetalerts.model.load
+com.safetynet.safetynetalerts.service
+com.safetynet.safetynetalerts.service.alert
+com.safetynet.safetynetalerts.service.complement
+com.safetynet.safetynetalerts.service.firestation
+com.safetynet.safetynetalerts.service.medicalrecord
+com.safetynet.safetynetalerts.service.person
+com.safetynet.safetynetalerts.web.controller
+com.safetynet.safetynetalerts.web.exceptions

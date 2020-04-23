@@ -12,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,13 +19,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
+
 
 @SpringBootTest
 public class MedicalRecordDaoTest {
     @Autowired
     private MedicalRecordDao medicalRecordDao;
-    //@MockBean
+
     private MedicalRecord medicalRecord;
     private MedicalRecord existingMedicalRecord;
     private MedicalRecord inexistingMedicalRecord;
@@ -55,8 +52,6 @@ public class MedicalRecordDaoTest {
 
         medicationsListConst = new ArrayList<>(Arrays.asList("hydroxychloroquine","azithromycine"));
         allergiesListConst = new ArrayList<>(Arrays.asList("peanut","shellfish"));
-
-
 
         medicalRecord = new MedicalRecord();
         medicalRecord.setFirstName(firstNameConst);
@@ -120,7 +115,7 @@ public class MedicalRecordDaoTest {
     @Test
     public void get_inexistingFirstnameLastnameGiven_nullIsReturn() {
         //GIVEN
-        //medicalRecord.setLastName(lastNameInexistingConst);
+
         //WHEN
         MedicalRecord medicalRecordDaoTest = medicalRecordDao.get(inexistingMedicalRecord);
         //THEN
@@ -135,7 +130,7 @@ public class MedicalRecordDaoTest {
     @Test
     public void add_inexistingFirstnameLastnameGiven_medicalInfoIsReturn() {
         //GIVEN
-        //medicalRecord.setLastName(lastNameInexistingConst);
+
         //WHEN
         MedicalRecord medicalRecordDaoTest = medicalRecordDao.add(inexistingMedicalRecord);
         //THEN
@@ -189,7 +184,7 @@ public class MedicalRecordDaoTest {
     @Test
     public void update_inexistingFirstnameLastnameGiven_nullIsReturn() {
         //GIVEN
-       // medicalRecord.setLastName(lastNameInexistingConst);
+
         //WHEN
         MedicalRecord medicalRecordDaoTest = medicalRecordDao.update(inexistingMedicalRecord);
         //THEN
@@ -218,7 +213,7 @@ public class MedicalRecordDaoTest {
     @Test
     public void delete_inexistingFirstnameLastnameGiven_nullIsReturn() {
         //GIVEN
-        //medicalRecord.setLastName(lastNameInexistingConst);
+
         //WHEN
         List<MedicalRecord> medicalRecordDaoTest = medicalRecordDao.delete(inexistingMedicalRecord);
        //THEN
@@ -322,9 +317,7 @@ public class MedicalRecordDaoTest {
     @Test
     public void getAgeByPerson_giveAPerson_ageIsReturn() {
         //GIVEN
-
         Person person = new Person(childFirstNameConst,childLastNameConst,"","","","","");
-
 
         childMedicalRecord = new MedicalRecord();
         childMedicalRecord.setFirstName(childFirstNameConst);
@@ -341,16 +334,9 @@ public class MedicalRecordDaoTest {
         Mockito.when(resultMedicalRecord.getBirthdate()).thenReturn(childBirthdateConst);
 
         //WHEN
-
-
         int age = medicalRecordDao.getAgeByPerson(person);
 
         //THEN
         assertThat(age).isEqualTo(0);
-
-
     }
-
-
-
 }

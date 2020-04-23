@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.model;
 
-//import org.apache.log4j.Logger;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,22 +16,10 @@ public class Person {
     private String phone;
     private String email;
 
-    /**
-     * Default constructor
-     */
+
     public Person() {
     }
 
-    /**
-     *  Constructor
-     * @param firstName
-     * @param lastName
-     * @param address
-     * @param city
-     * @param zip
-     * @param phone
-     * @param email
-     */
     public Person(String firstName, String lastName, String address, String city, String zip, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -105,8 +93,7 @@ public class Person {
 
     @Override
     public String toString() {
-        logger.debug("start/finish");
-        //logger.debug("firstName=" + firstName+ ", lastName=" + lastName); //TODO A retirer
+        logger.trace("start/finish");
         return "Person [firstName=" + firstName+ ", lastName=" + lastName + ", address=" + address +", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email+ "]";
     }
 }

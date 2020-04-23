@@ -96,8 +96,6 @@ public class ComplementControllerTest {
         List<Fire> fireList= new ArrayList<>();
         fireList.add(new Fire("2",firstNameConst,lastNameConst,phoneConst,"25",medicationsListConst,allergiesListConst));
         List<Person> personList = new ArrayList<>();
-
-
         Mockito.when(complementService.getFireByAddress(anyString())).thenReturn(fireList);
 
         //WHEN //THEN fire is return
@@ -117,8 +115,6 @@ public class ComplementControllerTest {
 
         //GIVEN : Give a Fire to get
         List<Fire> fireList= new ArrayList<>();
-
-
         Mockito.when(complementService.getFireByAddress(anyString())).thenReturn(fireList);
 
         //WHEN //THEN http error
@@ -143,9 +139,6 @@ public class ComplementControllerTest {
         fireList.add(new Fire("2",firstNameConst,lastNameConst,phoneConst,"25",medicationsListConst,allergiesListConst));
         List<Flood> floodList = new ArrayList<>();
         floodList.add(new Flood(addressConst,fireList));
-
-
-
         Mockito.when(complementService.getFloodByStationList(any(List.class))).thenReturn(floodList);
 
         //WHEN //THEN fire is return
@@ -162,11 +155,8 @@ public class ComplementControllerTest {
     @Test
     public void getFloodByStationList_getAnInaxistingStation_HTTPErrorCodeIsReturn() throws Exception {
 
-
         //GIVEN : Give a flood to get
         List<Flood> floodList = new ArrayList<>();
-
-
         Mockito.when(complementService.getFloodByStationList(any(List.class))).thenReturn(floodList);
 
         //WHEN //THEN http error
@@ -183,7 +173,6 @@ public class ComplementControllerTest {
      */
     @Test
     public void getPersonInfoByFisrtNameLastName_getAnExistingFirstNameLastName_theListOfPErsonInfoAndHTTPCodeAreReturn() throws Exception {
-
 
         //GIVEN : Give a personInfoList to get
         List<PersonInfo> personInfoList = new ArrayList<>();
@@ -203,9 +192,6 @@ public class ComplementControllerTest {
      */
     @Test
     public void getPersonInfoByFisrtNameLastName_getAnInexistingFisrtNameLAstname_HTTPErrorCodeIsReturn() throws Exception {
-
-
-
         //GIVEN : Give a personInfoList to get
         List<PersonInfo> personInfoList = new ArrayList<>();
         Mockito.when(complementService.getPersonInfoByFisrtNameLastName(anyString(),anyString())).thenReturn(personInfoList);
@@ -225,8 +211,6 @@ public class ComplementControllerTest {
      */
     @Test
     public void getEmailByCity_getAnExistingCity_theListOfEMailListAndHTTPCodeAreReturn() throws Exception {
-
-
         //GIVEN : Give a City to get
         List<Email> emailList = new ArrayList<>();
         emailList.add(new Email(emailConst));
@@ -245,9 +229,6 @@ public class ComplementControllerTest {
      */
     @Test
     public void getEmailByCity_getAnInexistingCity_HTTPErrorCodeIsReturn() throws Exception {
-
-
-
         //GIVEN : Give a personInfoList to get
         List<Email> emailList = new ArrayList<>();
         Mockito.when(complementService.getEmailByCity(anyString())).thenReturn(emailList);

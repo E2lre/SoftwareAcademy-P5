@@ -31,8 +31,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 public class ComplementServiceTest {
     @Autowired
     private ComplementService complementService;
-   /* @MockBean
-    private ComplementService complementServiceMock;*/
+
     @MockBean
     private MedicalRecordDao medicalRecordDao;
     @MockBean
@@ -138,7 +137,6 @@ public class ComplementServiceTest {
         Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(firestationList);
         List<Fire> fireList = new ArrayList<>();
         fireList.add(new Fire("1",firstNameConst,lastNameConst,phoneConst,"25",medicationsListConst,allergiesListConst));
-        //Mockito.when(complementServiceMock.getFireByAddress(existingAddressConst)).thenReturn(fireList);
 
         List<Person> personList = new ArrayList<>();
         personList.add(person);
@@ -198,7 +196,6 @@ public class ComplementServiceTest {
     @Test
     public void getPersonInfoByFisrtNameLastName_anInexistingSFirstNameLastName_emptyListIsReturn() {
         //GIVEN
-
         List<Person> personList = new ArrayList<>();
         Mockito.when(personDao.getPersonByName(any(List.class))).thenReturn(personList);
         Mockito.when(medicalRecordDao.get(any(MedicalRecord.class))).thenReturn(null);
@@ -215,33 +212,25 @@ public class ComplementServiceTest {
     @Test
     public void getEmailByCity_anExistingCity_listOfEmailIsReturn() {
         //GIVEN
-
         List<Person> personList = new ArrayList<>();
         personList.add(person);
         Mockito.when(personDao.getPersonByCity(anyString())).thenReturn(personList);
-
 
         //WHEN
         List<Email> emailList = complementService.getEmailByCity(cityConst);
         //THEN
         assertThat(emailList.size()).isEqualTo(1);
-
-
     }
     @Test
     public void getEmailByCity_anInexistingCity_emptyListIsReturn() {
         //GIVEN
-
         List<Person> personList = new ArrayList<>();
         Mockito.when(personDao.getPersonByCity(anyString())).thenReturn(personList);
-
 
         //WHEN
         List<Email> emailList = complementService.getEmailByCity(cityConst);
         //THEN
         assertThat(emailList.size()).isEqualTo(0);
-
-
 
     }
 }

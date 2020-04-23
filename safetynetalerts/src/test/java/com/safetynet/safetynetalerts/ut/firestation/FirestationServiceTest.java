@@ -26,7 +26,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 public class FirestationServiceTest {
 
     private Firestation fireststationTest;
-    //private Person person;
+
     @Autowired
     private FirestationService firestationService;
     @MockBean
@@ -86,7 +86,6 @@ public class FirestationServiceTest {
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(personListMock);
         Mockito.when(medicalRecordDao.getAgeByPerson(any(Person.class))).thenReturn(0);
         //WHEN
-        //WHEN
         StationNumberInfo stationNumberInfo = firestationService.getPersonByStation("1");
         //THEN
         assertThat(stationNumberInfo.getPersons()).isEmpty();
@@ -109,7 +108,6 @@ public class FirestationServiceTest {
     @Test
     public void findByStation_aStationExist_theStationIsReturn() {
         //GIVEN
-
         Mockito.when(firestationDao.findByStation(anyString())).thenReturn(new Firestation(correctAddress, correctStation));
         //WHEN
         fireststationTest = firestationService.findByStation(correctStation);
@@ -220,7 +218,7 @@ public class FirestationServiceTest {
         firestationsResult = firestationService.delete(new Firestation(correctAddress, correctStation));
         //THEN
         assertThat(firestationsResult.size()).isEqualTo(1);
-        //TODO ajouter des conditions
+
 
     }
     @Test

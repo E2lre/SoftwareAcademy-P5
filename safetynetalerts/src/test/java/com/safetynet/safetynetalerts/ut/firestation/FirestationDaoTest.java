@@ -20,13 +20,6 @@ import org.springframework.context.annotation.Bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-
-/*@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc*/
 @SpringBootTest
 public class FirestationDaoTest {
     @TestConfiguration
@@ -39,7 +32,8 @@ public class FirestationDaoTest {
 
     @Autowired
     private FirestationDao firestationDao;
-    //@Autowired
+
+
     private Firestation fireststationTest;
     @MockBean
     private Firestation firestation;
@@ -77,10 +71,8 @@ public class FirestationDaoTest {
     public void findByStation_aStationExist_theStationIsReturn() {
 
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
-
 
         //WHEN
         fireststationTest = firestationDao.findByStation("3");
@@ -93,13 +85,11 @@ public class FirestationDaoTest {
     public void findByStation_aStationNotExist_nullIsReturn() {
 
         //GIVEN
-
         firestationDao.save(new Firestation(correctAddress, correctStation));
         firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
 
 
         //WHEN
-
         fireststationTest = firestationDao.findByStation("5");
 
         //THEN
@@ -109,7 +99,6 @@ public class FirestationDaoTest {
     public void findAll_twoStationAdd_twoStationMoreAreReturn() {
 
         //GIVEN
-
         List<Firestation>  fireststations = firestationDao.findAll();
         int nbFirestationStart = fireststations.size();
         firestationDao.save(new Firestation(correctAddress, correctStation));
@@ -127,13 +116,11 @@ public class FirestationDaoTest {
     @Test
     public void findByAddress_aAddressExist_theFirestationIsReturn() {
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
 
 
         //WHEN
-
         fireststationTest = firestationDao.findByAddress(correctAddress);
 
         //THEN
@@ -144,7 +131,6 @@ public class FirestationDaoTest {
     public void findByAddress_aAddressNotExist_nullIsReturn() {
 
         //GIVEN
-
         firestationDao.save(new Firestation(correctAddress, correctStation));
         firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
 
@@ -159,7 +145,6 @@ public class FirestationDaoTest {
     @Test
     public void getFirestationListByStation_stationExist_listOfFirestationReturn(){
         //GIVEN
-
         firestationDao.save(new Firestation(correctAddress, correctStation));
         firestationDao.save(new Firestation(incorrectAddress,incorrectStation));
 
@@ -169,16 +154,13 @@ public class FirestationDaoTest {
 
         //THEN
         assertThat(firestationList.size()).isEqualTo(1);
-        //TODO ajouter controle de la liste
+
     }
 
     @Test
     public void getFirestationListByStation_stationNotExist_nullIsReturn(){
         //GIVEN
-
         firestationDao.save(new Firestation(correctAddress, correctStation));
-
-
 
         //WHEN
         List<Firestation> firestationList= firestationDao.getFirestationListByStation(incorrectStation);
@@ -193,7 +175,6 @@ public class FirestationDaoTest {
         //GIVEN
 
         //WHEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
 
         //THEN
@@ -206,7 +187,6 @@ public class FirestationDaoTest {
     @Test
     public void updateByAddress_addressExist_theFirestationIsUpdated() {
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
         String newStation = "99";
@@ -243,7 +223,6 @@ public class FirestationDaoTest {
     @Test
     public void updateByStation_stationExist_theFirestationIsUpdated() {
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
         String newAddress = "new Address";
@@ -260,7 +239,6 @@ public class FirestationDaoTest {
     @Test
     public void updateBystation_stationNotExist_nullIsReturn() {
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(new String ("1509 Culver St"), "4"));
         String incorrectStation = "98";
@@ -277,8 +255,6 @@ public class FirestationDaoTest {
     @Test
     public void delete_byExistingAddress_firestationListdeletedIsReturn() {
         //GIVEN
-
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
 
@@ -293,8 +269,6 @@ public class FirestationDaoTest {
     @Test
     public void delete_byExistingAddress_severalfirestationdeletedIsReturn() {
         //GIVEN
-
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(correctAddress, incorrectStation));
         fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
@@ -310,8 +284,6 @@ public class FirestationDaoTest {
     @Test
     public void delete_byInexistingAddress_firestationListdeletedIsReturn() {
         //GIVEN
-
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
 
         Firestation fireStationToDelete = new Firestation(incorrectAddress, null);
@@ -325,7 +297,6 @@ public class FirestationDaoTest {
     @Test
     public void delete_byExistingStation_firestationListdeletedIsReturn() {
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
 
@@ -339,8 +310,6 @@ public class FirestationDaoTest {
     @Test
     public void delete_byExistingStation_severalfirestationdeletedIsReturn() {
         //GIVEN
-
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(incorrectAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
@@ -355,11 +324,9 @@ public class FirestationDaoTest {
     @Test
     public void delete_byInexistingStation_firestationListdeletedIsReturn() {
         //GIVEN
-
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
-
         Firestation fireStationToDelete = new Firestation(null, incorrectStation);
+
         //WHEN
         deletetdFirestations = firestationDao.delete(fireStationToDelete);
 
@@ -371,12 +338,10 @@ public class FirestationDaoTest {
     @Test
     public void delete_byExistingStationAndAddress_firestationListdeletedIsReturn() {
         //GIVEN
-
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
         fireststationTest = firestationDao.save(new Firestation(incorrectAddress, incorrectStation));
-
         Firestation fireStationToDelete = new Firestation(correctAddress, correctStation);
+
         //WHEN
         deletetdFirestations = firestationDao.delete(fireStationToDelete);
 
@@ -386,10 +351,9 @@ public class FirestationDaoTest {
     @Test
     public void delete_byInexistingStationAndAddress_firestationListdeletedIsReturn() {
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
-
         Firestation fireStationToDelete = new Firestation(incorrectAddress, incorrectStation);
+
         //WHEN
         deletetdFirestations = firestationDao.delete(fireStationToDelete);
 
@@ -401,10 +365,9 @@ public class FirestationDaoTest {
     @Test
     public void delete_nullStationAndAddress_emptyListfirestationIsReturn() {
         //GIVEN
-
         fireststationTest = firestationDao.save(new Firestation(correctAddress, correctStation));
-
         Firestation fireStationToDelete = new Firestation(null, null);
+
         //WHEN
         deletetdFirestations = firestationDao.delete(fireStationToDelete);
 

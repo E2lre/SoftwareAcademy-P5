@@ -79,15 +79,13 @@ public class AlertServiceControllerTest {
      */
     @Test
     public void childAlertController_getAnExistingAdressWithChild_theListOfChildAndHTTPCodeAreReturn() throws Exception {
-
-
         //GIVEN : Give a child to get
         List<Child> childList= new ArrayList<>();
         childList.add(new Child(firstNameChildConst,lastNameChildConst,ageChildConst));
         List<Person> personList = new ArrayList<>();
         personList.add(personMock);
-
         Mockito.when(alertService.getChildByAddress((anyString()))).thenReturn(new Childs(childList,personList));
+
         //WHEN //THEN return the person added
         mockMvc.perform(get("/childAlert?address="+addressConst))
                 .andExpect(status().isOk());
@@ -104,8 +102,8 @@ public class AlertServiceControllerTest {
         //GIVEN : Give a person to add
         List<Child> childList= null;
         List<Person> personList = null;
-
         Mockito.when(alertService.getChildByAddress((anyString()))).thenReturn(new Childs(childList,personList));
+
         //WHEN //THEN return the person added
         mockMvc.perform(get("/childAlert?address=No child at this address"))
                 .andExpect(status().isNotFound());
@@ -119,13 +117,11 @@ public class AlertServiceControllerTest {
      */
     @Test
     public void phoneAlertController_getAnExistingStationWithPhone_theListOfPhonendHTTPCodeAreReturn() throws Exception {
-
-
         //GIVEN : Give a child to get
         List<Phone> phoneList = new ArrayList<>();
         phoneList.add(new Phone(personMock.getFirstName(),personMock.getLastName(),personMock.getPhone()));
-
         Mockito.when(alertService.getPhoneByStation((anyString()))).thenReturn(phoneList);
+
         //WHEN //THEN return the person added
         mockMvc.perform(get("/phoneAlert?station=2"))
                 .andExpect(status().isOk());
@@ -140,12 +136,10 @@ public class AlertServiceControllerTest {
     @Test
     public void phoneAlertController_getAnExistingStationWithNoPhone_HTTPErrorCodeIsReturn() throws Exception {
         //GIVEN : Give a person to add
-
         Mockito.when(alertService.getPhoneByStation((anyString()))).thenReturn(null);
+
         //WHEN //THEN return the person added
         mockMvc.perform(get("/phoneAlert?station=99"))
                 .andExpect(status().isNotFound());
     }
-
-
 }

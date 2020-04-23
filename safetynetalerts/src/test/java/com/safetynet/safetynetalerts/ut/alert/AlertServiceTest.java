@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -121,7 +120,7 @@ public class AlertServiceTest {
         Mockito.when(medicalRecordDao.getAgeByPerson(any(Person.class))).thenReturn(10);
         //WHEN
         Childs childList = alertService.getChildByAddress(correctAddress);
-        //List<Person> childList = alertService.getChildByAddress(correctAddress);
+
         //THEN
         assertThat(childList.getChilds()).isNull();
         assertThat(childList.getPersons()).isNull();
@@ -140,9 +139,9 @@ public class AlertServiceTest {
         personList.add(person);
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(personList);
 
-
         //WHEN
         List<Phone> phoneList = alertService.getPhoneByStation("2");
+
         //THEN
         assertThat(phoneList.size()).isEqualTo(1);
         Phone phone = phoneList.get(0);
@@ -156,9 +155,9 @@ public class AlertServiceTest {
         Mockito.when(firestationDao.getFirestationListByStation(anyString())).thenReturn(null);
         Mockito.when(personDao.getPersonByAdress(any(List.class))).thenReturn(null);
 
-
         //WHEN
         List<Phone> phoneList = alertService.getPhoneByStation("2");
+
         //THEN
         assertThat(phoneList.size()).isEqualTo(0);
         assertThat(phoneList).isEmpty();

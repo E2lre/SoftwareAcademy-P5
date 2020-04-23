@@ -23,11 +23,18 @@ public class PersonController {
     private PersonService personService;
 
     /*---------------------------  Get -----------------------------*/
+
+    /**
+     * get a person
+     * @param person firstname and lastname are mandatory
+     * @return the person record
+     * @throws PersonCanNotBeFoundException in case of error
+     */
     @GetMapping(value="/person")
     @ResponseStatus(HttpStatus.OK)
     public Person getPerson(@Valid @RequestBody Person person) throws PersonCanNotBeFoundException {
 
-        logger.debug("Start");
+        logger.info("GET/person=" + person);
 
         Person personResult = personService.get(person);
 
@@ -36,16 +43,23 @@ public class PersonController {
         }
 
         logger.info("GET /person : " + personResult);
-        logger.debug("Finish");
         return personResult;
 
     }
     /*---------------------------  Post -----------------------------*/
+
+    /**
+     * add a person
+     * @param person to be add
+     * @return the person added
+     * @throws PersonCanNotbeAddedException in case of error
+     */
     @PostMapping(value="/person")
     @ResponseStatus(HttpStatus.CREATED)
     public Person addPerson(@Valid @RequestBody Person person) throws PersonCanNotbeAddedException {
 
-       logger.debug("Start");
+
+        logger.info("POST/person=" + person);
 
         Person personResult = personService.add(person);
 
@@ -54,18 +68,23 @@ public class PersonController {
         }
 
         logger.info("POST /person : " + personResult);
-        logger.debug("Finish");
+
         return personResult;
 
     }
     /*---------------------------  Put -----------------------------*/
 
+    /**
+     * update a person
+     * @param person to be updated
+     * @return the person updated
+     * @throws PersonCanNotBeModifyException in case off error
+     */
     @PutMapping(value="/person")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Person modifyPerson(@Valid @RequestBody Person person) throws PersonCanNotBeModifyException {
 
-        logger.debug("Start");
-
+        logger.info("PUT/person=" + person);
 
         Person personResult = personService.update(person);
 
@@ -74,19 +93,24 @@ public class PersonController {
         }
 
         logger.info("PUT /person : " + personResult);
-        logger.debug("Finish");
+
         return personResult;
 
     }
 
     /*---------------------------  Delete -----------------------------*/
 
+    /**
+     * delete a person
+     * @param person to be delete
+     * @return person deleted
+     * @throws PersonCanNotBeDeletedException in case of error
+     */
     @DeleteMapping(value="/person")
     @ResponseStatus(HttpStatus.OK)
     public List<Person> deletePerson(@Valid @RequestBody Person person) throws PersonCanNotBeDeletedException {
 
-        logger.debug("Start");
-
+        logger.info("Delete/person=" + person );
 
         List<Person> personList = personService.delete(person);
 
@@ -95,7 +119,7 @@ public class PersonController {
         }
 
         logger.info("Delete /person : " + personList );
-        logger.debug("Finish");
+
         return personList;
 
     }

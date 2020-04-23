@@ -13,7 +13,7 @@ public interface FirestationDao {
     public Firestation updateByAddress (Firestation firestation);
     public List<Firestation> delete(Firestation firestation);
     public boolean clear();
-
+    public boolean load (List<Firestation> firestationDaoList);
     public List<Firestation> getFirestationListByStation (String station);
 
 

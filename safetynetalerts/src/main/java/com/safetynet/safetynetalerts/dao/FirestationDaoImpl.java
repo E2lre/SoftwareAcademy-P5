@@ -1,7 +1,6 @@
 package com.safetynet.safetynetalerts.dao;
 
 import com.safetynet.safetynetalerts.model.Firestation;
-//import org.apache.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -13,18 +12,25 @@ import java.util.List;
 @Repository
 public class FirestationDaoImpl implements FirestationDao {
 
-    //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
     private static final Logger logger = LogManager.getLogger(FirestationDaoImpl.class);
 
     public static List<Firestation> firestations = new ArrayList<>();
 
+    /**
+     * get the list of all the firestation in memory
+     * @return list of firestation
+     */
     @Override
     public List<Firestation> findAll() {
         return firestations;
     }
 
+    /**
+     * get a firestation by a station number
+     * @param station number station to be find
+     * @return a firestation
+     */
     @Override
-
     public Firestation findByStation(String station) {
         logger.debug("start");
         Firestation localFirestation = null;
@@ -37,6 +43,11 @@ public class FirestationDaoImpl implements FirestationDao {
         return localFirestation;
     }
 
+    /**
+     * get a firestation by adress
+     * @param address of the station to be find
+     * @return a firestation
+     */
     @Override
     public Firestation findByAddress(String address) {
         logger.debug("start");
@@ -50,6 +61,11 @@ public class FirestationDaoImpl implements FirestationDao {
         return localFirestation;
     }
 
+    /**
+     * save a firestation
+     * @param firestation to save
+     * @return firestation saved
+     */
     @Override
     public Firestation save(Firestation firestation) {
         logger.debug("start");
@@ -61,8 +77,7 @@ public class FirestationDaoImpl implements FirestationDao {
 
     /**
      * update a station by a number station. only address will be updated. Number station is unchange
-     *
-     * @param firestation
+     * @param firestation to be update
      * @return firestation if OK, null else
      */
     @Override
@@ -83,6 +98,11 @@ public class FirestationDaoImpl implements FirestationDao {
         return firestation;
     }
 
+    /**
+     * update a firestation by address
+     * @param firestation the firestation to update
+     * @return the firestation updated
+     */
     @Override
     public Firestation updateByAddress(Firestation firestation) {
         logger.debug("start");
@@ -104,7 +124,6 @@ public class FirestationDaoImpl implements FirestationDao {
 
     /**
      * Delete a station or an adress
-     *
      * @param firestation to delete, complete or only address or only station
      * @return list of firestation deleted
      */
@@ -136,8 +155,6 @@ public class FirestationDaoImpl implements FirestationDao {
                     Iterator itr = firestations.iterator();
                     while (itr.hasNext()) {
                         Firestation indexFirestation = (Firestation) itr.next();
-                        //TODO : tester en comparant les firestation au lieu des get
-                        //                      if ((indexFirestation.getStation()==firestation.getStation() && (indexFirestation.getAddress()==firestation.getAddress()))){
                         if ((indexFirestation.getStation().equals(firestation.getStation())) && (indexFirestation.getAddress().equals(firestation.getAddress()))) {
                             DeletedFirestation.add(indexFirestation);
                             itr.remove();
@@ -153,7 +170,7 @@ public class FirestationDaoImpl implements FirestationDao {
     }
 
     /**
-     * clear the list off firestation in mémory
+     * clear the list off firestation in memory
      * use by unit test
      *
      * @return true if ok (always)
@@ -163,7 +180,25 @@ public class FirestationDaoImpl implements FirestationDao {
         firestations.clear();
         return true;
     }
+    /**
+     * Load list of person at start application
+     * @param firestationDaoList list of person to load
+     * @return true if no errors
+     */
+    @Override
+    public boolean load (List<Firestation> firestationDaoList) {
+        logger.debug("Start");
+        firestations.addAll(firestationDaoList);
+        logger.debug(firestations);
+        logger.debug("Finish");
+        return true;
+    }
 
+    /**
+     * Get a Firestation list by number station
+     * @param station station number to be get
+     * @return a list of firestation
+     */
     @Override
     public List<Firestation> getFirestationListByStation(String station) {
         logger.debug("start");

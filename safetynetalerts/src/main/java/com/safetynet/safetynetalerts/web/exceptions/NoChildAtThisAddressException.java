@@ -11,6 +11,6 @@ public class NoChildAtThisAddressException extends Exception {
 
     public NoChildAtThisAddressException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

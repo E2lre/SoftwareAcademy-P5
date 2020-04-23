@@ -13,6 +13,6 @@ public class PersonCanNotbeAddedException extends Exception {
 
     public PersonCanNotbeAddedException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

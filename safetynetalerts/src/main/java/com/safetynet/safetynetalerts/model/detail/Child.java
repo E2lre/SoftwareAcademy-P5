@@ -1,8 +1,5 @@
 package com.safetynet.safetynetalerts.model.detail;
 
-import com.safetynet.safetynetalerts.model.Person;
-
-import java.util.List;
 
 public class Child {
 

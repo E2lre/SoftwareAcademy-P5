@@ -1,6 +1,6 @@
 package com.safetynet.safetynetalerts.it;
 
-import com.safetynet.safetynetalerts.model.Firestation;
+
 import com.safetynet.safetynetalerts.model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -217,13 +217,6 @@ public class PersonControllerTestIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
-/*                .andExpect(jsonPath("$.firstName").value(existingFirstnameConst))
-                .andExpect(jsonPath("$.lastName").value(existingLastnameConst))
-                .andExpect(jsonPath("$.address").value(existingAddressConst))
-                .andExpect(jsonPath("$.city").value(existingCityConst))
-                .andExpect(jsonPath("$.zip").value(existingZipConst))
-                .andExpect(jsonPath("$.phone").value(existingPhoneConst))
-                .andExpect(jsonPath("$.email").value(existingEmailConst));*/
 
     }
 

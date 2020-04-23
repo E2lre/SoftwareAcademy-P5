@@ -11,7 +11,7 @@ public class NoPersonInfoForFisrtNameMastNameException extends Exception {
 
     public NoPersonInfoForFisrtNameMastNameException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 
 }

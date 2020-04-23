@@ -11,7 +11,7 @@ public class NoPhoneAtThisAddressException extends Exception {
 
     public NoPhoneAtThisAddressException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 
 }

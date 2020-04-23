@@ -16,7 +16,7 @@ import java.util.List;
 
 @Repository
 public class MedicalRecordDaoImpl implements MedicalRecordDao  {
-    private static final Logger logger = LogManager.getLogger(PersonDaoImpl.class);
+    private static final Logger logger = LogManager.getLogger(MedicalRecordDaoImpl.class);
 
     private static List<MedicalRecord> medicalRecords = new ArrayList<>();;
 
@@ -114,17 +114,6 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
 
 
         //Detect if the person already exist
-/*
-        for(MedicalRecord eMedicalRecord : medicalRecords){
-            if ((eMedicalRecord.getFirstName().equals(medicalRecord.getFirstName()))&&(eMedicalRecord.getLastName().equals(medicalRecord.getLastName()))){
-                int position = medicalRecords.indexOf(eMedicalRecord); //If the person exist, find the position in the list in memory and delete
-                if (position >=0)  {
-                    resultMedicalRecordList.add(eMedicalRecord);
-                    medicalRecords.remove(position);
-                }
-            }
-        }
-*/
 
         Iterator itr = medicalRecords.iterator();
 
@@ -139,9 +128,18 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
         logger.debug("Finish");
         return resultMedicalRecordList;
     }
+
+    /**
+     * load medicalRecord in memory
+     * @param medicalRecordList medical record list to be load
+     * @return true if OK
+     */
     @Override
     public boolean load (List<MedicalRecord> medicalRecordList) {
+        logger.debug("Start");
         medicalRecords.addAll(medicalRecordList);
+        logger.debug(medicalRecords);
+        logger.debug("Finish");
         return true;
     }
     /**
@@ -161,11 +159,10 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
      * @return medical record only with firstname lastname ans birthdate
      */
     @Override
-    public List<MedicalRecord> getChildByPersonList (List<Person> personList) { //throws ParseException {
+    public List<MedicalRecord> getChildByPersonList (List<Person> personList) {
         List<MedicalRecord> medicalRecordListResult = new ArrayList<>();
         //Date date = new Date();
-        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate today = LocalDate.now();
 
@@ -193,9 +190,9 @@ public class MedicalRecordDaoImpl implements MedicalRecordDao  {
     }
 
     /**
-     * Return the age of a person
-     * @param person
-     * @return
+     * Get the age of a person
+     * @param person to be analyse
+     * @return age of person
      */
     @Override
     public int getAgeByPerson (Person person){

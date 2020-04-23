@@ -2,13 +2,13 @@ package com.safetynet.safetynetalerts.model;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import org.apache.log4j.Logger;
+
 
 import java.util.List;
 
 public class MedicalRecord {
 
-    //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+
     private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
 
     private String firstName;

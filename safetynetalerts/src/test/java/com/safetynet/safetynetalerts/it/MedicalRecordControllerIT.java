@@ -70,8 +70,6 @@ public class MedicalRecordControllerIT {
                 .andExpect(jsonPath("$.firstName").value(firstnameConst))
                 .andExpect(jsonPath("$.lastName").value(lastnameConst))
                 .andExpect(jsonPath("$.birthdate").value(birthdateConst));
-//TODO lire la liste
-
     }
 
     /**
@@ -85,8 +83,8 @@ public class MedicalRecordControllerIT {
         //GIVEN : Give an inexisting MedicalRecord
        String inexistingFirstnameConst ="John";
        String inexistingLastnameConst = "Doe";
-        //WHEN //THEN return notfound
 
+        //WHEN //THEN return notfound
        mockMvc.perform(get("/medicalReport")
                .content(asJsonString(new MedicalRecord(inexistingFirstnameConst,inexistingLastnameConst,birthdateConst,medicationsListConst,allergiesListConst)))
                .contentType(MediaType.APPLICATION_JSON)
@@ -117,7 +115,6 @@ public class MedicalRecordControllerIT {
                 .andExpect(jsonPath("$.firstName").value(newFirstnameConst))
                 .andExpect(jsonPath("$.lastName").value(newLastnameConst))
                 .andExpect(jsonPath("$.birthdate").value(newBirthdateConst));
-//TODO lire la liste
 
     }
     /**
@@ -174,6 +171,7 @@ public class MedicalRecordControllerIT {
         //GIVEN : Give an Inexisting MedicalRecord
         String inexFirstnameConst = "Peter";
         String inexLastnameConst = "Xmas";
+
         //WHEN : the MedicalRecord is updated
 
         //THEN : error
@@ -208,7 +206,6 @@ public class MedicalRecordControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
-
 
     }
     /**

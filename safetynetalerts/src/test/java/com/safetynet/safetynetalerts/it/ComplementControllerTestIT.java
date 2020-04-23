@@ -49,7 +49,6 @@ public class ComplementControllerTestIT {
 
         //GIVEN : Give an inexisting address
 
-
         //WHEN //THEN return notfound
         mockMvc.perform(get("/fire?address="+incorrectAddressConst))
                 .andExpect(status().isNotFound());
@@ -77,7 +76,6 @@ public class ComplementControllerTestIT {
 
         //GIVEN : Give an inexisting station
 
-
         //WHEN //THEN return notfound
         mockMvc.perform(get("/flood?stations=0"))
                 .andExpect(status().isNotFound());
@@ -100,7 +98,6 @@ public class ComplementControllerTestIT {
 
         //GIVEN : Give an inexisting person
 
-
         //WHEN //THEN return notfound
         mockMvc.perform(get("/personInfo?firstName="+inexistingFirstNameConst+"&lastName="+inexistingLastNameConst))
                 .andExpect(status().isNotFound());
@@ -122,7 +119,6 @@ public class ComplementControllerTestIT {
     public void  getEmailByCity_getInexistingCity_anHTTPErrorIsReturn() throws Exception {
 
         //GIVEN : Give an inexisting city
-
 
         //WHEN //THEN return notfound
         mockMvc.perform(get("/communityEmail?city="+inexistingCityConst))

@@ -1,21 +1,20 @@
 package com.safetynet.safetynetalerts.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.jsoniter.JsonIterator;
 import com.safetynet.safetynetalerts.dao.*;
 
 import com.safetynet.safetynetalerts.model.*;
 
-//import org.apache.log4j.Logger;
 import com.safetynet.safetynetalerts.model.load.ApplicationData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StreamUtils;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -24,146 +23,72 @@ import java.util.List;
 public class InputDataReaderImpl implements InputDataReader {
 
     private static final Logger logger = LogManager.getLogger(InputDataReaderImpl.class);
-
-/*
     @Autowired
-    FirestationService resultFirestationService;
-*/
- /*   @Autowired
-    FirestationDaoNew fsDao;
-*/
+    private FirestationDao firestationDao;
+    @Autowired
+    private  PersonDao personDao;
+    @Autowired
+    private MedicalRecordDao medicalRecordDao;
 
-/*    @Autowired
-    PersonDao personDao;*/
-
-    //TODO à supprimer
+    /**
+     * Read input data.json file to memory
+     * @return ture if OK
+     */
     @Override
-    public List<Firestation> readInputDataXX() {
-        logger.trace("Start");
-        // read json
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            logger.trace("mapper");
-
-/*
-            List<FirestationDaoNew> firestations = mapper.reader()
-                    .forType(new TypeReference<List<Firestation>>(){})
-                    .readValue(new File("data.json"));
-*/
-            List<Firestation> firestation = mapper.reader()
-                    .forType(new TypeReference<List<Firestation>>(){})
-                   // .readValue(new File("data.json"));
-                    .readValue(new File("data - firestation.json"));
-
-            //   FirestationDao firestations = mapper.reader()
-            //                                              .forType(FirestationDao.class)
-            //                                              .readValue(new File("data.json"));
-
-//            logger.debug(firestations);
-            logger.debug(firestation);
-
-            logger.trace("Finish");
-            return firestation;
-        }
-        catch (Exception e){
-            logger.error(e.getMessage());
-            logger.trace("Finish with error");
-            return null;
-        }
-//            TypeReference<List<User>> typeReference = new TypeReference<List<User>>(){};
-//           InputStream inputStream = TypeReference.class.getResourceAsStream("data.json");
-//            List<User> users = mapper.readValue(inputStream,typeReference);
-    }
-    //TODO à supprimer
-    @Override
-    public FirestationDao  loadFirestationXX(List<Firestation> listFirestation){
-        logger.trace("Start");
-        FirestationDao resultFirestationDao = new FirestationDaoImpl();
-        for(Firestation eFirestation : listFirestation) {
-            resultFirestationDao.save(eFirestation);
-        }
-        logger.debug(resultFirestationDao);
-        logger.trace("Finish");
-        return resultFirestationDao;
-    }
-//TODO revoir le chargement et le réécrire ==> Lundi aprem
-    @Override
-    public FirestationDao readInputFile() {
+    public boolean readInputFile() {
         try {
             logger.debug("Start");
             boolean resultat = false;
+            boolean resultatFirestation = false;
+            boolean resultatPerson = false;
+            boolean resultatMedicalRecord = false;
             String pathFile = "data.json";
 
             String data = StreamUtils.copyToString(new ClassPathResource(pathFile).getInputStream(), Charset.defaultCharset());
-            ///tests
+
 
             ApplicationData applicationData = JsonIterator.deserialize(data,ApplicationData.class);
+            logger.debug("Data Loaded from file");
+
+
+            //Get firestation in applicationData
             List<Firestation> listFirestation = applicationData.getFirestations();
-            FirestationDao resultFirestationDao = new FirestationDaoImpl();
-            for(Firestation eFirestation : listFirestation) {
-                resultFirestationDao.save(eFirestation);
+
+            //Load FirestationSationDao
+            resultatFirestation = firestationDao.load(listFirestation);
+            if (resultatFirestation){
+                logger.debug("Firestation List Load in memory");
+            } else{
+                logger.error("Error for loading Firestation List in memory");
             }
 
-
+            //Get person in applicationData
             List<Person> personList = applicationData.getPersons();
-
-            PersonDao personDao = new PersonDaoImpl() ;
-            resultat = personDao.load(personList);
-
-            List<MedicalRecord> medicalRecordList = applicationData.getMedicalrecords();
-            MedicalRecordDao medicalRecordDao = new MedicalRecordDaoImpl();
-            resultat =medicalRecordDao.load(medicalRecordList);
-
-
-
-
- /*           Firestations firestationList = JsonIterator.deserialize(data, Firestations.class);
-           // List<Firestation> firestationList = JsonIterator.deserialize(data, firestationList.class);
-
-            FirestationDao resultFirestationDao = new FirestationDaoImpl();
-            List<Firestation> listFirestation = firestationList.getFirestations();
-            for(Firestation eFirestation : listFirestation) {
-                resultFirestationDao.save(eFirestation);
+            //Load personDao
+            resultatPerson = personDao.load(personList);
+            if (resultatPerson) {
+                logger.debug("Person List Load in memory");
+            } else{
+                logger.error("Error for loading Person List in memory");
             }
-*/
 
-            //Persons personList = JsonIterator.deserialize(data, Persons.class);
-      /*      Persons persons = JsonIterator.deserialize(data, Persons.class);
-            List<Person> personList = persons.getPersons();*/
-/*
-
-            List<Person> personList = applicationData.getPersons();
-
-            PersonDao personDao = new PersonDaoImpl() ;
-            resultat = personDao.load(personList);
-*/
-
-            //logger.debug(personList);
-//            for(Person ePerson : personList){
-//                personDao.add(ePerson);
-//            }
-            //PersonDao personList = JsonIterator.deserialize(data, PersonDaoImpl.class);
-            //personDao= JsonIterator.deserialize(data, PersonDaoImpl.class);
-            //List<Person> personList= JsonIterator.deserialize(data,new TypeLiteral<List<Person>>(){});
-  //          personDao.load(personList);
-  /*          MedicalRecords medicalRecords = JsonIterator.deserialize(data, MedicalRecords.class);
-            List<MedicalRecord> medicalRecordList = medicalRecords.getMedicalRecords();*/
-
-/*
+            //Get medicalRecord in applicationData
             List<MedicalRecord> medicalRecordList = applicationData.getMedicalrecords();
-            MedicalRecordDao medicalRecordDao = new MedicalRecordDaoImpl();
-            resultat =medicalRecordDao.load(medicalRecordList);
+            //Load medicalRecordDao
+            resultatMedicalRecord =medicalRecordDao.load(medicalRecordList);
+            if (resultatMedicalRecord) {
+                logger.debug("Medical Record List Load in memory");
+            } else{
+                logger.error("Error for loading Medical Record  List in memory");
+            }
 
-*/
-
-
-
+            resultat = resultatFirestation&&resultatPerson&&resultatMedicalRecord;
             logger.debug("Finish");
-            return resultFirestationDao;
+            return resultat;
         }
         catch (IOException e){
             logger.error(e);
-            return null;
+            return false;
         }
     }
 

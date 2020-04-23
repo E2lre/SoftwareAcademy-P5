@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 public class ComplementController {
@@ -29,10 +29,18 @@ public class ComplementController {
     private ComplementService complementService;
 
     /*---------------------------  Get FireList ----------------------------*/
+
+    /**
+     * get Fire list by address
+     * @param address to be analyse
+     * @return list of Fire
+     * @throws NoFireAtThisAddressException in case of error
+     */
     @GetMapping(value="/fire")
     @ResponseStatus(HttpStatus.OK)
     public List<Fire> getFireListByAddress(@RequestParam(name = "address") String address) throws NoFireAtThisAddressException {
-        logger.debug("Start");
+
+        logger.info("GET/fire?address=" + address);
 
         List<Fire> fireListResult = complementService.getFireByAddress(address);
 
@@ -47,10 +55,18 @@ public class ComplementController {
     }
 
     /*---------------------------  Get FloodList ----------------------------*/
+
+    /**
+     * get a Flood list by station number
+     * @param stations station number to be analyse
+     * @return a list of Flood
+     * @throws NoFloodForStationListException in case of error
+     */
     @GetMapping(value="/flood")
     @ResponseStatus(HttpStatus.OK)
     public List<Flood> getFloodByStationList(@RequestParam(name = "stations") List<String> stations) throws NoFloodForStationListException {
-        logger.debug("Start");
+
+        logger.info("GET/flood?stations=" + stations);
 
         List<Flood> floodListResult = complementService.getFloodByStationList(stations);
 
@@ -60,16 +76,24 @@ public class ComplementController {
         }
 
         logger.info("GET /flood : " + floodListResult);
-        logger.debug("Finish");
+
         return floodListResult;
     }
 
     /*---------------------------  Get PersonInfoList ----------------------------*/
+
+    /**
+     * get a PErsonInfo list by firstName and Lastname or by Lastname
+     * @param firstName optional
+     * @param lastName mandatory
+     * @return a list of PersonInfo
+     * @throws NoPersonInfoForFisrtNameMastNameException in case of error
+     */
     @GetMapping(value="/personInfo")
     @ResponseStatus(HttpStatus.OK)
     public List<PersonInfo> getPersonInfoByFisrtNameLastName(@RequestParam ( name = "firstName",  required=false) String firstName, @RequestParam(name = "lastName") String lastName ) throws NoPersonInfoForFisrtNameMastNameException {
-        logger.debug("Start");
 
+        logger.info("GET/personInfo?firstName=" + firstName +"&lastName="+lastName);
         List<PersonInfo> personInfoListResult = complementService.getPersonInfoByFisrtNameLastName(firstName,lastName);
 
         if(personInfoListResult.size() == 0)  {
@@ -78,14 +102,22 @@ public class ComplementController {
         }
 
         logger.info("GET /personInfo : " + personInfoListResult);
-        logger.debug("Finish");
+
         return personInfoListResult;
     }
     /*---------------------------  Get EmailList ----------------------------*/
+
+    /**
+     * Get a Email List by city
+     * @param city to be analyse
+     * @return a Email List
+     * @throws NoEmailForCityException in case of error
+     */
     @GetMapping(value="/communityEmail")
     @ResponseStatus(HttpStatus.OK)
     public List<Email> getEmailByCity(@RequestParam ( name = "city") String city) throws NoEmailForCityException {
-        logger.debug("Start");
+
+        logger.info("GET/communityEmail?city=" + city);
 
         List<Email> emailListResult = complementService.getEmailByCity(city);
 
@@ -95,7 +127,7 @@ public class ComplementController {
         }
 
         logger.info("GET /communityEmail : " + emailListResult);
-        logger.debug("Finish");
+
         return emailListResult;
     }
 }

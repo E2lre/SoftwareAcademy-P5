@@ -59,7 +59,6 @@ public class PersonControllerTest {
 
     }
     /*------------------------ Get ---------------------------------*/
-    //TODO Get personCOntroller TEST
     /**
      * Test : Controler Person
      * Get : get an existing person
@@ -212,7 +211,6 @@ public class PersonControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        //TODO completer la liste et ajouter la suppression de plusieurs personnes à controler / demande???
     }
 
     /**

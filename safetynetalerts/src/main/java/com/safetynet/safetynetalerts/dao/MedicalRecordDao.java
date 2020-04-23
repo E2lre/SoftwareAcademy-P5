@@ -3,7 +3,6 @@ package com.safetynet.safetynetalerts.dao;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 
-import java.text.ParseException;
 import java.util.List;
 
 public interface MedicalRecordDao {

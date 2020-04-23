@@ -27,18 +27,13 @@ public class FirestationControllerTestIT {
     @Autowired
     private MockMvc mockMvc;
 
-
-/*    @Before
-    public void setUp() {
-
-    }*/
     /*---------------------------------------- GET -------------------------------*/
     /**
      * Controler : firestation
      * Test : Get : show an existing address
      * @throws Exception
      */
-    //@DisplayName("Test Spring @Autowired Integration for SafetyalertsController")
+
     @Test
     public void SafetyalertsController_anExistingStationIsAsk_thePersonListIsReturn() throws Exception {
 
@@ -152,10 +147,7 @@ public class FirestationControllerTestIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
-        //TODO implémeter la lecture de la liste dans le test
-    /*               .andExpect(jsonPath("$.station").value(existingStation))
-                .andExpect(jsonPath("$.address").value(existingAddress));
-*/
+
     }
 
     /**
@@ -173,7 +165,6 @@ public class FirestationControllerTestIT {
 
         //WHEN : delete an inexisting station
         //THEN : return an error
-
         mockMvc.perform(delete("/firestation")
                 .content(asJsonString(new Firestation(addressToDelete,stationToDelete)))
                 .contentType(MediaType.APPLICATION_JSON)

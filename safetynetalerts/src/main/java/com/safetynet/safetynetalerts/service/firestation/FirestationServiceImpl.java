@@ -17,7 +17,7 @@ import java.util.List;
 
 @Repository
 public class FirestationServiceImpl implements FirestationService {
-    //private static final Logger logger = Logger.getLogger(SafetyalertsController.class);
+
     private static final Logger logger = LogManager.getLogger(FirestationServiceImpl.class);
 
     @Autowired
@@ -61,26 +61,11 @@ public class FirestationServiceImpl implements FirestationService {
         return firestationDao.delete(firestation);
     }
 
-    /*   @Override
-       public List<Person> getPersonByStation(String station){
-           logger.debug("Start");
-           List<Firestation> firestationListResult = new ArrayList<>();
-           List<Person> personListResult = new ArrayList<>();
-
-           //recupérer les adresse associées à un numéro de station
-           firestationListResult = firestationDao.getFirestationListByStation(station);
-
-           //get adresses
-           List<String> adresses = new ArrayList<>();
-           for (Firestation eFirestation:  firestationListResult) {
-               adresses.add(eFirestation.getAddress());
-           }
-           personListResult = personDao.getPersonByAdress(adresses);
-
-           //pour chaque adresse, recupérer la liste des personnes
-           logger.debug("Finish");
-           return personListResult;
-       }*/
+    /**
+     * get a StationNumberInfo (with person) by station Number
+     * @param station a station number
+     * @return a stationNumberInfo
+     */
     @Override
     public StationNumberInfo getPersonByStation(String station) {
         logger.debug("Start");

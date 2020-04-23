@@ -10,6 +10,6 @@ public class MedicalRecordCanNotBeDeletedException extends Exception {
     private static final Logger logger = LogManager.getLogger(MedicalRecordCanNotBeDeletedException.class);
     public MedicalRecordCanNotBeDeletedException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

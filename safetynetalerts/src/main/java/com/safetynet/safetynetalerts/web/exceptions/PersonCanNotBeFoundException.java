@@ -11,6 +11,6 @@ public class PersonCanNotBeFoundException extends Exception {
 
     public PersonCanNotBeFoundException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

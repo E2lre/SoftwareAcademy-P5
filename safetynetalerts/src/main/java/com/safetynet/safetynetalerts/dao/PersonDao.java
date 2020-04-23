@@ -1,14 +1,12 @@
 package com.safetynet.safetynetalerts.dao;
 
-import com.safetynet.safetynetalerts.model.Firestation;
 import com.safetynet.safetynetalerts.model.Person;
 
 import java.util.List;
 
 public interface PersonDao {
 
-    //public List<Person> getPersons();
-    //public void setPersons(List<Person> persons);
+
     public Person get (Person person);
     public Person add (Person person);
     public Person update (Person person);

@@ -14,21 +14,14 @@ public class Phone {
     private String firstName;
     private String lastName;
     private String phone;
-    /**
-     * Constructor for phone
-     * @param firstName
-     * @param lastName
-     * @param phone
-     */
+
     public Phone(String firstName, String lastName, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
     }
 
-    /**
-     * Constructor for phone
-     */
+
     public Phone() {
 
     }

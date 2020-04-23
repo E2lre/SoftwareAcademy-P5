@@ -11,6 +11,6 @@ public class NoFireAtThisAddressException extends Exception {
 
     public NoFireAtThisAddressException(String s) {
         super(s);
-        logger.warn(s);
+        logger.error(s);
     }
 }

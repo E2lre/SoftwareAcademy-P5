@@ -1,7 +1,6 @@
 package com.safetynet.safetynetalerts.dao;
 
 import com.safetynet.safetynetalerts.model.Person;
-//import org.apache.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -115,18 +114,6 @@ public class PersonDaoImpl implements PersonDao {
         logger.debug("start");
         List<Person>  resultPersonList = new ArrayList<>();
 
-
-        //Detect if the person already exist
-/*        for(Person ePerson : persons){
-            if ((ePerson.getFirstName().equals(person.getFirstName()))&&(ePerson.getLastName().equals(person.getLastName()))){
-                int position = persons.indexOf(ePerson); //If the person exist, find the position in the list in memory and delete
-                if (position >=0)  {
-                    resultPersonList.add(ePerson);
-                    persons.remove(position);
-                 }
-            }
-        }*/
-
         Iterator itr = persons.iterator();
 
         while (itr.hasNext()){
@@ -150,11 +137,11 @@ public class PersonDaoImpl implements PersonDao {
      */
     @Override
     public boolean load (List<Person> personList) {
-        logger.debug("load-start");
+        logger.debug("Start");
         persons.addAll(personList);
-//TODO gérer les erreurs
+
         logger.debug(persons);
-        logger.debug("load-Finish");
+        logger.debug("Finish");
         return true;
     }
 
@@ -165,10 +152,17 @@ public class PersonDaoImpl implements PersonDao {
      */
     @Override
     public boolean clear(){
+        logger.debug("start");
         persons.clear();
+        logger.debug("start");
         return true;
     }
 
+    /**
+     * return a list of person witch live at an address list
+     * @param addresses address list
+     * @return list of person
+     */
     @Override
     public List<Person> getPersonByAdress (List<String> addresses){
         logger.debug("start");
@@ -184,6 +178,11 @@ public class PersonDaoImpl implements PersonDao {
         return localPersonList;
     }
 
+    /**
+     * return a list of person by name of a person list in input
+     * @param personList list of person (firstname and lastname) to get information
+     * @return list of person
+     */
     @Override
     public List<Person> getPersonByName (List<Person> personList) {
         logger.debug("start");
@@ -204,6 +203,12 @@ public class PersonDaoImpl implements PersonDao {
         logger.debug("Finish");
         return personListResult;
     }
+
+    /**
+     * return a person list witch live in a city
+     * @param city the city
+     * @return the list of person
+     */
     @Override
     public List<Person> getPersonByCity (String city){
         logger.debug("start");
