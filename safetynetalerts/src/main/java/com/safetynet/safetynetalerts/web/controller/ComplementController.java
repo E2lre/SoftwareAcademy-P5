@@ -62,7 +62,7 @@ public class ComplementController {
      * @return a list of Flood
      * @throws NoFloodForStationListException in case of error
      */
-    @GetMapping(value="/flood")
+    @GetMapping(value="/flood/station")
     @ResponseStatus(HttpStatus.OK)
     public List<Flood> getFloodByStationList(@RequestParam(name = "stations") List<String> stations) throws NoFloodForStationListException {
 

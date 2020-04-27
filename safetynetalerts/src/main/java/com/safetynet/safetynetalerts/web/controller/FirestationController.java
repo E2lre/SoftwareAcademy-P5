@@ -138,7 +138,7 @@ public class FirestationController {
             throw new FirestationCanNotBeDeletedException("station " + firestation.getStation() + " address " + firestation.getAddress() +" Can not be deleted");
         }
 
-        logger.info("Delete /firestation : " + firestationList );
+        logger.info("Delete /firestation NB firstation deleted: " + firestationList.size() );
 
         return firestationList;
     }

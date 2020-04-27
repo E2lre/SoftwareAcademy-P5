@@ -61,7 +61,7 @@ public class ComplementControllerTestIT {
         //GIVEN : Give an exiting stations
 
         //WHEN //THEN return list of child
-        mockMvc.perform(get("/flood?stations=1,2"))
+        mockMvc.perform(get("/flood/station?stations=1,2"))
                 .andExpect(status().isOk());
 
     }
@@ -77,7 +77,7 @@ public class ComplementControllerTestIT {
         //GIVEN : Give an inexisting station
 
         //WHEN //THEN return notfound
-        mockMvc.perform(get("/flood?stations=0"))
+        mockMvc.perform(get("/flood/station?stations=0"))
                 .andExpect(status().isNotFound());
     }
     /*---------------------------------------- GET getPersonInfoByFisrtNameLastName-------------------------------*/

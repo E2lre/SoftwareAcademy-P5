@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class MyApplicationContext {
+    /**
+     * Use for actuator httptrace
+     * @return Use for actuator httptrace
+     */
     @Bean
     public HttpTraceRepository htttpTraceRepository()
     {

@@ -4,18 +4,17 @@ import com.safetynet.safetynetalerts.dao.FirestationDao;
 import com.safetynet.safetynetalerts.dao.MedicalRecordDao;
 import com.safetynet.safetynetalerts.dao.PersonDao;
 import com.safetynet.safetynetalerts.model.Firestation;
-//import org.apache.log4j.Logger;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.model.detail.StationNumberInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Service
 public class FirestationServiceImpl implements FirestationService {
 
     private static final Logger logger = LogManager.getLogger(FirestationServiceImpl.class);
@@ -73,8 +72,6 @@ public class FirestationServiceImpl implements FirestationService {
         int nbChild=0;
         int age=0;
         StationNumberInfo stationNumberInfo = new StationNumberInfo();
-        //List<Firestation> firestationListResult = new ArrayList<>();
-        //List<Person> personListResult = new ArrayList<>();
 
         //recupérer les adresse associées à un numéro de station
         List<Firestation> firestationListResult = firestationDao.getFirestationListByStation(station);

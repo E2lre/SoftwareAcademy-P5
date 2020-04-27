@@ -7,7 +7,7 @@ This app use SPRINT BOOT, all datas ar in memory.
 Endpoint : http://localhost:8080/
 Actuator : http://localhost:8090/
 
-### Prerequisites
+## Prerequisites
 
 What things you need to install the software and how to install them
 

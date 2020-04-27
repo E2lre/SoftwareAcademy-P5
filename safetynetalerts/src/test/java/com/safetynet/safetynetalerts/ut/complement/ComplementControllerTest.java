@@ -142,7 +142,7 @@ public class ComplementControllerTest {
         Mockito.when(complementService.getFloodByStationList(any(List.class))).thenReturn(floodList);
 
         //WHEN //THEN fire is return
-        mockMvc.perform(get("/flood?stations=1"))
+        mockMvc.perform(get("/flood/station?stations=1"))
                 .andExpect(status().isOk());
 
     }
@@ -160,7 +160,7 @@ public class ComplementControllerTest {
         Mockito.when(complementService.getFloodByStationList(any(List.class))).thenReturn(floodList);
 
         //WHEN //THEN http error
-        mockMvc.perform(get("/flood?stations=1"))
+        mockMvc.perform(get("/flood/station?stations=1"))
                 .andExpect(status().isNotFound());
 
     }
